@@ -67,6 +67,19 @@ pnpm observateurs desactiver OBS-7K2Q9M
 pnpm observateurs importer equipe.csv      # colonnes : bureau_vote,expire_le,telephone
 ```
 
+### Sans NocoDB (registre PostgreSQL seul)
+
+Le même webhook, appelé avec le secret, sait aussi **créer** un observateur et renvoie son lien :
+
+```bash
+curl -X POST https://votre-domaine.org/webhooks/api/collect/observateurs/lien \
+  -H "Content-Type: application/json" -H "X-Jk-Webhook: $JK_WEBHOOK_SECRET" \
+  -d '{"ajouter": {"bureau_vote": "Bureau 12", "expire_le": "2027-01-26T23:59:59Z"}}'
+# → {"ok":true,"code":"OBS-7K2Q9M","lien":"https://…/collect/#activer=…","expire_le":"…"}
+```
+
+Gardez ce secret hors des messageries : il permet de créer des observateurs.
+
 ## 4. Au quotidien
 
 | Situation | Action dans NocoDB |

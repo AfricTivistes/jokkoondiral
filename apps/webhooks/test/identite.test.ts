@@ -105,6 +105,11 @@ test('webhook NocoDB « générer le lien » : secret obligatoire, lignes coché
   assert.equal(webhookAutorise('secret-webhook', 'secret-webhook'), true);
   const r = await id.webhookLien({ type: 'records.after.update', data: { rows: [{ code: observateur.code, generer_lien: true }, { code: 'OBS-INCONNU', generer_lien: true }, { code: observateur.code, generer_lien: false }] } });
   assert.equal(r.corps.liens, 1);
+  const ajout = await id.webhookLien({ ajouter: { bureau_vote: 'Bureau 9' } });
+  assert.equal(ajout.status, 201);
+  assert.match(String(ajout.corps.code), /^OBS-/);
+  assert.match(String(ajout.corps.lien), /#activer=/);
+  assert.equal((await id.webhookLien({ ajouter: { expire_le: 'pas-une-date' } })).status, 400);
   const ligne = s.tables.observateurs.find((l) => l.code === observateur.code)!;
   assert.match(String(ligne.lien_activation), /#activer=/);
   assert.equal(ligne.generer_lien, false, 'la case est décochée après génération');

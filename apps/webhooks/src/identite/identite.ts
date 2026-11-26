@@ -140,7 +140,23 @@ export class Identite {
    * où « generer_lien » est cochée. Accepte aussi { "code": "OBS-XXXX" }.
    */
   async webhookLien(corps: unknown): Promise<{ status: number; corps: Record<string, unknown> }> {
-    const c = (corps || {}) as { code?: string; data?: { rows?: Record<string, unknown>[] } & Record<string, unknown> };
+    const c = (corps || {}) as {
+      code?: string;
+      ajouter?: { bureau_vote?: string; expire_le?: string; telephone?: string };
+      data?: { rows?: Record<string, unknown>[] } & Record<string, unknown>;
+    };
+    // Enrôlement direct (registre PostgreSQL sans NocoDB, scripts d'administration) :
+    // { "ajouter": { "bureau_vote": "…", "expire_le": "2027-01-26T23:59:59Z" } } → pseudonyme + lien.
+    if (c.ajouter && typeof c.ajouter === 'object') {
+      const a = c.ajouter;
+      if (a.expire_le && Number.isNaN(Date.parse(a.expire_le))) return { status: 400, corps: { ok: false, erreur: 'expire_le' } };
+      const r = await this.creerObservateur({
+        bureau_vote: typeof a.bureau_vote === 'string' ? a.bureau_vote.slice(0, 100) : undefined,
+        expire_le: a.expire_le,
+        telephone: typeof a.telephone === 'string' ? a.telephone.slice(0, 30) : undefined,
+      });
+      return { status: 201, corps: { ok: true, code: r.observateur.code, lien: r.lien, expire_le: r.expire_le } };
+    }
     const lignes = c.code ? [{ code: c.code, generer_lien: true }] : c.data?.rows ?? (c.data ? [c.data] : []);
     let crees = 0;
     for (const l of lignes) {
