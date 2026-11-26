@@ -1,8 +1,8 @@
 # 🎯 Besoins — ce que disent les OSC
 
-Chaque outil de la Situation Room répond à un besoin exprimé par des organisations de la société civile (OSC) qui observent les élections. Ce document résume ces besoins et les relie aux outils du [catalogue](./outils/README.md).
+Chaque outil de Jokkoondiral répond à un besoin exprimé par des organisations de la société civile (OSC) qui observent les élections. Ce document résume ces besoins et les relie aux outils du [catalogue](./outils/README.md).
 
-> **Source.** Consultation Jokkoondiral : 45 réponses valides (54 reçues, 9 tests exclus), 18 pays, extraction du 14 septembre 2026. Synthèse du document « Situation Room — Orientation des besoins » (oct. 2026). Aucune donnée nominative n'est reprise ici ; les verbatims sont anonymisés.
+> **Source.** Consultation Jokkoondiral : 45 réponses valides (54 reçues, 9 tests exclus), 18 pays, extraction du 14 septembre 2026. Synthèse du document « Jokkoondiral — Orientation des besoins » (oct. 2026). Aucune donnée nominative n'est reprise ici ; les verbatims sont anonymisés.
 
 ## Les cinq constats qui guident tout
 
@@ -67,7 +67,7 @@ Réseaux instables, téléphones modestes, climat de menace : ces trois contrain
 | Application maison | 4 | 5 | 14 |
 | Ushahidi | 1 | 4 | 14 |
 
-La Situation Room ne se positionne pas comme une migration depuis Ushahidi, mais depuis « WhatsApp + KoBo + tableur ». L'import KoBo (C7) est un levier d'adoption.
+Jokkoondiral ne se positionne pas comme une migration depuis Ushahidi, mais depuis « WhatsApp + KoBo + tableur ». L'import KoBo (C7) est un levier d'adoption.
 
 Problèmes déclarés : connectivité 27 · absence de vérification 10 · absence de cartographie 9 · sécurité 8 · manque de formation 8 · données dispersées 7 · complexité des outils 5.
 

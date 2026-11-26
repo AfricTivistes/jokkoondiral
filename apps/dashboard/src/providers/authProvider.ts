@@ -1,5 +1,5 @@
 // =============================================================
-// Auth Provider – Situation Room Dashboard
+// Auth Provider – Jokkoondiral Dashboard
 // =============================================================
 // Gère l'authentification des modérateurs et fact-checkers.
 // S'appuie sur le système d'authentification intégré de NocoDB.

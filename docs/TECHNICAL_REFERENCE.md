@@ -1,7 +1,7 @@
-# Référence Technique — Situation Room
+# Référence Technique — Jokkoondiral
 
 > **Pôle IT — AfricTivistes**
-> Dépôt : [https://github.com/AfricTivistes/situation-room](https://github.com/AfricTivistes/situation-room)
+> Dépôt : [https://github.com/AfricTivistes/jokkoondiral](https://github.com/AfricTivistes/jokkoondiral)
 > Dernière mise à jour : Avril 2026
 
 > **Ce document** est la référence technique pour les développeurs et contributeurs du projet. Il couvre l'architecture, les choix d'outils, la méthodologie et le guide d'onboarding.
@@ -133,7 +133,7 @@ Ce pipeline garantit qu'**aucune information non vérifiée** n'est visible publ
 ### Infrastructure & Déploiement
 
 #### Docker & Docker Compose
-**Pourquoi ?** La souveraineté des données exige que l'outil soit déployable sur n'importe quelle infrastructure. Docker abstrait l'environnement d'exécution : la Situation Room tourne de manière identique sur un VPS OVH à 5€/mois, un serveur dédié, ou un datacenter local.
+**Pourquoi ?** La souveraineté des données exige que l'outil soit déployable sur n'importe quelle infrastructure. Docker abstrait l'environnement d'exécution : Jokkoondiral tourne de manière identique sur un VPS OVH à 5€/mois, un serveur dédié, ou un datacenter local.
 
 **Alternative écartée :** Solutions cloud managées (AWS ECS, Google Cloud Run) — incompatibles avec notre valeur de souveraineté des données et source de coûts imprévisibles.
 
@@ -275,7 +275,7 @@ Pour la documentation complète du schéma et les conventions SQL, consulter [`S
 ## 5. Structure du Dépôt
 
 ```
-situation-room/
+jokkoondiral/
 │
 ├── apps/                          ← Applications déployables
 │   ├── public/                    ← Site public (Astro + Leaflet)
@@ -441,8 +441,8 @@ Le développement local repose sur deux niveaux : les **services d'infrastructur
 
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/AfricTivistes/situation-room.git
-cd situation-room
+git clone https://github.com/AfricTivistes/jokkoondiral.git
+cd jokkoondiral
 
 # 2. Installer les dépendances
 pnpm install

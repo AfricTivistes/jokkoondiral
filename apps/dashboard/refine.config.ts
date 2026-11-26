@@ -1,5 +1,5 @@
 // =============================================================
-// Configuration Refine.js – Situation Room Dashboard
+// Configuration Refine.js – Jokkoondiral Dashboard
 // =============================================================
 // Ce fichier centralise les ressources exposées par NocoDB.
 // Chaque "resource" correspond à une table PostgreSQL.
@@ -31,4 +31,4 @@ export const resources = [
 // URL de l'API NocoDB (configurée via variable d'environnement)
 export const API_URL =
   import.meta.env.VITE_API_URL ||
-  'http://localhost:8080/api/v1/db/data/v1/situation_room';
+  'http://localhost:8080/api/v1/db/data/v1/jokkoondiral';

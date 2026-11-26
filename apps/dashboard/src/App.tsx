@@ -19,7 +19,7 @@ function App() {
             path="/"
             element={
               <div style={{ padding: "2rem" }}>
-                <h1>🛡️ Situation Room – Africa ElectionLab</h1>
+                <h1>🛡️ Jokkoondiral – Africa ElectionLab</h1>
                 <p>Le dashboard est en cours de construction.</p>
                 <p>
                   Consulte <code>SKILLS_MAP.md</code> pour trouver comment

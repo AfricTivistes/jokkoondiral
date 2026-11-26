@@ -1,6 +1,6 @@
-# Espaces de travail du monorepo Situation Room
+# Espaces de travail du monorepo Jokkoondiral
 # - apps/*      : applications déployables (public, dashboard, webhooks…)
-# - packages/*  : briques partagées publiées sous @situation-room/<nom>
+# - packages/*  : briques partagées publiées sous @jokkoondiral/<nom>
 # Voir docs/AJOUTER_UN_OUTIL.md avant d'ajouter un dossier.
 packages:
   - 'apps/*'

@@ -30,7 +30,7 @@ L'outil **doit** pouvoir être déployé sur un simple VPS KVM avec 1-2 Go de RA
 
 ```bash
 # Cloner le dépôt sur votre VPS
-git clone https://github.com/AfricTivistes/situation-room.git
+git clone https://github.com/AfricTivistes/jokkoondiral.git
 
 # Configurer les variables d'environnement
 cp .env.example .env

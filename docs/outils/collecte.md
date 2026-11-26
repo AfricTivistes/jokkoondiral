@@ -1,6 +1,6 @@
 # 📥 Domaine 1 — Collecte terrain
 
-> Fiches issues du document « Situation Room — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
+> Fiches issues du document « Jokkoondiral — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
 
 La collecte doit marcher pour tous les observateurs : smartphone récent ou téléphone basique, réseau 4G ou SMS seul. Sept outils couvrent cet éventail.
 
@@ -32,7 +32,7 @@ La collecte doit marcher pour tous les observateurs : smartphone récent ou tél
 - [ ] Envoi des photos compressées
 - [ ] Test en 2G simulée
 
-Suivi : [issues `[C1]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BC1%5D%22) · titre d'issue : `[C1] <tâche>`
+Suivi : [issues `[C1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC1%5D%22) · titre d'issue : `[C1] <tâche>`
 
 <a id="c2"></a>
 ## C2 · Application Android hors ligne
@@ -50,7 +50,7 @@ Suivi : [issues `[C1]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Mesurer les limites de C1 sur un Android bas de gamme
 - [ ] Prototype ODK branché sur l'API de réception
 
-Suivi : [issues `[C2]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BC2%5D%22) · titre d'issue : `[C2] <tâche>`
+Suivi : [issues `[C2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC2%5D%22) · titre d'issue : `[C2] <tâche>`
 
 <a id="c3"></a>
 ## C3 · Parcours SMS codé
@@ -69,7 +69,7 @@ Suivi : [issues `[C2]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Parseur + tests
 - [ ] Réponse d'erreur explicite
 
-Suivi : [issues `[C3]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BC3%5D%22) · titre d'issue : `[C3] <tâche>`
+Suivi : [issues `[C3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC3%5D%22) · titre d'issue : `[C3] <tâche>`
 
 <a id="c4"></a>
 ## C4 · Saisie des appels par un opérateur
@@ -87,7 +87,7 @@ Suivi : [issues `[C3]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Formulaire avec source « appel »
 - [ ] Numéro de l'appelant rattaché au registre R5
 
-Suivi : [issues `[C4]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BC4%5D%22) · titre d'issue : `[C4] <tâche>`
+Suivi : [issues `[C4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC4%5D%22) · titre d'issue : `[C4] <tâche>`
 
 <a id="c5"></a>
 ## C5 · USSD
@@ -105,7 +105,7 @@ Suivi : [issues `[C4]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Arbre de menus à 3 niveaux maximum
 - [ ] Coût par session par pays
 
-Suivi : [issues `[C5]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BC5%5D%22) · titre d'issue : `[C5] <tâche>`
+Suivi : [issues `[C5]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC5%5D%22) · titre d'issue : `[C5] <tâche>`
 
 <a id="c6"></a>
 ## C6 · Signalement vocal en langues nationales
@@ -123,7 +123,7 @@ Suivi : [issues `[C5]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Stocker les vocaux comme preuves dès le MVP (M2)
 - [ ] Évaluer la transcription en wolof et bambara
 
-Suivi : [issues `[C6]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BC6%5D%22) · titre d'issue : `[C6] <tâche>`
+Suivi : [issues `[C6]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC6%5D%22) · titre d'issue : `[C6] <tâche>`
 
 <a id="c7"></a>
 ## C7 · Import KoBo / ODK
@@ -141,7 +141,7 @@ Suivi : [issues `[C6]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Correspondance des champs XLSForm vers le modèle d'incident (M3)
 - [ ] Import ponctuel en script
 
-Suivi : [issues `[C7]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BC7%5D%22) · titre d'issue : `[C7] <tâche>`
+Suivi : [issues `[C7]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC7%5D%22) · titre d'issue : `[C7] <tâche>`
 
 
 ---

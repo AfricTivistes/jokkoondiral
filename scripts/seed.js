@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // =============================================================
-// Script de données de démonstration – Situation Room
+// Script de données de démonstration – Jokkoondiral
 // =============================================================
 // Ce script insère 28 signalements fictifs dans NocoDB pour
 // permettre aux participants des Tech Camps de voir l'outil
@@ -41,10 +41,10 @@ if (fs.existsSync(envPath)) {
 
 // Même convention que les handlers webhooks : NOCODB_API_URL inclut le chemin
 // complet jusqu'au namespace de la base (pas seulement le host).
-// Ex : http://localhost:8080/api/v1/db/data/v1/situation_room
+// Ex : http://localhost:8080/api/v1/db/data/v1/jokkoondiral
 const NOCODB_API_URL =
   process.env.NOCODB_API_URL ||
-  'http://localhost:8080/api/v1/db/data/v1/situation_room';
+  'http://localhost:8080/api/v1/db/data/v1/jokkoondiral';
 const API_TOKEN = process.env.NOCODB_API_TOKEN;
 
 if (!API_TOKEN) {
@@ -260,7 +260,7 @@ async function insertReport(report) {
 
 async function main() {
   console.log('');
-  console.log('🌍 Situation Room – Insertion des données de démonstration');
+  console.log('🌍 Jokkoondiral – Insertion des données de démonstration');
   console.log('══════════════════════════════════════════════════════════');
   console.log(`   NocoDB URL   : ${NOCODB_API_URL}`);
   console.log(`   Signalements : ${REPORTS.length}`);

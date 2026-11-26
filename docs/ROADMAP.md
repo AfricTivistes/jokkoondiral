@@ -6,7 +6,7 @@ Le MVP vise un **premier scrutin pilote début 2027**. Chaque phase ne s'ouvre q
 
 ```mermaid
 timeline
-  title Situation Room — phases (dates indicatives, à valider)
+  title Jokkoondiral — phases (dates indicatives, à valider)
   MVP (nov. 2026 – fév. 2027) : WhatsApp + SMS avec médias : PWA hors ligne : modération, preuves, audit : carte publique + carte interne : rôles / 2FA, FR/EN
   Porte MVP : 1 scrutin pilote réussi
   V1 (mars – juin 2027) : Android, saisie des appels, import KoBo : recoupement, alertes : statistiques, export, archivage : multi-organisations, mode hébergé

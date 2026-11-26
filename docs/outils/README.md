@@ -1,8 +1,8 @@
-# 🧰 Catalogue des outils — Situation Room
+# 🧰 Catalogue des outils — Jokkoondiral
 
-La Situation Room n'est pas une application unique mais une **boîte à outils de 34 outils**, répartis en **5 domaines + des socles transverses**. Chaque outil a un **code** (C1, R2, M3…) utilisé partout : fiches, matrice des besoins, phasage, issues GitHub et pull requests.
+Jokkoondiral n'est pas une application unique mais une **boîte à outils de 34 outils**, répartis en **5 domaines + des socles transverses**. Chaque outil a un **code** (C1, R2, M3…) utilisé partout : fiches, matrice des besoins, phasage, issues GitHub et pull requests.
 
-> **Origine.** Ce catalogue reprend le document « Situation Room — Orientation des besoins » (oct. 2026), construit à partir de la consultation Jokkoondiral (45 organisations de la société civile, 18 pays). Les besoins qui justifient chaque outil sont dans [`docs/BESOINS.md`](../BESOINS.md).
+> **Origine.** Ce catalogue reprend le document « Jokkoondiral — Orientation des besoins » (oct. 2026), construit à partir de la consultation Jokkoondiral (45 organisations de la société civile, 18 pays). Les besoins qui justifient chaque outil sont dans [`docs/BESOINS.md`](../BESOINS.md).
 
 ## Les six familles
 

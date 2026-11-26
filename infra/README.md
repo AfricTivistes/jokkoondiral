@@ -24,7 +24,7 @@ Cela permet à un journaliste ou un coordinateur d'OSC de modifier les données 
 
 Une fois Docker lancé :
 - **Interface admin :** `http://localhost:8080`
-- **API REST :** `http://localhost:8080/api/v1/db/data/v1/situation_room`
+- **API REST :** `http://localhost:8080/api/v1/db/data/v1/jokkoondiral`
 - **Documentation API :** `http://localhost:8080/api/v1/meta/tables`
 
 ---

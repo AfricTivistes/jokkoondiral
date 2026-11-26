@@ -2,7 +2,7 @@ version: '3.8'
 
 # =============================================================
 # Docker Compose – PRODUCTION
-# Situation Room / Africa ElectionLab
+# Jokkoondiral / Africa ElectionLab
 # =============================================================
 # Usage :
 #   cp .env.example .env && nano .env  (modifier les mots de passe !)
@@ -13,7 +13,7 @@ services:
   # ── Base de données PostgreSQL 16 ──────────────────────────
   postgres:
     image: postgres:16-alpine
-    container_name: situation-room-db
+    container_name: jokkoondiral-db
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -30,7 +30,7 @@ services:
   # ── NocoDB – Interface admin + API REST/GraphQL ─────────────
   nocodb:
     image: nocodb/nocodb:latest
-    container_name: situation-room-nocodb
+    container_name: jokkoondiral-nocodb
     environment:
       NC_DB: "pg://${DB_USER}:${DB_PASSWORD}@postgres:5432/${DB_NAME}"
       NC_AUTH_JWT_SECRET: ${JWT_SECRET}
@@ -50,7 +50,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.webhooks
-    container_name: situation-room-webhooks
+    container_name: jokkoondiral-webhooks
     environment:
       PORT: 3000
       NOCODB_API_URL: http://nocodb:8080/api/v1/db/data/v1/${DB_NAME}
@@ -65,7 +65,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.public
-    container_name: situation-room-public
+    container_name: jokkoondiral-public
     restart: unless-stopped
     networks:
       - web
@@ -75,7 +75,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.dashboard
-    container_name: situation-room-dashboard
+    container_name: jokkoondiral-dashboard
     environment:
       VITE_API_URL: https://${DOMAIN}/nocodb/api/v1/db/data/v1/${DB_NAME}
     restart: unless-stopped
@@ -85,7 +85,7 @@ services:
   # ── Reverse Proxy Nginx ─────────────────────────────────────
   nginx:
     image: nginx:alpine
-    container_name: situation-room-proxy
+    container_name: jokkoondiral-proxy
     ports:
       - "80:80"
       - "443:443"
@@ -107,7 +107,7 @@ services:
   # ── Certbot – Renouvellement SSL automatique ────────────────
   certbot:
     image: certbot/certbot
-    container_name: situation-room-certbot
+    container_name: jokkoondiral-certbot
     volumes:
       - certbot_certs:/etc/letsencrypt
       - certbot_www:/var/www/certbot

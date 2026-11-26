@@ -1,4 +1,4 @@
-# Contributeurs – Situation Room / Africa ElectionLab
+# Contributeurs – Jokkoondiral / Africa ElectionLab
 
 Merci à toutes les personnes qui ont contribué à ce projet !
 

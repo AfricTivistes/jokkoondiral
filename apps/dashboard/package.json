@@ -2,7 +2,7 @@
   "name": "dashboard",
   "version": "0.1.0",
   "private": true,
-  "description": "Situation Room – Dashboard privé (Refine.js + React)",
+  "description": "Jokkoondiral – Dashboard privé (Refine.js + React)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,7 +16,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
-    "@situation-room/shared": "workspace:*"
+    "@jokkoondiral/shared": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

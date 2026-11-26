@@ -1,5 +1,5 @@
 -- =============================================================
--- Situation Room – Africa ElectionLab
+-- Jokkoondiral – Africa ElectionLab
 -- Schéma de base de données initial (générique)
 -- =============================================================
 -- Ce schéma est intentionnellement agnostique : il peut servir

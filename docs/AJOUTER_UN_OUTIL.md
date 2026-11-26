@@ -1,6 +1,6 @@
 # ➕ Ajouter un outil ou un projet au monorepo
 
-Ce guide explique comment brancher un nouvel outil (ou un projet existant que tu veux faire rejoindre la Situation Room) sans casser le reste. La structure est fixée par [ADR-0001](./decisions/0001-structure-monorepo.md).
+Ce guide explique comment brancher un nouvel outil (ou un projet existant que tu veux faire rejoindre Jokkoondiral) sans casser le reste. La structure est fixée par [ADR-0001](./decisions/0001-structure-monorepo.md).
 
 ## 1. Situer l'outil
 
@@ -34,9 +34,9 @@ flowchart TD
 
 Checklist :
 
-- [ ] `package.json` : `name` = `<nom>` (app) ou `@situation-room/<nom>` (package), `"private": true`, licence `AGPL-3.0-only`.
+- [ ] `package.json` : `name` = `<nom>` (app) ou `@jokkoondiral/<nom>` (package), `"private": true`, licence `AGPL-3.0-only`.
 - [ ] Scripts `dev`, `build`, `typecheck` (la racine les lance avec `pnpm -r --if-present`).
-- [ ] Dépendance aux types communs : `"@situation-room/shared": "workspace:*"`. Les nouveaux types vont dans `packages/shared`, jamais redéfinis localement.
+- [ ] Dépendance aux types communs : `"@jokkoondiral/shared": "workspace:*"`. Les nouveaux types vont dans `packages/shared`, jamais redéfinis localement.
 - [ ] `README.md` avec, en tête, la section **« Outils hébergés »** (codes + lien vers les fiches), puis rôle, démarrage, structure.
 - [ ] Si l'app se déploie : `docker/Dockerfile.<nom>` + service dans `docker-compose.yml`. Si elle est **optionnelle**, la mettre sous un profil :
 

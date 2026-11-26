@@ -1,6 +1,6 @@
-# Guide de Déploiement – Situation Room
+# Guide de Déploiement – Jokkoondiral
 
-Ce guide explique comment déployer la Situation Room sur un VPS Linux basique (1-2 Go de RAM).
+Ce guide explique comment déployer Jokkoondiral sur un VPS Linux basique (1-2 Go de RAM).
 
 ---
 
@@ -9,7 +9,7 @@ Ce guide explique comment déployer la Situation Room sur un VPS Linux basique (
 - **OS :** Ubuntu 22.04 LTS ou Debian 12 (recommandé)
 - **RAM :** 1 Go minimum, 2 Go recommandé
 - **Stockage :** 20 Go minimum
-- **Réseau :** Un nom de domaine pointant vers votre IP (ex: `situation.votreOSC.org`)
+- **Réseau :** Un nom de domaine pointant vers votre IP (ex: `jokkoondiral.votreOSC.org`)
 - **Logiciels :** Docker + Docker Compose (voir ci-dessous)
 
 ---
@@ -38,8 +38,8 @@ docker-compose --version
 
 ```bash
 # Cloner le dépôt sur votre serveur
-git clone https://github.com/AfricTivistes/situation-room.git
-cd situation-room
+git clone https://github.com/AfricTivistes/jokkoondiral.git
+cd jokkoondiral
 
 # Créer et configurer le fichier .env
 cp .env.example .env
@@ -50,7 +50,7 @@ nano .env
 ```
 DB_PASSWORD=un_mot_de_passe_solide_12_caracteres_min
 JWT_SECRET=une_longue_chaine_aleatoire_ici
-DOMAIN=situation.votreOSC.org
+DOMAIN=jokkoondiral.votreOSC.org
 ```
 
 Générer une clé aléatoire solide :
@@ -74,7 +74,7 @@ docker run --rm \
   -v "$(pwd)/certbot_www:/var/www/certbot" \
   certbot/certbot certonly \
   --webroot -w /var/www/certbot \
-  -d situation.votreOSC.org \
+  -d jokkoondiral.votreOSC.org \
   --email contact@votreOSC.org \
   --agree-tos --no-eff-email
 ```
@@ -83,10 +83,10 @@ docker run --rm \
 
 ## Étape 4 – Configurer Nginx
 
-Modifier le fichier `docker/nginx/conf.d/situation-room.conf` :
+Modifier le fichier `docker/nginx/conf.d/jokkoondiral.conf` :
 ```bash
 # Remplacer "votre-domaine.org" par votre vrai domaine
-sed -i 's/votre-domaine.org/situation.votreOSC.org/g' docker/nginx/conf.d/situation-room.conf
+sed -i 's/votre-domaine.org/jokkoondiral.votreOSC.org/g' docker/nginx/conf.d/jokkoondiral.conf
 ```
 
 ---
@@ -111,7 +111,7 @@ docker-compose logs -f
 
 ## Étape 6 – Configurer NocoDB
 
-1. Ouvrir `https://situation.votreOSC.org/nocodb/`
+1. Ouvrir `https://jokkoondiral.votreOSC.org/nocodb/`
 2. Créer un compte administrateur
 3. Se connecter à la base PostgreSQL déjà existante
 4. Générer un **API Token** dans Paramètres → API Tokens
@@ -132,10 +132,10 @@ docker-compose up -d
 ### Sauvegardes de la base de données
 ```bash
 # Créer une sauvegarde
-docker exec situation-room-db pg_dump -U postgres situation_room > backup_$(date +%Y%m%d).sql
+docker exec jokkoondiral-db pg_dump -U postgres jokkoondiral > backup_$(date +%Y%m%d).sql
 
 # Automatiser avec cron (chaque jour à 3h du matin)
-echo "0 3 * * * docker exec situation-room-db pg_dump -U postgres situation_room > /home/ubuntu/backups/backup_$(date +%Y%m%d).sql" | crontab -
+echo "0 3 * * * docker exec jokkoondiral-db pg_dump -U postgres jokkoondiral > /home/ubuntu/backups/backup_$(date +%Y%m%d).sql" | crontab -
 ```
 
 ### Surveillance des ressources

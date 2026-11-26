@@ -6,7 +6,7 @@
 # Prérequis : gh (GitHub CLI) authentifié (gh auth login).
 # =============================================================
 set -euo pipefail
-REPO="${GH_REPO:-AfricTivistes/situation-room}"
+REPO="${GH_REPO:-AfricTivistes/jokkoondiral}"
 
 label() { # nom couleur description
   gh label create "$1" --repo "$REPO" --color "$2" --description "$3" --force >/dev/null

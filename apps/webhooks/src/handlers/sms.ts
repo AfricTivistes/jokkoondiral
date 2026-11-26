@@ -1,5 +1,5 @@
 // =============================================================
-// Handler SMS – Africa's Talking – Situation Room Webhooks
+// Handler SMS – Africa's Talking – Jokkoondiral Webhooks
 // =============================================================
 // Ce handler reçoit les SMS envoyés à votre numéro Africa's Talking
 // et les transforme en signalements dans la base de données.
@@ -25,7 +25,7 @@ interface AfricasTalkingSmsPayload {
   linkId?: string;
 }
 
-const NOCODB_API_URL = process.env.NOCODB_API_URL || 'http://localhost:8080/api/v1/db/data/v1/situation_room';
+const NOCODB_API_URL = process.env.NOCODB_API_URL || 'http://localhost:8080/api/v1/db/data/v1/jokkoondiral';
 const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN || '';
 
 export async function handleSmsWebhook(req: Request, res: Response): Promise<void> {

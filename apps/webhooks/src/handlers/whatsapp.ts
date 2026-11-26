@@ -1,5 +1,5 @@
 // =============================================================
-// Handler WhatsApp Business API (Meta) – Situation Room Webhooks
+// Handler WhatsApp Business API (Meta) – Jokkoondiral Webhooks
 // =============================================================
 // Ce handler reçoit les messages WhatsApp via l'API Meta Cloud
 // et les transforme en signalements dans la base de données.
@@ -16,7 +16,7 @@
 import { Request, Response } from 'express';
 
 const WHATSAPP_VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || 'mon_token_de_verification';
-const NOCODB_API_URL = process.env.NOCODB_API_URL || 'http://localhost:8080/api/v1/db/data/v1/situation_room';
+const NOCODB_API_URL = process.env.NOCODB_API_URL || 'http://localhost:8080/api/v1/db/data/v1/jokkoondiral';
 const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN || '';
 
 // Vérification du webhook par Meta (appelée une seule fois lors de la configuration)

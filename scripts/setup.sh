@@ -1,13 +1,13 @@
 #!/bin/bash
 # =============================================================
-# Script d'initialisation – Situation Room / Africa ElectionLab
+# Script d'initialisation – Jokkoondiral / Africa ElectionLab
 # =============================================================
 # Ce script configure l'environnement de développement en une
 # seule commande. Parfait pour les Tech Camps !
 # Usage : bash scripts/setup.sh
 # =============================================================
 
-echo "🚧 Initialisation de l'environnement Situation Room..."
+echo "🚧 Initialisation de l'environnement Jokkoondiral..."
 
 # Vérification des prérequis
 command -v pnpm >/dev/null 2>&1 || {

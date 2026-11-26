@@ -1,5 +1,5 @@
 // =============================================================
-// Constantes partagées – Situation Room / Africa ElectionLab
+// Constantes partagées – Jokkoondiral / Africa ElectionLab
 // =============================================================
 
 // Statuts des signalements (utilisés dans les filtres et les badges UI)

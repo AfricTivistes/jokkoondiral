@@ -1,5 +1,5 @@
 // =============================================================
-// Data Provider NocoDB – Situation Room Dashboard
+// Data Provider NocoDB – Jokkoondiral Dashboard
 // =============================================================
 // Ce fichier adapte l'API NocoDB au format attendu par Refine.js.
 // NocoDB génère automatiquement une API REST depuis PostgreSQL.

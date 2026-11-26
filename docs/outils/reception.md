@@ -1,6 +1,6 @@
 # 📡 Domaine 2 — Réception multi-canal
 
-> Fiches issues du document « Situation Room — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
+> Fiches issues du document « Jokkoondiral — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
 
 Tous les canaux aboutissent au même signalement normalisé, rattaché à un observateur connu. C'est le domaine le plus avancé du dépôt (`apps/webhooks`), mais en texte seul.
 
@@ -29,7 +29,7 @@ Tous les canaux aboutissent au même signalement normalisé, rattaché à un obs
 - [ ] Vérification de la signature `X-Hub-Signature-256`
 - [ ] Message de confirmation avec numéro de suivi
 
-Suivi : [issues `[R1]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BR1%5D%22) · titre d'issue : `[R1] <tâche>`
+Suivi : [issues `[R1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BR1%5D%22) · titre d'issue : `[R1] <tâche>`
 
 <a id="r2"></a>
 ## R2 · Passerelle SMS
@@ -47,7 +47,7 @@ Suivi : [issues `[R1]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Brancher le parseur C3
 - [ ] Abstraction « fournisseur SMS » pour changer d'opérateur par pays
 
-Suivi : [issues `[R2]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BR2%5D%22) · titre d'issue : `[R2] <tâche>`
+Suivi : [issues `[R2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BR2%5D%22) · titre d'issue : `[R2] <tâche>`
 
 <a id="r3"></a>
 ## R3 · Bot Telegram
@@ -64,7 +64,7 @@ Suivi : [issues `[R2]`](https://github.com/AfricTivistes/situation-room/issues?q
 
 - [ ] Aligner sur le format commun de R1 (médias, accusé de réception) sans y investir plus
 
-Suivi : [issues `[R3]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BR3%5D%22) · titre d'issue : `[R3] <tâche>`
+Suivi : [issues `[R3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BR3%5D%22) · titre d'issue : `[R3] <tâche>`
 
 <a id="r4"></a>
 ## R4 · Email entrant
@@ -82,7 +82,7 @@ Suivi : [issues `[R3]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Relevé périodique d'une boîte
 - [ ] Pièces jointes vers M2
 
-Suivi : [issues `[R4]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BR4%5D%22) · titre d'issue : `[R4] <tâche>`
+Suivi : [issues `[R4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BR4%5D%22) · titre d'issue : `[R4] <tâche>`
 
 <a id="r5"></a>
 ## R5 · Registre des observateurs
@@ -101,7 +101,7 @@ Suivi : [issues `[R4]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Liste blanche des numéros (messages d'inconnus mis à part)
 - [ ] Chiffrement des numéros (S3)
 
-Suivi : [issues `[R5]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BR5%5D%22) · titre d'issue : `[R5] <tâche>`
+Suivi : [issues `[R5]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BR5%5D%22) · titre d'issue : `[R5] <tâche>`
 
 
 ---

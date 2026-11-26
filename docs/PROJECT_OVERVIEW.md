@@ -1,4 +1,4 @@
-# Document de Présentation — Situation Room
+# Document de Présentation — Jokkoondiral
 
 > **AfricTivistes — Pôle IT**
 > Programmes : AHEAD Africa & Digitalise Youth (#Tech4Good)
@@ -9,7 +9,7 @@
 
 ---
 
-**Dépôt officiel du projet :** [https://github.com/AfricTivistes/situation-room](https://github.com/AfricTivistes/situation-room)
+**Dépôt officiel du projet :** [https://github.com/AfricTivistes/jokkoondiral](https://github.com/AfricTivistes/jokkoondiral)
 
 ---
 
@@ -57,7 +57,7 @@ Ce programme mobilise les jeunes développeurs et organisations de jeunesse afri
 
 ## 2. Ce que nous construisons
 
-La **Situation Room** est une plateforme open source de monitoring électoral en temps réel. Elle permet à une OSC de :
+**Jokkoondiral** est une plateforme open source de monitoring électoral en temps réel. Elle permet à une OSC de :
 
 1. **Recevoir des signalements** d'observateurs déployés sur le terrain via les canaux qu'ils utilisent déjà — WhatsApp, SMS, Telegram, ou un formulaire web.
 2. **Vérifier et modérer** ces signalements dans un espace de travail privé, grâce à un processus de fact-checking structuré.
@@ -91,7 +91,7 @@ En 2026, la consultation **Jokkoondiral** a interrogé **45 organisations de la 
 
 Un premier ensemble de 17 outils (MVP) vise un scrutin pilote début 2027. Détails : [catalogue des outils](./outils/README.md), [besoins exprimés](./BESOINS.md), [feuille de route](./ROADMAP.md).
 
-### Ce que la Situation Room n'est pas
+### Ce que Jokkoondiral n'est pas
 
 - Ce n'est **pas** un système de vote électronique.
 - Ce n'est **pas** une plateforme propriétaire appartenant à AfricTivistes — chaque OSC en est propriétaire dans son propre déploiement.
@@ -107,7 +107,7 @@ Ces quatre piliers guident chaque décision du projet. Ils sont **non négociabl
 
 > *"Les outils électoraux hébergés chez des tiers exposent les OSC à des risques d'ingérence, de censure ou de perte de données."*
 
-La Situation Room est entièrement **auto-hébergeable** : chaque organisation installe et gère sa propre copie sur ses propres serveurs. Aucune donnée n'est stockée sur des serveurs d'AfricTivistes ou de services cloud étrangers. Les OSC restent les seules et uniques propriétaires de leurs données électorales.
+Jokkoondiral est entièrement **auto-hébergeable** : chaque organisation installe et gère sa propre copie sur ses propres serveurs. Aucune donnée n'est stockée sur des serveurs d'AfricTivistes ou de services cloud étrangers. Les OSC restent les seules et uniques propriétaires de leurs données électorales.
 
 ### Inclusion Radicale
 
@@ -162,7 +162,7 @@ Pour garantir la pérennité du projet, nous bâtissons une **communauté de con
 Le succès de cette initiative ne se mesurera pas à la fin du Tech Camp, mais au nombre d'élections sécurisées par cet outil dans les années à venir.
 
 **Adoption continentale**
-Faire de la Situation Room le nouveau standard de monitoring électoral en Afrique francophone, en remplacement des instances vieillissantes d'Ushahidi ou des groupes WhatsApp informels.
+Faire de Jokkoondiral le nouveau standard de monitoring électoral en Afrique francophone, en remplacement des instances vieillissantes d'Ushahidi ou des groupes WhatsApp informels.
 
 **Décentralisation de la maintenance**
 AfricTivistes amorce le projet, mais ne doit pas en rester l'unique mainteneur. D'ici 2-3 ans, la plateforme sera maintenue par une **coalition panafricaine de développeurs citoyens**.
@@ -196,9 +196,9 @@ Sénégal · Côte d'Ivoire · Mali · Burkina Faso · Niger · Cameroun · RDC 
 
 ## 7. Licence — AGPL-3.0
 
-La Situation Room est publiée sous **licence GNU Affero General Public License version 3 (AGPL-3.0)**.
+Jokkoondiral est publié sous **licence GNU Affero General Public License version 3 (AGPL-3.0)**.
 
-**Dépôt officiel :** [https://github.com/AfricTivistes/situation-room](https://github.com/AfricTivistes/situation-room)
+**Dépôt officiel :** [https://github.com/AfricTivistes/jokkoondiral](https://github.com/AfricTivistes/jokkoondiral)
 **Texte complet de la licence :** [https://www.gnu.org/licenses/agpl-3.0.fr.html](https://www.gnu.org/licenses/agpl-3.0.fr.html)
 
 ### Pourquoi l'AGPL-3.0 et pas une autre licence ?
@@ -211,12 +211,12 @@ Le choix de la licence est une décision stratégique, pas seulement technique. 
 | **GPL-3.0** | Copyleft fort | Les modifications doivent être partagées, mais une organisation peut héberger l'outil modifié comme service **sans partager le code** (faille "SaaS"). |
 | **AGPL-3.0** ✅ | Copyleft maximal | Toute modification — y compris un service hébergé — doit être rendue publique. **Aucune exception.** |
 
-L'AGPL-3.0 est la seule licence qui garantit que la Situation Room reste un **bien commun pour toujours**, même si une organisation décide de la modifier et de l'héberger pour ses propres besoins.
+L'AGPL-3.0 est la seule licence qui garantit que Jokkoondiral reste un **bien commun pour toujours**, même si une organisation décide de le modifier et de l'héberger pour ses propres besoins.
 
 ### Ce que cela signifie pour les OSC qui déploient l'outil
 
 **Vous pouvez librement :**
-- Télécharger, installer et utiliser la Situation Room pour vos activités d'observation électorale
+- Télécharger, installer et utiliser Jokkoondiral pour vos activités d'observation électorale
 - L'adapter à votre contexte national (langue, type d'incidents, zones géographiques)
 - La déployer sur vos propres serveurs, sans payer de licence
 - Former vos équipes à son utilisation
@@ -225,11 +225,11 @@ L'AGPL-3.0 est la seule licence qui garantit que la Situation Room reste un **bi
 - Conserver la mention de la licence AGPL-3.0 dans le code
 - Si vous modifiez le code source et le mettez à disposition d'autres personnes (y compris via un service en ligne), rendre vos modifications accessibles au public sous la même licence
 
-**En pratique :** une OSC qui déploie la Situation Room telle quelle pour ses propres élections n'a **aucune obligation supplémentaire**. L'obligation de partager ne s'applique que si vous distribuez ou hébergez une version modifiée pour d'autres utilisateurs.
+**En pratique :** une OSC qui déploie Jokkoondiral tel quel pour ses propres élections n'a **aucune obligation supplémentaire**. L'obligation de partager ne s'applique que si vous distribuez ou hébergez une version modifiée pour d'autres utilisateurs.
 
 ### Ce que cela signifie pour les organisations souhaitant modifier le code
 
-Toute organisation (entreprise, gouvernement, ONG) qui modifie la Situation Room et la met à disposition d'autres utilisateurs — que ce soit en distribuant le code ou en l'hébergeant comme service en ligne — **doit publier ses modifications** sous la même licence AGPL-3.0.
+Toute organisation (entreprise, gouvernement, ONG) qui modifie Jokkoondiral et le met à disposition d'autres utilisateurs — que ce soit en distribuant le code ou en l'hébergeant comme service en ligne — **doit publier ses modifications** sous la même licence AGPL-3.0.
 
 Cela protège l'ensemble de l'écosystème : les améliorations apportées par n'importe qui bénéficient à toute la communauté.
 
@@ -253,7 +253,7 @@ Ce projet est un **bien commun numérique pour le continent africain**, protég�
 
 ### Dépôt GitHub
 
-[https://github.com/AfricTivistes/situation-room](https://github.com/AfricTivistes/situation-room)
+[https://github.com/AfricTivistes/jokkoondiral](https://github.com/AfricTivistes/jokkoondiral)
 
 Ce dépôt contient :
 - Le code source complet de la plateforme

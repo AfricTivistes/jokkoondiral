@@ -1,4 +1,4 @@
-# Guide de Contribution Détaillé – Situation Room
+# Guide de Contribution Détaillé – Jokkoondiral
 
 Ce guide technique est destiné aux développeurs souhaitant contribuer de manière structurée. Pour une version rapide, voir `CONTRIBUTING.md` à la racine du projet.
 

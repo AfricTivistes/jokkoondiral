@@ -1,6 +1,6 @@
 # 🔎 Domaine 3 — Vérification et modération
 
-> Fiches issues du document « Situation Room — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
+> Fiches issues du document « Jokkoondiral — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
 
 C'est le cœur de la crédibilité : rien n'est publié sans vérification, et chaque décision est traçable. L'absence de vérification est citée 10 fois parmi les problèmes actuels, les données dispersées 7 fois.
 
@@ -30,7 +30,7 @@ C'est le cœur de la crédibilité : rien n'est publié sans vérification, et c
 - [ ] Affichage mobile
 - [ ] Rafraîchissement automatique
 
-Suivi : [issues `[M1]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BM1%5D%22) · titre d'issue : `[M1] <tâche>`
+Suivi : [issues `[M1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BM1%5D%22) · titre d'issue : `[M1] <tâche>`
 
 <a id="m2"></a>
 ## M2 · Coffre des preuves
@@ -50,7 +50,7 @@ Suivi : [issues `[M1]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Quotas et purge
 - [ ] Lecture protégée (jamais d'URL publique devinée)
 
-Suivi : [issues `[M2]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BM2%5D%22) · titre d'issue : `[M2] <tâche>`
+Suivi : [issues `[M2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BM2%5D%22) · titre d'issue : `[M2] <tâche>`
 
 <a id="m3"></a>
 ## M3 · Qualification de l'incident
@@ -69,7 +69,7 @@ Suivi : [issues `[M2]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Migration SQL
 - [ ] Types partagés
 
-Suivi : [issues `[M3]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BM3%5D%22) · titre d'issue : `[M3] <tâche>`
+Suivi : [issues `[M3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BM3%5D%22) · titre d'issue : `[M3] <tâche>`
 
 <a id="m4"></a>
 ## M4 · Journal d'audit
@@ -87,7 +87,7 @@ Suivi : [issues `[M3]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Table `audit_log` et déclencheurs
 - [ ] Affichage de l'historique dans la fiche M1
 
-Suivi : [issues `[M4]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BM4%5D%22) · titre d'issue : `[M4] <tâche>`
+Suivi : [issues `[M4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BM4%5D%22) · titre d'issue : `[M4] <tâche>`
 
 <a id="m5"></a>
 ## M5 · Recoupement et doublons
@@ -105,7 +105,7 @@ Suivi : [issues `[M4]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Règle simple distance + fenêtre de temps
 - [ ] Badge « confirmé par N sources »
 
-Suivi : [issues `[M5]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BM5%5D%22) · titre d'issue : `[M5] <tâche>`
+Suivi : [issues `[M5]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BM5%5D%22) · titre d'issue : `[M5] <tâche>`
 
 <a id="m6"></a>
 ## M6 · Veille désinformation et fact-checking
@@ -122,7 +122,7 @@ Suivi : [issues `[M5]`](https://github.com/AfricTivistes/situation-room/issues?q
 
 - [ ] Définir le circuit « rumeur → vérifiée / démentie » dans `docs/METHODOLOGY.md`
 
-Suivi : [issues `[M6]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BM6%5D%22) · titre d'issue : `[M6] <tâche>`
+Suivi : [issues `[M6]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BM6%5D%22) · titre d'issue : `[M6] <tâche>`
 
 
 ---

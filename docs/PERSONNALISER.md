@@ -1,6 +1,6 @@
-# 🎛️ Forker et personnaliser la Situation Room
+# 🎛️ Forker et personnaliser Jokkoondiral
 
-La Situation Room est un **bien commun** : chaque OSC installe sa propre instance, sur son serveur, avec ses données. Ce guide liste ce qu'une organisation peut adapter, et où.
+Jokkoondiral est un **bien commun** : chaque OSC installe sa propre instance, sur son serveur, avec ses données. Ce guide liste ce qu'une organisation peut adapter, et où.
 
 > **Principe** ([ADR-0001](./decisions/0001-structure-monorepo.md)) : on personnalise par **configuration et données**, pas en modifiant le code. Ainsi une OSC peut récupérer les mises à jour du dépôt principal sans conflit.
 
@@ -23,7 +23,7 @@ Les lignes « prévu » correspondent à des outils pas encore construits : c'es
 ## Garder son fork à jour
 
 ```bash
-git remote add upstream https://github.com/AfricTivistes/situation-room.git
+git remote add upstream https://github.com/AfricTivistes/jokkoondiral.git
 git fetch upstream
 git merge upstream/main      # ou rebase, selon votre pratique
 ```

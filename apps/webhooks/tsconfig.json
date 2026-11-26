@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "paths": {
-      "@situation-room/shared": ["../../packages/shared/src/index.ts"]
+      "@jokkoondiral/shared": ["../../packages/shared/src/index.ts"]
     }
   },
   "include": ["src"],

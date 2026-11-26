@@ -1,5 +1,5 @@
 // =============================================================
-// Types partagés – Situation Room / Africa ElectionLab
+// Types partagés – Jokkoondiral / Africa ElectionLab
 // =============================================================
 // Ce fichier est le "contrat" entre toutes les applications.
 // Si vous modifiez un type ici, l'erreur remontera automatiquement

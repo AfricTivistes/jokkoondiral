@@ -9,7 +9,7 @@
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 
-const repo = process.env.GH_REPO || 'AfricTivistes/situation-room';
+const repo = process.env.GH_REPO || 'AfricTivistes/jokkoondiral';
 const dryRun = process.argv.includes('--dry-run');
 const tools = JSON.parse(readFileSync(new URL('./issues-mvp.json', import.meta.url)));
 const gh = (args) => execFileSync('gh', args, { encoding: 'utf8' });

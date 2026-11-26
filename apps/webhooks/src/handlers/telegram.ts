@@ -1,5 +1,5 @@
 // =============================================================
-// Handler Telegram Bot – Situation Room Webhooks
+// Handler Telegram Bot – Jokkoondiral Webhooks
 // =============================================================
 // Ce handler reçoit les messages envoyés à votre Bot Telegram
 // et les transforme en signalements dans la base de données.
@@ -35,7 +35,7 @@ interface TelegramUpdate {
 }
 
 // URL de l'API NocoDB pour insérer les signalements
-const NOCODB_API_URL = process.env.NOCODB_API_URL || 'http://localhost:8080/api/v1/db/data/v1/situation_room';
+const NOCODB_API_URL = process.env.NOCODB_API_URL || 'http://localhost:8080/api/v1/db/data/v1/jokkoondiral';
 const NOCODB_API_TOKEN = process.env.NOCODB_API_TOKEN || '';
 
 export async function handleTelegramWebhook(req: Request, res: Response): Promise<void> {

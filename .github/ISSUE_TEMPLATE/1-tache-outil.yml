@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Une issue = une tâche. Remplace `CODE` dans le titre par le code de l'outil, puis un verbe : `[R1] Télécharger les médias WhatsApp`.
-        Fiches des outils : [docs/outils](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/README.md) · Profils : [SKILLS_MAP.md](https://github.com/AfricTivistes/situation-room/blob/main/SKILLS_MAP.md)
+        Fiches des outils : [docs/outils](https://github.com/AfricTivistes/jokkoondiral/blob/main/docs/outils/README.md) · Profils : [SKILLS_MAP.md](https://github.com/AfricTivistes/jokkoondiral/blob/main/SKILLS_MAP.md)
   - type: dropdown
     id: outil
     attributes:

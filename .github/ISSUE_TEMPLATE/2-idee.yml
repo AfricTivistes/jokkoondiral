@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Vérifie d'abord le [catalogue des 34 outils](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/README.md) : ton idée y est peut-être déjà. Pour intégrer un projet existant, lis [AJOUTER_UN_OUTIL.md](https://github.com/AfricTivistes/situation-room/blob/main/docs/AJOUTER_UN_OUTIL.md).
+        Vérifie d'abord le [catalogue des 34 outils](https://github.com/AfricTivistes/jokkoondiral/blob/main/docs/outils/README.md) : ton idée y est peut-être déjà. Pour intégrer un projet existant, lis [AJOUTER_UN_OUTIL.md](https://github.com/AfricTivistes/jokkoondiral/blob/main/docs/AJOUTER_UN_OUTIL.md).
   - type: textarea
     id: besoin
     attributes:

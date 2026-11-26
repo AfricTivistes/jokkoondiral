@@ -1,6 +1,6 @@
 # 📢 Domaine 4 — Diffusion et alertes
 
-> Fiches issues du document « Situation Room — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
+> Fiches issues du document « Jokkoondiral — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
 
 Diffuser, c'est montrer au public ce qui est vérifié et prévenir l'équipe de ce qui est urgent. Le temps réel est demandé par 35 OSC, la carte publique par 24.
 
@@ -29,7 +29,7 @@ Diffuser, c'est montrer au public ce qui est vérifié et prévenir l'équipe de
 - [ ] Carte Leaflet branchée sur les incidents verified
 - [ ] Test sur Android bas de gamme
 
-Suivi : [issues `[D1]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BD1%5D%22) · titre d'issue : `[D1] <tâche>`
+Suivi : [issues `[D1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BD1%5D%22) · titre d'issue : `[D1] <tâche>`
 
 <a id="d2"></a>
 ## D2 · Carte interne temps réel
@@ -47,7 +47,7 @@ Suivi : [issues `[D1]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Vue carte à côté de la file M1
 - [ ] Couleur par gravité (M3)
 
-Suivi : [issues `[D2]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BD2%5D%22) · titre d'issue : `[D2] <tâche>`
+Suivi : [issues `[D2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BD2%5D%22) · titre d'issue : `[D2] <tâche>`
 
 <a id="d3"></a>
 ## D3 · Alertes sortantes
@@ -65,7 +65,7 @@ Suivi : [issues `[D2]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Règle « gravité critique → WhatsApp aux coordinateurs »
 - [ ] Limitation du nombre d'envois
 
-Suivi : [issues `[D3]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BD3%5D%22) · titre d'issue : `[D3] <tâche>`
+Suivi : [issues `[D3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BD3%5D%22) · titre d'issue : `[D3] <tâche>`
 
 <a id="d4"></a>
 ## D4 · Rapports publics
@@ -83,7 +83,7 @@ Suivi : [issues `[D3]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Gabarit de bilan journalier
 - [ ] Page « Méthodologie »
 
-Suivi : [issues `[D4]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BD4%5D%22) · titre d'issue : `[D4] <tâche>`
+Suivi : [issues `[D4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BD4%5D%22) · titre d'issue : `[D4] <tâche>`
 
 <a id="d5"></a>
 ## D5 · Données ouvertes
@@ -101,7 +101,7 @@ Suivi : [issues `[D4]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Schéma public anonymisé (aucun champ observateur)
 - [ ] Décision de licence
 
-Suivi : [issues `[D5]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BD5%5D%22) · titre d'issue : `[D5] <tâche>`
+Suivi : [issues `[D5]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BD5%5D%22) · titre d'issue : `[D5] <tâche>`
 
 
 ---

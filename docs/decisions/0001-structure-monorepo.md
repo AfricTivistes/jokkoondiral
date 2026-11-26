@@ -16,7 +16,7 @@ Le dépôt contenait à sa racine un échafaudage Replit sans rapport avec le pr
    | Dossier | Contenu | Nommage |
    |---|---|---|
    | `apps/<nom>` | Une application **déployable** (un conteneur, un port) | `name` = `<nom>` |
-   | `packages/<nom>` | Une **brique partagée** importée par plusieurs apps | `@situation-room/<nom>` |
+   | `packages/<nom>` | Une **brique partagée** importée par plusieurs apps | `@jokkoondiral/<nom>` |
    | `infra/` | SQL d'initialisation, migrations, référentiels pays (`infra/seed/<pays>/`) | — |
    | `docker/` | Dockerfiles et configuration Nginx | `Dockerfile.<app>` |
    | `scripts/` | Scripts de développement, d'import, GitHub | — |

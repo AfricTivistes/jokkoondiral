@@ -1,4 +1,4 @@
-# Situation Room – Africa ElectionLab 🌍
+# Jokkoondiral – Africa ElectionLab 🌍
 
 **Boîte à outils open source pour l'observation citoyenne des élections en Afrique.**
 Recevoir les signalements des observateurs (WhatsApp, SMS, formulaire hors ligne…), les vérifier dans un espace privé, publier les incidents vérifiés sur une carte publique.
@@ -11,7 +11,7 @@ Une initiative d'**AfricTivistes** (programmes **AHEAD Africa — Africa Electio
 
 ## 🧭 Du besoin au code
 
-La Situation Room n'est pas une application unique : c'est une **boîte à outils de 34 outils**, chacun identifié par un **code** (C1, R2, M3…) et rattaché à un besoin réel.
+Jokkoondiral n'est pas une application unique : c'est une **boîte à outils de 34 outils**, chacun identifié par un **code** (C1, R2, M3…) et rattaché à un besoin réel.
 
 ```
 Besoin exprimé par les OSC  →  Outil (code)  →  Dossier du monorepo  →  Issue « [CODE] tâche »
@@ -63,11 +63,11 @@ Détails : [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/TECHNICAL_REF
 ```text
 apps/
   public/       → Site public Astro ............ D1 (carte), D4, D5, C1 possible
-  dashboard/    → Situation Room privée Refine . M1, D2, S1, C4, A1, M5, M6
+  dashboard/    → Modération privée Refine .... M1, D2, S1, C4, A1, M5, M6
   webhooks/     → Réception multi-canal Node ... R1, R2, R3, C3, R4, C5, D3
   (collect/ api/ voice/ … créées avec leur premier code — voir docs/AJOUTER_UN_OUTIL.md)
 packages/
-  shared/       → Types et constantes communs (@situation-room/shared) — M3, S1, S4
+  shared/       → Types et constantes communs (@jokkoondiral/shared) — M3, S1, S4
 infra/postgres/ → Schéma SQL ........................ M3, M4, R5, S2, S6
 docker/         → Dockerfiles, Nginx ................ S3, S5
 scripts/        → setup, seed, scripts GitHub ....... S5, S6
@@ -86,8 +86,8 @@ Le projet grandit **par outil** : un nouvel outil devient un dossier dans une ap
 Prérequis : Node.js ≥ 20, pnpm ≥ 10, Docker.
 
 ```bash
-git clone https://github.com/AfricTivistes/situation-room.git
-cd situation-room
+git clone https://github.com/AfricTivistes/jokkoondiral.git
+cd jokkoondiral
 bash scripts/setup.sh      # .env, dépendances, PostgreSQL + NocoDB
 pnpm seed                  # optionnel : 28 incidents de démonstration (token NocoDB requis dans .env)
 pnpm dev                   # toutes les apps

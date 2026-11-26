@@ -1,4 +1,4 @@
-# 🔗 Shared Workspace (@situation-room/shared)
+# 🔗 Shared Workspace (@jokkoondiral/shared)
 
 **Rôle :** Dans un monorepo, plusieurs applications (`public`, `dashboard`, `webhooks`) partagent la même logique métier. Ce dossier centralise les Types TypeScript et les constantes pour éviter la duplication de code.
 
@@ -22,14 +22,14 @@ Dans le `package.json` de votre application (`apps/public`, `apps/dashboard`...)
 ```json
 {
   "dependencies": {
-    "@situation-room/shared": "workspace:*"
+    "@jokkoondiral/shared": "workspace:*"
   }
 }
 ```
 
 Puis dans votre code TypeScript :
 ```typescript
-import { BaseReport, REPORT_STATUSES } from '@situation-room/shared';
+import { BaseReport, REPORT_STATUSES } from '@jokkoondiral/shared';
 ```
 
 ---

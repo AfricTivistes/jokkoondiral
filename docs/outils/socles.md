@@ -1,6 +1,6 @@
 # 🧱 Socles transverses
 
-> Fiches issues du document « Situation Room — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
+> Fiches issues du document « Jokkoondiral — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
 
 Les socles ne sont pas des outils visibles par l'observateur, mais tous les autres en dépendent. Ils doivent être posés tôt : les rajouter après coûte plus cher que de les construire d'abord.
 
@@ -31,7 +31,7 @@ Les socles ne sont pas des outils visibles par l'observateur, mais tous les autr
 - [ ] Brancher la connexion
 - [ ] Contrôle d'accès par rôle
 
-Suivi : [issues `[S1]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BS1%5D%22) · titre d'issue : `[S1] <tâche>`
+Suivi : [issues `[S1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS1%5D%22) · titre d'issue : `[S1] <tâche>`
 
 <a id="s2"></a>
 ## S2 · Multi-organisations
@@ -48,7 +48,7 @@ Suivi : [issues `[S1]`](https://github.com/AfricTivistes/situation-room/issues?q
 
 - [ ] Ajouter `organization_id` dès le MVP même si une seule OSC l'utilise
 
-Suivi : [issues `[S2]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BS2%5D%22) · titre d'issue : `[S2] <tâche>`
+Suivi : [issues `[S2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS2%5D%22) · titre d'issue : `[S2] <tâche>`
 
 <a id="s3"></a>
 ## S3 · Sécurité et protection des observateurs
@@ -67,7 +67,7 @@ Suivi : [issues `[S2]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Chiffrement des numéros d'observateurs
 - [ ] Journal des connexions et alerte D3
 
-Suivi : [issues `[S3]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BS3%5D%22) · titre d'issue : `[S3] <tâche>`
+Suivi : [issues `[S3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS3%5D%22) · titre d'issue : `[S3] <tâche>`
 
 <a id="s4"></a>
 ## S4 · Langues
@@ -86,7 +86,7 @@ Suivi : [issues `[S3]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Anglais complet
 - [ ] Gestion de l'arabe (écriture de droite à gauche)
 
-Suivi : [issues `[S4]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BS4%5D%22) · titre d'issue : `[S4] <tâche>`
+Suivi : [issues `[S4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS4%5D%22) · titre d'issue : `[S4] <tâche>`
 
 <a id="s5"></a>
 ## S5 · Déploiement et hébergement
@@ -106,7 +106,7 @@ Suivi : [issues `[S4]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Procédure de mise à jour
 - [ ] Modèle d'instance mutualisée
 
-Suivi : [issues `[S5]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BS5%5D%22) · titre d'issue : `[S5] <tâche>`
+Suivi : [issues `[S5]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS5%5D%22) · titre d'issue : `[S5] <tâche>`
 
 <a id="s6"></a>
 ## S6 · Référentiels
@@ -124,7 +124,7 @@ Suivi : [issues `[S5]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Format d'import des bureaux de vote
 - [ ] Premier jeu Sénégal
 
-Suivi : [issues `[S6]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BS6%5D%22) · titre d'issue : `[S6] <tâche>`
+Suivi : [issues `[S6]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS6%5D%22) · titre d'issue : `[S6] <tâche>`
 
 <a id="s7"></a>
 ## S7 · Documentation et guides
@@ -142,7 +142,7 @@ Suivi : [issues `[S6]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Guide observateur d'une page (WhatsApp, SMS codé)
 - [ ] Docs/`METHODOLOGY.md`
 
-Suivi : [issues `[S7]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BS7%5D%22) · titre d'issue : `[S7] <tâche>`
+Suivi : [issues `[S7]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS7%5D%22) · titre d'issue : `[S7] <tâche>`
 
 
 ---

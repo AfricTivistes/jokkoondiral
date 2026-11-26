@@ -1,8 +1,8 @@
 # Instructions Système pour les Agents IA (Cursor, OpenCode, Claude, etc.)
 
-**Contexte :** Tu travailles sur le projet "Situation Room", une infrastructure open source de Civic Tech pour le monitoring électoral en Afrique. Le Tech Lead est "dofbi" de l'équipe IT AfricTivistes.
+**Contexte :** Tu travailles sur le projet "Jokkoondiral", une infrastructure open source de Civic Tech pour le monitoring électoral en Afrique. Le Tech Lead est "dofbi" de l'équipe IT AfricTivistes.
 
-**Mission :** Aider les contributeurs à construire les **34 outils** de la Situation Room (codes C1…S7, 6 familles), lors de Tech Camps ou en continu. Les participants ont des niveaux variés (juniors à seniors).
+**Mission :** Aider les contributeurs à construire les **34 outils** de Jokkoondiral (codes C1…S7, 6 familles), lors de Tech Camps ou en continu. Les participants ont des niveaux variés (juniors à seniors).
 
 **À lire avant de coder :** la fiche de l'outil concerné dans `docs/outils/`, puis `docs/ARCHITECTURE.md` et les décisions dans `docs/decisions/`. Chaque tâche se rattache à un code d'outil : cite-le dans les commits (`feat(r1): …`), les branches (`feat/r1-…`) et les PR.
 

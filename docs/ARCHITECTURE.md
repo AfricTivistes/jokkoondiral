@@ -1,4 +1,4 @@
-# Architecture technique – Situation Room
+# Architecture technique – Jokkoondiral
 
 Deux vues : **ce qui tourne aujourd'hui** dans le dépôt, et **l'architecture cible** décrite par le document « Orientation des besoins ». Le passage de l'une à l'autre dépend d'une décision ouverte ([ADR-0002](./decisions/0002-couche-acces-donnees.md)).
 

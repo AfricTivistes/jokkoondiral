@@ -1,6 +1,6 @@
 # 📊 Domaine 5 — Analyse et archives
 
-> Fiches issues du document « Situation Room — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
+> Fiches issues du document « Jokkoondiral — Orientation des besoins » (consultation Jokkoondiral, 45 OSC, oct. 2026). Les chiffres « Données » portent sur 45 OSC sauf mention.
 
 Après le scrutin, les données servent aux rapports, au plaidoyer et aux recours ; elles doivent aussi pouvoir disparaître pour protéger les observateurs.
 
@@ -27,7 +27,7 @@ Après le scrutin, les données servent aux rapports, au plaidoyer et aux recour
 - [ ] 5 indicateurs de base définis avec des coordinateurs
 - [ ] Vues SQL correspondantes
 
-Suivi : [issues `[A1]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BA1%5D%22) · titre d'issue : `[A1] <tâche>`
+Suivi : [issues `[A1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BA1%5D%22) · titre d'issue : `[A1] <tâche>`
 
 <a id="a2"></a>
 ## A2 · Export
@@ -45,7 +45,7 @@ Suivi : [issues `[A1]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Export CSV filtré
 - [ ] Export complet avec preuves
 
-Suivi : [issues `[A2]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BA2%5D%22) · titre d'issue : `[A2] <tâche>`
+Suivi : [issues `[A2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BA2%5D%22) · titre d'issue : `[A2] <tâche>`
 
 <a id="a3"></a>
 ## A3 · Carte de densité et clusters
@@ -62,7 +62,7 @@ Suivi : [issues `[A2]`](https://github.com/AfricTivistes/situation-room/issues?q
 
 - [ ] Couche heatmap optionnelle sur D2
 
-Suivi : [issues `[A3]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BA3%5D%22) · titre d'issue : `[A3] <tâche>`
+Suivi : [issues `[A3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BA3%5D%22) · titre d'issue : `[A3] <tâche>`
 
 <a id="a4"></a>
 ## A4 · Archivage et conservation
@@ -81,7 +81,7 @@ Suivi : [issues `[A3]`](https://github.com/AfricTivistes/situation-room/issues?q
 - [ ] Script de pseudonymisation
 - [ ] Sauvegarde chiffrée quotidienne
 
-Suivi : [issues `[A4]`](https://github.com/AfricTivistes/situation-room/issues?q=is%3Aissue+%22%5BA4%5D%22) · titre d'issue : `[A4] <tâche>`
+Suivi : [issues `[A4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BA4%5D%22) · titre d'issue : `[A4] <tâche>`
 
 
 ---

@@ -1,4 +1,4 @@
-# Contribuer à la Situation Room 🌍
+# Contribuer à Jokkoondiral 🌍
 
 Merci de ton intérêt pour ce projet civique ! Ce dépôt est né dans le cadre du projet AHEAD Africa et du programme Digitalise Youth. Notre but est de fournir un outil souverain de monitoring électoral aux Organisations de la Société Civile (OSC).
 
@@ -17,7 +17,7 @@ Que tu sois développeur junior, expert en cybersécurité, designer ou fact-che
 
 ## 🧭 Le projet est organisé par outils
 
-La Situation Room est une boîte à outils de **34 outils codés** (C1…S7) en 6 familles : collecte, réception, vérification, diffusion, analyse, socles. Chaque contribution se rattache à un outil.
+Jokkoondiral est une boîte à outils de **34 outils codés** (C1…S7) en 6 familles : collecte, réception, vérification, diffusion, analyse, socles. Chaque contribution se rattache à un outil.
 
 - Catalogue et fiches : [`docs/outils/`](./docs/outils/README.md)
 - Quel outil pour ton profil : [`SKILLS_MAP.md`](./SKILLS_MAP.md)

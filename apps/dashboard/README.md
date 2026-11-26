@@ -1,4 +1,4 @@
-# 🛡️ Dashboard Situation Room (Refine.js + React)
+# 🛡️ Dashboard Jokkoondiral (Refine.js + React)
 
 **Rôle :** C'est l'espace de travail sécurisé des observateurs, modérateurs et fact-checkers. Ils y qualifient les signalements remontés du terrain et gèrent la plateforme.
 

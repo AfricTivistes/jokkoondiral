@@ -3,11 +3,11 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: situation-room-db
+    container_name: jokkoondiral-db
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
-      POSTGRES_DB: ${DB_NAME:-situation_room}
+      POSTGRES_DB: ${DB_NAME:-jokkoondiral}
     ports:
       - "5432:5432"
     volumes:
@@ -17,9 +17,9 @@ services:
 
   nocodb:
     image: nocodb/nocodb:latest
-    container_name: situation-room-nocodb
+    container_name: jokkoondiral-nocodb
     environment:
-      NC_DB: "pg://${DB_USER:-postgres}:${DB_PASSWORD:-password}@postgres:5432/${DB_NAME:-situation_room}"
+      NC_DB: "pg://${DB_USER:-postgres}:${DB_PASSWORD:-password}@postgres:5432/${DB_NAME:-jokkoondiral}"
       NC_AUTH_JWT_SECRET: ${JWT_SECRET:-super-secret-key-change-me}
     ports:
       - "8080:8080"

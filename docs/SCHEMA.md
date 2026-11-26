@@ -1,4 +1,4 @@
-# Schéma de base de données – Situation Room
+# Schéma de base de données – Jokkoondiral
 
 Ce document décrit le modèle de données actuel et les conventions à suivre pour l'étendre.
 
@@ -125,8 +125,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ## NocoDB et l'API automatique
 
 Une fois vos tables créées, NocoDB les détecte automatiquement et génère :
-- **API REST :** `GET/POST/PATCH/DELETE /api/v1/db/data/v1/situation_room/<table_name>`
-- **API GraphQL :** `/api/v1/db/data/v1/situation_room/graphql`
+- **API REST :** `GET/POST/PATCH/DELETE /api/v1/db/data/v1/jokkoondiral/<table_name>`
+- **API GraphQL :** `/api/v1/db/data/v1/jokkoondiral/graphql`
 - **Interface visuelle :** Accessible sur `http://localhost:8080`
 
 Aucun code backend supplémentaire n'est nécessaire pour le CRUD de base. Attention : l'usage direct de cette API par les applications est en révision ([ADR-0002](./decisions/0002-couche-acces-donnees.md)) — ne jamais exposer un jeton NocoDB dans le navigateur.
