@@ -1,0 +1,12 @@
+# Espaces de travail du monorepo Jokkoondiral
+# - apps/*      : applications déployables (public, dashboard, webhooks…)
+# - packages/*  : briques partagées publiées sous @jokkoondiral/<nom>
+# Voir docs/AJOUTER_UN_OUTIL.md avant d'ajouter un dossier.
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# Sécurité chaîne d'approvisionnement : refuser toute version de paquet npm
+# publiée depuis moins de 24 h (les versions malveillantes sont en général
+# retirées en quelques heures). Ne pas désactiver.
+minimumReleaseAge: 1440
