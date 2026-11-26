@@ -5,6 +5,8 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { clientNocoDB, DepotNocoDB } from '../src/stockage/nocodb';
 import { DepotPostgres, optionsConnexion } from '../src/stockage/postgres';
+import { migrer } from '../src/stockage/migrations';
+import { PGlite } from '@electric-sql/pglite';
 import { lireSecret, verifierUrlSecurisee } from '../src/stockage/securite';
 import { configurerStockage } from '../src/stockage';
 import { basePostgres, fauxServeurs, SECRET_TEST } from './aides';
@@ -82,5 +84,15 @@ test('configuration : combinaisons refusées avec un message clair', async () =>
   const sante = await pg.sante();
   assert.ok(sante.find((e) => e.role === 'principal')?.ok);
   assert.ok(!JSON.stringify(sante).includes('jeton-kobo-tres-secret') && !JSON.stringify(sante).includes(SECRET_TEST), 'aucun secret dans l\'état de santé');
+  await db.close();
+});
+
+test('migrations : base vide créée par les scripts du dépôt, une seule fois', async () => {
+  const db = new PGlite();
+  const premieres = await migrer(db as never);
+  assert.deepEqual(premieres, ['01-init.sql', '02-collecte.sql', '03-observateurs.sql']);
+  assert.deepEqual(await migrer(db as never), [], 'déjà appliquées');
+  const { rows } = await db.query<{ n: number }>("SELECT count(*)::int AS n FROM information_schema.tables WHERE table_name IN ('base_reports','observateurs','appareils','activations')");
+  assert.equal(rows[0].n, 4);
   await db.close();
 });

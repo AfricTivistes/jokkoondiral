@@ -11,6 +11,7 @@ import { Identite, type ModeIdentification } from '../identite/identite';
 import { FileCopies } from './file-copies';
 import { DepotKobo } from './kobo';
 import { clientNocoDB, DepotNocoDB, RegistreNocoDB, type ClientNocoDB } from './nocodb';
+import { migrer } from './migrations';
 import { creerRequeteur, DepotPostgres, RegistrePostgres, type Requeteur } from './postgres';
 import { lireSecret, tlsDesactiveAutorise } from './securite';
 import type { DepotSignalements, EtatDepot, Registre } from './types';
@@ -24,6 +25,8 @@ export interface Stockage {
   identite: Identite;
   file: FileCopies;
   avertissements: string[];
+  /** Scripts SQL appliqués au démarrage (MIGRER_AU_DEMARRAGE=1). */
+  migrations: string[];
   sante(): Promise<EtatDepot[]>;
 }
 
@@ -64,6 +67,12 @@ export async function configurerStockage(env: NodeJS.ProcessEnv, opts: OptionsSt
   const fabriquer = async (nom: NomDepot): Promise<DepotSignalements> =>
     nom === 'nocodb' ? new DepotNocoDB(obtenirNocodb()) : nom === 'postgres' ? new DepotPostgres(await obtenirPg()) : new DepotKobo(env, f);
 
+  // Schéma créé ou mis à jour avant tout accès (base gérée : Render, VPS existant…).
+  let migrations: string[] = [];
+  if (env.MIGRER_AU_DEMARRAGE === '1' && (nomPrincipal === 'postgres' || nomRegistre === 'postgres' || copiesDemandees.includes('postgres'))) {
+    migrations = await migrer(await obtenirPg());
+  }
+
   const principal = await fabriquer(nomPrincipal);
   const copies = await Promise.all(copiesDemandees.map((c) => fabriquer(c as NomDepot)));
   const registre: Registre | null = nomRegistre === 'nocodb' ? new RegistreNocoDB(obtenirNocodb()) : nomRegistre === 'postgres' ? new RegistrePostgres(await obtenirPg()) : null;
@@ -82,6 +91,7 @@ export async function configurerStockage(env: NodeJS.ProcessEnv, opts: OptionsSt
     identite,
     file,
     avertissements,
+    migrations,
     async sante() {
       const etats = await Promise.all([principal, ...copies].map(async (d, i) => ({ ...(await d.verifier()), role: i === 0 ? 'principal' : 'copie' })));
       if (registre) etats.push(await registre.verifier());

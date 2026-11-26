@@ -16,7 +16,12 @@ const collecte = express.Router();
 app.use('/api/collect', collecte);
 routeurCollecte()
   .then(({ routeur }) => { collecte.use(routeur); })
-  .catch((e) => console.error(`❌ Collecte désactivée : ${(e as Error).message}`));
+  .catch((e) => {
+    // pg renvoie parfois une AggregateError sans message : on affiche aussi son code (ECONNREFUSED…).
+    const err = e as Error & { code?: string; errors?: Error[] };
+    const detail = err.message || err.code || err.errors?.map((x) => x.message).join(' ; ') || String(e);
+    console.error(`❌ Collecte désactivée : ${detail}`);
+  });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Nécessaire pour Africa's Talking (form-urlencoded)

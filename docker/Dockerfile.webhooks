@@ -6,7 +6,7 @@
 
 FROM node:20-alpine AS builder
 WORKDIR /app
-RUN corepack enable
+RUN corepack enable && corepack prepare pnpm@10.26.1 --activate
 
 COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/shared ./packages/shared
@@ -23,10 +23,13 @@ ENV NODE_ENV=production \
     COLLECT_INSTANCE=/app/config/instance.json \
     PROTOCOLES_DIR=/app/protocoles \
     PIECES_DIR=/data/pieces \
-    DATA_DIR=/data
+    DATA_DIR=/data \
+    MIGRATIONS_DIR=/app/migrations
 
 COPY --from=builder /app/apps/webhooks/dist/index.js ./index.js
 COPY --from=builder /app/packages/protocole/protocoles ./protocoles
+# Schéma PostgreSQL, appliqué au démarrage si MIGRER_AU_DEMARRAGE=1 (base gérée : Render, VPS…)
+COPY infra/postgres/*.sql ./migrations/
 # Même configuration que la PWA : le serveur valide exactement le formulaire servi aux observateurs.
 COPY apps/collect/config ./config
 

@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS base_reports (
 );
 
 -- Index pour accélérer les recherches par statut (filtre principal du dashboard)
-CREATE INDEX idx_reports_status ON base_reports(status);
+CREATE INDEX IF NOT EXISTS idx_reports_status ON base_reports(status);
 
 -- Index pour accélérer les recherches géographiques (affichage carte)
-CREATE INDEX idx_reports_location ON base_reports(latitude, longitude);
+CREATE INDEX IF NOT EXISTS idx_reports_location ON base_reports(latitude, longitude);
 
 -- Commentaires pour documenter la table dans NocoDB
 COMMENT ON TABLE base_reports IS 'Signalements terrain reçus via tous les canaux (web, SMS, WhatsApp, Telegram)';

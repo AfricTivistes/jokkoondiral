@@ -26,6 +26,7 @@ export async function routeurCollecte(env: NodeJS.ProcessEnv = process.env): Pro
   const proto = chargerProtocole(env);
   const stockage = await configurerStockage(env);
   for (const a of stockage.avertissements) console.warn(`⚠️  ${a}`);
+  if (stockage.migrations.length) console.log(`🧱 Schéma PostgreSQL : ${stockage.migrations.join(', ')} appliqué(s)`);
   console.log(`🧾 Collecte : protocole ${proto.id}@${proto.version}${proto.extensions?.length ? ` + ${proto.extensions.join(', ')}` : ''}`);
   console.log(`🗄️  Stockage : ${stockage.principal.nom}${stockage.copies.length ? ` (copies : ${stockage.copies.map((c) => c.nom).join(', ')})` : ''} · identification : ${stockage.identite.mode}${stockage.registre ? ` (registre ${stockage.registre.nom})` : ''}`);
   for (const etat of await stockage.sante()) {
