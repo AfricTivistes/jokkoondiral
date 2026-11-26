@@ -35,7 +35,7 @@ Render → **New → Web Service** → dépôt `AfricTivistes/jokkoondiral` :
 | Runtime | **Docker** |
 | Dockerfile | `./docker/Dockerfile.webhooks`, contexte `.` |
 | Région / plan | Frankfurt / Free |
-| Auto-deploy | oui (chaque push redéploie) |
+| Auto-deploy | oui (chaque push redéploie, **si** l'application GitHub de Render est installée sur l'organisation AfricTivistes ; sinon Render clone le dépôt public mais ne voit pas les pushes : relancer avec *Manual Deploy*) |
 
 Variables d'environnement :
 
