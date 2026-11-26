@@ -4,6 +4,7 @@
   "private": true,
   "author": "dofbi & AfricTivistes",
   "description": "Infrastructure Civic Tech open source - Africa ElectionLab",
+  "packageManager": "pnpm@10.26.1",
   "scripts": {
     "install:all": "pnpm install",
     "dev:infra": "docker compose -f docker-compose.dev.yml up -d",

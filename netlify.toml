@@ -1,0 +1,54 @@
+# =============================================================
+# Netlify – PWA de collecte (apps/collect, outil C1)
+# =============================================================
+# Netlify ne construit que la PWA ; le serveur de réception (apps/webhooks)
+# tourne ailleurs (VPS, Render…). La PWA garde l'adresse /webhooks/… :
+# Netlify relaie vers le serveur, donc pas de CORS et aucun secret côté navigateur.
+#
+# Une OSC qui déploie sa propre instance remplace l'adresse du serveur ci-dessous,
+# et renseigne l'adresse Netlify dans COLLECT_URL côté serveur (liens d'activation).
+# =============================================================
+
+[build]
+  command = "pnpm install --frozen-lockfile --filter collect... && pnpm --filter collect build"
+  publish = "apps/collect/dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+  # Thème de la PWA (dossier apps/collect/config/themes/<nom>) ; vide = celui d'instance.json
+  JK_THEME = ""
+
+# Serveur de réception : instance de TEST sur Render (à remplacer pour un déploiement réel).
+[[redirects]]
+  from = "/webhooks/*"
+  to = "https://jokkoondiral-webhooks-test.onrender.com/:splat"
+  status = 200
+  force = true
+
+# Application monopage : toute autre adresse sert l'app (fonctionne aussi hors ligne via le service worker).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "camera=(self), geolocation=(self), microphone=()"
+    X-Frame-Options = "DENY"
+
+# Mises à jour de l'app : le service worker et le manifest ne doivent jamais rester en cache.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Cache-Control = "no-cache"
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
