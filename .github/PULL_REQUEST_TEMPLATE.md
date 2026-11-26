@@ -1,40 +1,41 @@
-## Description
+## Outil(s)
 
-<!-- Explique le QUOI et le POURQUOI, pas le COMMENT (ça, c'est dans le code) -->
+<!-- Code(s) de l'outil du catalogue (docs/outils) : ex. R1, M2. « aucun » pour la doc ou l'infra générale. -->
+
+Outil : 
 
 ## Issue liée
 
-<!-- Relie cette PR à l'issue correspondante : "Closes #XX" -->
-
 Closes #
+
+## Description
+
+<!-- Le QUOI et le POURQUOI, pas le COMMENT (ça, c'est dans le code) -->
 
 ## Type de changement
 
 - [ ] 🐛 Correction de bug
-- [ ] ✨ Nouvelle fonctionnalité
+- [ ] ✨ Nouvelle fonctionnalité d'un outil
+- [ ] 🧰 Nouvel outil / nouvelle app ou package (voir `docs/AJOUTER_UN_OUTIL.md`)
 - [ ] ♻️ Refactoring (pas de changement de comportement)
 - [ ] 📝 Documentation uniquement
 - [ ] 🔧 Configuration / infrastructure
+- [ ] 🧭 Décision d'architecture (ADR dans `docs/decisions/`)
 
-## Partie du projet modifiée
+## Famille
 
-- [ ] `apps/public`
-- [ ] `apps/dashboard`
-- [ ] `apps/webhooks`
-- [ ] `packages/shared`
-- [ ] `infra/`
-- [ ] `docs/`
+- [ ] 📥 Collecte (C) · [ ] 📡 Réception (R) · [ ] 🔎 Vérification (M) · [ ] 📢 Diffusion (D) · [ ] 📊 Analyse (A) · [ ] 🧱 Socles (S)
 
 ## Capture d'écran
 
-<!-- OBLIGATOIRE si tu as modifié l'interface (apps/public ou apps/dashboard) -->
-<!-- Avant / Après si pertinent -->
+<!-- OBLIGATOIRE si l'interface change (apps/public, apps/dashboard…) — avant / après si pertinent -->
 
 ## Checklist
 
-- [ ] Mon code respecte la convention Conventional Commits (`feat:`, `fix:`, `docs:`…)
-- [ ] J'ai testé les changements en local avec `docker-compose -f docker-compose.dev.yml up -d`
-- [ ] Je n'ai pas introduit de dépendance vers un service cloud propriétaire (AWS, Firebase, Supabase…)
-- [ ] Si j'ai créé ou modifié un type, il est dans `packages/shared/src/types.ts`
-- [ ] Si j'ai ajouté une ressource Refine, elle est déclarée dans `refine.config.ts`
-- [ ] La documentation (README ou docs/) reflète les changements si nécessaire
+- [ ] Commits au format Conventional Commits avec le code de l'outil (`feat(r1): …`)
+- [ ] `pnpm typecheck` passe pour les paquets modifiés
+- [ ] Testé en local (`docker compose -f docker-compose.dev.yml up -d`)
+- [ ] Aucune dépendance obligatoire à un cloud propriétaire (AWS, Firebase, Supabase…)
+- [ ] Aucun jeton d'API exposé dans le navigateur, aucune donnée d'observateur rendue publique
+- [ ] Types créés ou modifiés dans `packages/shared`
+- [ ] Fiche de l'outil (`docs/outils/<domaine>.md`, rubriques **Où** / **État**) et README mis à jour si nécessaire

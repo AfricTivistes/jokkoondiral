@@ -1,0 +1,156 @@
+[
+  {
+    "code": "C1",
+    "title": "[C1] Formulaire web hors ligne (PWA)",
+    "labels": [
+      "domaine:collecte",
+      "phase:mvp"
+    ],
+    "body": "**Outil C1 · Formulaire web hors ligne (PWA)** — famille 📥 Collecte terrain · phase MVP\n\n**Rôle :** formulaire de signalement installable depuis le navigateur, qui enregistre hors ligne et envoie dès que le réseau revient.\n\n**Pourquoi (consultation, 45 OSC) :** hors-ligne critique 30, secondaire 12 ; formulaire web voulu par 14 ; témoignage structuré 27 ; Android milieu/haut 32, iPhone 13.\n\n**État actuel :** rien.\n\n**Où :** nouvelle app apps/collect ou route dédiée de apps/public.\n\n**Briques open source :** Astro ou Vite, Workbox (service worker), IndexedDB, compression d'image côté navigateur.\n\n**Profil :** frontend\n\n## Premières tâches\n\n- [ ] Schéma du formulaire partagé dans packages/shared\n- [ ] File d'envoi locale\n- [ ] Envoi des photos compressées\n- [ ] Test en 2G simulée\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[C1] …`) liée à celle-ci.\n\n📄 Fiche complète : [collecte.md#c1](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/collecte.md#c1)\n"
+  },
+  {
+    "code": "C3",
+    "title": "[C3] Parcours SMS codé",
+    "labels": [
+      "domaine:collecte",
+      "phase:mvp"
+    ],
+    "body": "**Outil C3 · Parcours SMS codé** — famille 📥 Collecte terrain · phase MVP\n\n**Rôle :** format de SMS court (code incident, bureau de vote, gravité) qu'un observateur sans internet envoie et que le système transforme en formulaire.\n\n**Pourquoi (consultation, 45 OSC) :** SMS voulu par 30 ; SMS outil principal pour 18 ; connexion faible ou SMS seulement pour 10 ; une OSC décrit exactement ce besoin (« coded SMS which will translate as answered form »).\n\n**État actuel :** sms.ts insère le texte brut ; le format est un TODO.\n\n**Où :** apps/webhooks/src/parsers/sms.ts, codes dans packages/shared/src/constants.ts.\n\n**Briques open source :** parseur maison simple ; s'inspirer du format FrontlineSMS / RapidSMS.\n\n**Profil :** backend Node + fact-checkeur (définition des codes)\n\n## Premières tâches\n\n- [ ] Définir la grammaire du SMS avec des observateurs\n- [ ] Parseur + tests\n- [ ] Réponse d'erreur explicite\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[C3] …`) liée à celle-ci.\n\n📄 Fiche complète : [collecte.md#c3](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/collecte.md#c3)\n"
+  },
+  {
+    "code": "R1",
+    "title": "[R1] Passerelle WhatsApp",
+    "labels": [
+      "domaine:reception",
+      "phase:mvp"
+    ],
+    "body": "**Outil R1 · Passerelle WhatsApp** — famille 📡 Réception multi-canal · phase MVP\n\n**Rôle :** recevoir textes, photos, vocaux, vidéos et positions envoyés au numéro WhatsApp de l'OSC, et accuser réception.\n\n**Pourquoi (consultation, 45 OSC) :** WhatsApp voulu par 40, outil principal pour 39 ; photo 41, vidéo 33, audio 27.\n\n**État actuel :** reçoit le texte ; ignore les médias (message.type !== 'text') ; jeton de vérification par défaut en dur ; pas de vérification de signature.\n\n**Où :** apps/webhooks/src/handlers/whatsapp.ts.\n\n**Briques open source :** API WhatsApp Cloud de Meta (service tiers, voir Décisions) ; téléchargement des médias vers M2.\n\n**Profil :** backend Node\n\n## Premières tâches\n\n- [ ] Téléchargement des médias\n- [ ] Vérification de la signature X-Hub-Signature-256\n- [ ] Message de confirmation avec numéro de suivi\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[R1] …`) liée à celle-ci.\n\n📄 Fiche complète : [reception.md#r1](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/reception.md#r1)\n"
+  },
+  {
+    "code": "R2",
+    "title": "[R2] Passerelle SMS",
+    "labels": [
+      "domaine:reception",
+      "phase:mvp"
+    ],
+    "body": "**Outil R2 · Passerelle SMS** — famille 📡 Réception multi-canal · phase MVP\n\n**Rôle :** recevoir les SMS (libres ou codés, voir C3) et répondre par SMS.\n\n**Pourquoi (consultation, 45 OSC) :** SMS voulu par 30 ; téléphones basiques 19 ; connexion très faible pour 3.\n\n**État actuel :** reçoit et insère le texte brut ; aucune réponse à l'expéditeur.\n\n**Où :** apps/webhooks/src/handlers/sms.ts.\n\n**Briques open source :** API Africa's Talking (service tiers) ; alternative auto-hébergée : passerelle Android type SMSSync ou RapidPro.\n\n**Profil :** backend Node\n\n## Premières tâches\n\n- [ ] Brancher le parseur C3\n- [ ] Abstraction « fournisseur SMS » pour changer d'opérateur par pays\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[R2] …`) liée à celle-ci.\n\n📄 Fiche complète : [reception.md#r2](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/reception.md#r2)\n"
+  },
+  {
+    "code": "R5",
+    "title": "[R5] Registre des observateurs",
+    "labels": [
+      "domaine:reception",
+      "phase:mvp"
+    ],
+    "body": "**Outil R5 · Registre des observateurs** — famille 📡 Réception multi-canal · phase MVP\n\n**Rôle :** enrôler les observateurs (numéro, identifiant Telegram, affectation à un bureau de vote) et rattacher chaque message entrant à son auteur.\n\n**Pourquoi (consultation, 45 OSC) :** 22 OSC déploient 1 à 10 observateurs, 9 en déploient plus de 200 ; granularité « bureau de vote » voulue par 23 ; intimidation 34 (d'où la protection de ces données).\n\n**État actuel :** schéma suggéré seulement.\n\n**Où :** infra/postgres (table observers, suggérée dans docs/SCHEMA.md), écrans dans apps/dashboard.\n\n**Briques open source :** table PostgreSQL + import CSV.\n\n**Profil :** data/DevOps + React\n\n## Premières tâches\n\n- [ ] Table et import CSV\n- [ ] Liste blanche des numéros (messages d'inconnus mis à part)\n- [ ] Chiffrement des numéros (S3)\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[R5] …`) liée à celle-ci.\n\n📄 Fiche complète : [reception.md#r5](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/reception.md#r5)\n"
+  },
+  {
+    "code": "M1",
+    "title": "[M1] File de modération",
+    "labels": [
+      "domaine:verification",
+      "phase:mvp"
+    ],
+    "body": "**Outil M1 · File de modération** — famille 🔎 Vérification et modération · phase MVP\n\n**Rôle :** liste des signalements entrants, filtrable par statut, canal, gravité et zone, avec fiche détail et boutons valider / rejeter / demander un complément.\n\n**Pourquoi (consultation, 45 OSC) :** espace de modération privé noté 3,46 et non négociable pour 8 ; signalement en continu pour 21 OSC, plusieurs fois par heure pour 11 ; coordinateurs sur smartphone 19, sur les deux supports 22.\n\n**État actuel :** deux pages vides avec TODO dans App.tsx ; fournisseur de données générique non adapté à NocoDB.\n\n**Où :** apps/dashboard.\n\n**Briques open source :** Refine.js (useTable, useForm), déjà choisi.\n\n**Profil :** React + fact-checkeurs (tests d'usage)\n\n## Premières tâches\n\n- [ ] Vue /reports avec filtres pending/verified/rejected\n- [ ] Affichage mobile\n- [ ] Rafraîchissement automatique\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[M1] …`) liée à celle-ci.\n\n📄 Fiche complète : [verification.md#m1](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/verification.md#m1)\n"
+  },
+  {
+    "code": "M2",
+    "title": "[M2] Coffre des preuves",
+    "labels": [
+      "domaine:verification",
+      "phase:mvp"
+    ],
+    "body": "**Outil M2 · Coffre des preuves** — famille 🔎 Vérification et modération · phase MVP\n\n**Rôle :** stocker photos, vocaux, vidéos et documents rattachés à un signalement, avec empreinte et horodatage de réception.\n\n**Pourquoi (consultation, 45 OSC) :** preuves multimédia notées 4,02 / 5 (1re) ; photo 41, texte 36, vidéo 33, audio 27, document scanné 24 ; horodatage obligatoire et non modifiable pour 25.\n\n**État actuel :** rien.\n\n**Où :** module partagé appelé par apps/webhooks ; table evidences dans infra/postgres.\n\n**Briques open source :** stockage disque du VPS (ou MinIO si volume) ; sharp / ffmpeg pour compresser ; SHA-256 natif de Node.\n\n**Profil :** backend Node + data/DevOps\n\n## Premières tâches\n\n- [ ] Table des preuves\n- [ ] Calcul d'empreinte à la réception\n- [ ] Quotas et purge\n- [ ] Lecture protégée (jamais d'URL publique devinée)\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[M2] …`) liée à celle-ci.\n\n📄 Fiche complète : [verification.md#m2](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/verification.md#m2)\n"
+  },
+  {
+    "code": "M3",
+    "title": "[M3] Qualification de l'incident",
+    "labels": [
+      "domaine:verification",
+      "phase:mvp"
+    ],
+    "body": "**Outil M3 · Qualification de l'incident** — famille 🔎 Vérification et modération · phase MVP\n\n**Rôle :** donner à chaque signalement une catégorie, une gravité, un lieu (bureau de vote, commune, région) et l'heure déclarée par l'observateur.\n\n**Pourquoi (consultation, 45 OSC) :** niveau géographique bureau de vote 23, national 10, commune 7 ; géolocalisation automatique 27, saisie manuelle 13 ; alertes sur « incident critique » voulues par 41 (nécessite une gravité).\n\n**État actuel :** base_reports n'a que titre, description, source, statut et coordonnées.\n\n**Où :** infra/postgres (table election_incidents, suggérée dans docs/SCHEMA.md), types dans packages/shared/src/types.ts.\n\n**Briques open source :** PostGIS pour les zones ; nomenclature d'incidents à définir avec les fact-checkeurs.\n\n**Profil :** data + juristes et fact-checkeurs (nomenclature)\n\n## Premières tâches\n\n- [ ] Nomenclature d'incidents (docs/METHODOLOGY.md)\n- [ ] Migration SQL\n- [ ] Types partagés\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[M3] …`) liée à celle-ci.\n\n📄 Fiche complète : [verification.md#m3](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/verification.md#m3)\n"
+  },
+  {
+    "code": "M4",
+    "title": "[M4] Journal d'audit",
+    "labels": [
+      "domaine:verification",
+      "phase:mvp"
+    ],
+    "body": "**Outil M4 · Journal d'audit** — famille 🔎 Vérification et modération · phase MVP\n\n**Rôle :** enregistrer qui a changé quoi et quand (statut, qualification, suppression), sans possibilité de réécriture.\n\n**Pourquoi (consultation, 45 OSC) :** horodatage non modifiable 25 ; désinformation citée comme menace par 34 ; « fiabilité des données » et « standards internationaux » dans les verbatims.\n\n**État actuel :** rien.\n\n**Où :** infra/postgres.\n\n**Briques open source :** déclencheurs PostgreSQL vers une table en ajout seul.\n\n**Profil :** data/DevOps\n\n## Premières tâches\n\n- [ ] Table audit_log et déclencheurs\n- [ ] Affichage de l'historique dans la fiche M1\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[M4] …`) liée à celle-ci.\n\n📄 Fiche complète : [verification.md#m4](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/verification.md#m4)\n"
+  },
+  {
+    "code": "D1",
+    "title": "[D1] Carte publique",
+    "labels": [
+      "domaine:diffusion",
+      "phase:mvp"
+    ],
+    "body": "**Outil D1 · Carte publique** — famille 📢 Diffusion et alertes · phase MVP\n\n**Rôle :** carte et liste des seuls incidents vérifiés, filtrables par type, zone et date, lisibles sur une connexion lente.\n\n**Pourquoi (consultation, 45 OSC) :** carte publique voulue par 24, notée 3,49 et non négociable pour 9 ; carte filtrable 13 ; par circonscription ou bureau 14 ; absence de cartographie citée 9 fois comme problème.\n\n**État actuel :** configuration Astro sans aucune page.\n\n**Où :** apps/public.\n\n**Briques open source :** Astro 5, Leaflet, tuiles OpenStreetMap mises en cache, GeoJSON.\n\n**Profil :** frontend junior, designers\n\n## Premières tâches\n\n- [ ] Page d'accueil, Header/Footer\n- [ ] Carte Leaflet branchée sur les incidents verified\n- [ ] Test sur Android bas de gamme\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[D1] …`) liée à celle-ci.\n\n📄 Fiche complète : [diffusion.md#d1](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/diffusion.md#d1)\n"
+  },
+  {
+    "code": "D2",
+    "title": "[D2] Carte interne temps réel",
+    "labels": [
+      "domaine:diffusion",
+      "phase:mvp"
+    ],
+    "body": "**Outil D2 · Carte interne temps réel** — famille 📢 Diffusion et alertes · phase MVP\n\n**Rôle :** carte de la salle de situation montrant tous les signalements (y compris non vérifiés) au fil de l'eau, par gravité.\n\n**Pourquoi (consultation, 45 OSC) :** incidents en temps réel 35 (1re visualisation) ; carte interne 14 ; signalement en continu pour 21.\n\n**État actuel :** rien.\n\n**Où :** apps/dashboard.\n\n**Briques open source :** Leaflet dans Refine ; rafraîchissement périodique ou Server-Sent Events.\n\n**Profil :** React\n\n## Premières tâches\n\n- [ ] Vue carte à côté de la file M1\n- [ ] Couleur par gravité (M3)\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[D2] …`) liée à celle-ci.\n\n📄 Fiche complète : [diffusion.md#d2](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/diffusion.md#d2)\n"
+  },
+  {
+    "code": "S1",
+    "title": "[S1] Identité, rôles et double authentification",
+    "labels": [
+      "domaine:socles",
+      "phase:mvp"
+    ],
+    "body": "**Outil S1 · Identité, rôles et double authentification** — famille 🧱 Socles transverses · phase MVP\n\n**Rôle :** comptes de l'équipe, rôles (admin, modérateur, observateur, lecteur), double authentification, sessions sûres.\n\n**Pourquoi (consultation, 45 OSC) :** piratage cité par 22 ; alertes « tentative d'intrusion » voulues par 27 ; « accès sécurisé pour les observateurs en zone à risques » (plusieurs pays).\n\n**État actuel :** authProvider ébauché mais non branché ; le dashboard envoie un jeton d'API NocoDB complet au navigateur.\n\n**Où :** apps/dashboard/src/providers/authProvider.ts, rôles dans packages/shared/src/types.ts (UserRole existe).\n\n**Briques open source :** authentification NocoDB ou couche dédiée (voir Décisions) ; TOTP pour la 2FA.\n\n**Profil :** backend + React\n\n## Premières tâches\n\n- [ ] Supprimer le jeton côté navigateur\n- [ ] Brancher la connexion\n- [ ] Contrôle d'accès par rôle\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[S1] …`) liée à celle-ci.\n\n📄 Fiche complète : [socles.md#s1](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/socles.md#s1)\n"
+  },
+  {
+    "code": "S3",
+    "title": "[S3] Sécurité et protection des observateurs",
+    "labels": [
+      "domaine:socles",
+      "phase:mvp"
+    ],
+    "body": "**Outil S3 · Sécurité et protection des observateurs** — famille 🧱 Socles transverses · phase MVP, continu\n\n**Rôle :** chiffrement des données sensibles, protection des preuves, détection d'intrusion, guide de menace.\n\n**Pourquoi (consultation, 45 OSC) :** sécurité et chiffrement noté 3,95 (2e), non négociable pour 8 ; menaces : intimidation 34, désinformation 34, surveillance 25, piratage 22 ; besoins exprimés : chiffrement des communications, protection contre la surveillance.\n\n**État actuel :** Nginx configuré ; ports internes non exposés ; rien d'autre.\n\n**Où :** infra/, docker/nginx/, revue transverse de toutes les apps.\n\n**Briques open source :** chiffrement de colonnes pgcrypto, TLS par Nginx + Let's Encrypt, fail2ban ; Signal recommandé pour les échanges d'équipe.\n\n**Profil :** sécurité / DevOps (axe Hacker de l'ElectionLab)\n\n## Premières tâches\n\n- [ ] Modèle de menace écrit\n- [ ] Chiffrement des numéros d'observateurs\n- [ ] Journal des connexions et alerte D3\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[S3] …`) liée à celle-ci.\n\n📄 Fiche complète : [socles.md#s3](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/socles.md#s3)\n"
+  },
+  {
+    "code": "S4",
+    "title": "[S4] Langues",
+    "labels": [
+      "domaine:socles",
+      "phase:mvp"
+    ],
+    "body": "**Outil S4 · Langues** — famille 🧱 Socles transverses · phase MVP (FR/EN), V2 (langues nationales)\n\n**Rôle :** interfaces et messages automatiques traduisibles, sans code en dur.\n\n**Pourquoi (consultation, 45 OSC) :** multilingue noté 3,46, non négociable pour 8 ; français 17, anglais 10, wolof 8, bambara 5, arabe 7 (toutes variantes) ; 10 répondants anglophones.\n\n**État actuel :** libellés en français en dur dans constants.ts.\n\n**Où :** packages/shared/src/i18n/.\n\n**Briques open source :** fichiers de traduction JSON partagés ; Weblate (auto-hébergé) pour les traducteurs bénévoles.\n\n**Profil :** frontend + traducteurs\n\n## Premières tâches\n\n- [ ] Extraire les libellés\n- [ ] Anglais complet\n- [ ] Gestion de l'arabe (écriture de droite à gauche)\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[S4] …`) liée à celle-ci.\n\n📄 Fiche complète : [socles.md#s4](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/socles.md#s4)\n"
+  },
+  {
+    "code": "S5",
+    "title": "[S5] Déploiement et hébergement",
+    "labels": [
+      "domaine:socles",
+      "phase:mvp"
+    ],
+    "body": "**Outil S5 · Déploiement et hébergement** — famille 🧱 Socles transverses · phase MVP (auto-hébergé), V1 (mode hébergé)\n\n**Rôle :** installer une instance complète en une commande sur un petit VPS, la mettre à jour, la sauvegarder ; proposer un mode hébergé par un tiers de confiance.\n\n**Pourquoi (consultation, 45 OSC) :** budget < 10 €/mois pour 9, < 30 €/mois pour 12 ; capacité interne 17, via VPS 13, aucune 14 ; auto-hébergement obligatoire 16.\n\n**État actuel :** Compose de production et de développement présents ; image NocoDB en latest (non figée).\n\n**Où :** docker/, docker-compose.yml, scripts/setup.sh, docs/DEPLOYMENT.md.\n\n**Briques open source :** Docker Compose (en place), Nginx, script setup.sh.\n\n**Profil :** DevOps\n\n## Premières tâches\n\n- [ ] Figer les versions d'images\n- [ ] Mesurer la mémoire réelle sur 2 Go\n- [ ] Procédure de mise à jour\n- [ ] Modèle d'instance mutualisée\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[S5] …`) liée à celle-ci.\n\n📄 Fiche complète : [socles.md#s5](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/socles.md#s5)\n"
+  },
+  {
+    "code": "S6",
+    "title": "[S6] Référentiels",
+    "labels": [
+      "domaine:socles",
+      "phase:mvp"
+    ],
+    "body": "**Outil S6 · Référentiels** — famille 🧱 Socles transverses · phase MVP\n\n**Rôle :** listes de référence par pays : découpage administratif, bureaux de vote avec coordonnées, nomenclature d'incidents, calendrier électoral.\n\n**Pourquoi (consultation, 45 OSC) :** granularité bureau de vote 23 ; saisie manuelle du lieu 13 (impossible sans liste) ; 18 pays représentés.\n\n**État actuel :** scripts/seed.js crée 28 incidents de démonstration ; aucun référentiel réel.\n\n**Où :** infra/postgres, scripts/seed.\n\n**Briques open source :** table polling_stations (suggérée dans docs/SCHEMA.md), données OpenStreetMap et listes publiques des commissions électorales.\n\n**Profil :** data + contributeurs locaux de chaque pays\n\n## Premières tâches\n\n- [ ] Format d'import des bureaux de vote\n- [ ] Premier jeu Sénégal\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[S6] …`) liée à celle-ci.\n\n📄 Fiche complète : [socles.md#s6](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/socles.md#s6)\n"
+  },
+  {
+    "code": "S7",
+    "title": "[S7] Documentation et guides",
+    "labels": [
+      "domaine:socles",
+      "phase:mvp",
+      "profil:non-technique"
+    ],
+    "body": "**Outil S7 · Documentation et guides** — famille 🧱 Socles transverses · phase MVP, continu\n\n**Rôle :** guides pour observateurs, modérateurs et administrateurs ; méthodologie de vérification ; guide d'hygiène numérique.\n\n**Pourquoi (consultation, 45 OSC) :** manque de formation cité 8 fois ; 14 OSC observent pour la première fois ; besoins de « capacitation en sécurité numérique » ; complexité des outils citée 5 fois.\n\n**État actuel :** documentation développeur riche ; aucun guide utilisateur ; METHODOLOGY.md prévu mais absent.\n\n**Où :** docs/ (existe : ARCHITECTURE, SCHEMA, DEPLOYMENT…).\n\n**Briques open source :** Markdown dans docs/, site de documentation généré par Astro.\n\n**Profil :** non techniques (journalistes, juristes, designers)\n\n## Premières tâches\n\n- [ ] Guide observateur d'une page (WhatsApp, SMS codé)\n- [ ] Docs/METHODOLOGY.md\n\nChaque tâche peut devenir sa propre issue (modèle « Tâche sur un outil », titre `[S7] …`) liée à celle-ci.\n\n📄 Fiche complète : [socles.md#s7](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/socles.md#s7)\n"
+  }
+]

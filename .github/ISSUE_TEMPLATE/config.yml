@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Catalogue des outils
+    url: https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/README.md
+    about: Les 34 outils, leur fiche et leurs premières tâches
+  - name: 🗺️ Quel outil pour mon profil ?
+    url: https://github.com/AfricTivistes/situation-room/blob/main/SKILLS_MAP.md
+    about: Développeurs, fact-checkeurs, juristes, designers, traducteurs

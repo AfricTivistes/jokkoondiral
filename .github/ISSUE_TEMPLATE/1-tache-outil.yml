@@ -1,0 +1,86 @@
+name: 🧰 Tâche sur un outil
+description: Une tâche précise sur l'un des 34 outils du catalogue (C1…S7)
+title: "[CODE] "
+labels: ["needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Une issue = une tâche. Remplace `CODE` dans le titre par le code de l'outil, puis un verbe : `[R1] Télécharger les médias WhatsApp`.
+        Fiches des outils : [docs/outils](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/README.md) · Profils : [SKILLS_MAP.md](https://github.com/AfricTivistes/situation-room/blob/main/SKILLS_MAP.md)
+  - type: dropdown
+    id: outil
+    attributes:
+      label: Outil concerné
+      options:
+        - "C1 · Formulaire web hors ligne (PWA)"
+        - "C2 · Application Android hors ligne"
+        - "C3 · Parcours SMS codé"
+        - "C4 · Saisie des appels par un opérateur"
+        - "C5 · USSD"
+        - "C6 · Signalement vocal en langues nationales"
+        - "C7 · Import KoBo / ODK"
+        - "R1 · Passerelle WhatsApp"
+        - "R2 · Passerelle SMS"
+        - "R3 · Bot Telegram"
+        - "R4 · Email entrant"
+        - "R5 · Registre des observateurs"
+        - "M1 · File de modération"
+        - "M2 · Coffre des preuves"
+        - "M3 · Qualification de l'incident"
+        - "M4 · Journal d'audit"
+        - "M5 · Recoupement et doublons"
+        - "M6 · Veille désinformation et fact-checking"
+        - "D1 · Carte publique"
+        - "D2 · Carte interne temps réel"
+        - "D3 · Alertes sortantes"
+        - "D4 · Rapports publics"
+        - "D5 · Données ouvertes"
+        - "A1 · Tableau de bord statistiques"
+        - "A2 · Export"
+        - "A3 · Carte de densité et clusters"
+        - "A4 · Archivage et conservation"
+        - "S1 · Identité, rôles et double authentification"
+        - "S2 · Multi-organisations"
+        - "S3 · Sécurité et protection des observateurs"
+        - "S4 · Langues"
+        - "S5 · Déploiement et hébergement"
+        - "S6 · Référentiels"
+        - "S7 · Documentation et guides"
+    validations:
+      required: true
+  - type: textarea
+    id: tache
+    attributes:
+      label: Tâche
+      description: Ce qu'il faut faire, clairement, même pour un débutant.
+    validations:
+      required: true
+  - type: textarea
+    id: besoin
+    attributes:
+      label: Besoin auquel elle répond
+      description: Lien vers la fiche ou chiffre de docs/BESOINS.md (facultatif).
+  - type: textarea
+    id: fichiers
+    attributes:
+      label: Fichiers de départ
+      placeholder: "apps/webhooks/src/handlers/whatsapp.ts"
+  - type: textarea
+    id: criteres
+    attributes:
+      label: Critères d'acceptation
+      value: |
+        - [ ]
+        - [ ]
+    validations:
+      required: true
+  - type: dropdown
+    id: niveau
+    attributes:
+      label: Niveau
+      options:
+        - "Débutant (bonne première issue)"
+        - "Intermédiaire"
+        - "Avancé"
+        - "Non technique (rédaction, test, design, traduction, droit)"
