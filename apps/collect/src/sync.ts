@@ -3,13 +3,15 @@
 // Les photos partent après les réponses, une par une ; une coupure reprend là où elle s'est arrêtée.
 
 import type { Envoi } from "@jokkoondiral/protocole";
-import { pieces, reglages, signalements, type Signalement } from "./store";
+import { pieces, reglages, signalements, type AppareilActive, type Signalement } from "./store";
 
 export type Evenement =
   | { type: "reseau" }
   | { type: "envoye"; id: string }
   | { type: "erreur"; id: string; erreur: string }
-  | { type: "code" };
+  | { type: "code" }
+  /** Le serveur refuse l'auteur : téléphone non activé, désactivé, observateur inactif ou accès expiré. */
+  | { type: "auth"; erreur: string };
 
 let enCours = false;
 
@@ -33,17 +35,27 @@ async function lireJson(rep: Response): Promise<Record<string, unknown>> {
   }
 }
 
+/** En-têtes d'authentification : clé de l'appareil (mode appareils) ou code partagé (mode codes). */
+export async function authentification(mode: "appareils" | "codes"): Promise<{ entetes: Record<string, string>; code?: string } | null> {
+  if (mode === "codes") {
+    const code = await reglages.lire("code", "");
+    return code ? { entetes: { Authorization: `Code ${code}`, "X-Code-Collecteur": code }, code } : null;
+  }
+  const appareil = await reglages.lire<AppareilActive | null>("appareil", null);
+  return appareil ? { entetes: { Authorization: `Appareil ${appareil.id}.${appareil.secret}` } } : null;
+}
+
 export async function envoyerFile(
-  options: { url: string; purge: boolean; protocole: { id: string; version: string; extensions?: string[] }; langue: string },
+  options: { url: string; purge: boolean; protocole: { id: string; version: string; extensions?: string[] }; langue: string; identification: "appareils" | "codes" },
   notifier: (e: Evenement) => void = () => {},
 ): Promise<void> {
   if (enCours) return;
   enCours = true;
   try {
-    const code = await reglages.lire("code", "");
     const liste = (await signalements.lister()).filter((s) => s.statut === "en_attente" || s.statut === "erreur");
     if (!liste.length || !navigator.onLine) return;
-    if (!code) { notifier({ type: "code" }); return; }
+    const auth = await authentification(options.identification);
+    if (!auth) { notifier(options.identification === "codes" ? { type: "code" } : { type: "auth", erreur: "non_active" }); return; }
 
     for (const candidat of liste) {
       // L'observateur a pu le rouvrir entre-temps : on relit son état.
@@ -55,8 +67,8 @@ export async function envoyerFile(
         try {
           rep = await fetch(options.url, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ code, envoi: versEnvoi(s, options.protocole, options.langue) }),
+            headers: { "Content-Type": "application/json", ...auth.entetes },
+            body: JSON.stringify({ envoi: versEnvoi(s, options.protocole, options.langue), ...(auth.code ? { code: auth.code } : {}) }),
           });
         } catch {
           notifier({ type: "reseau" });
@@ -64,8 +76,9 @@ export async function envoyerFile(
         }
         const corps = await lireJson(rep);
         if (rep.status === 401 || rep.status === 403) {
-          await signalements.ecrire({ ...s, statut: "erreur", erreur: "code" });
-          notifier({ type: "code" });
+          const erreur = String(corps.erreur || "code");
+          await signalements.ecrire({ ...s, statut: "erreur", erreur });
+          notifier(erreur === "code" ? { type: "code" } : { type: "auth", erreur });
           return;
         }
         if (!rep.ok || !corps.ok) {
@@ -84,7 +97,7 @@ export async function envoyerFile(
         try {
           rep = await fetch(`${options.url}/${encodeURIComponent(s.id)}/pieces`, {
             method: "POST",
-            headers: { "Content-Type": p.type, "X-Code-Collecteur": code, "X-Piece-Id": p.id },
+            headers: { "Content-Type": p.type, "X-Piece-Id": p.id, ...auth.entetes },
             body: p.blob,
           });
         } catch {

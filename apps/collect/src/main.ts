@@ -8,7 +8,7 @@ import {
 import { instance, protocole, theme } from "virtual:jokkoondiral";
 import { rendreChamp, resumeValeur } from "./champs";
 import { langue, setLangue, tr } from "./i18n";
-import { demanderPersistance, reglages, signalements, type Signalement } from "./store";
+import { demanderPersistance, reglages, signalements, type AppareilActive, type Signalement } from "./store";
 import { envoyerFile, type Evenement } from "./sync";
 import { bouton, boutonConfirme, formaterDate, h, messageErreur, pastille } from "./ui";
 
@@ -17,14 +17,16 @@ let notice: string | null = null;
 let majDisponible: ServiceWorker | null = null;
 
 const texteInstance = (cle: string) => t(instance.textes[cle], langue());
+const modeIdentification = instance.identification ?? "appareils";
 const index = Object.fromEntries(champs(protocole).map((c) => [c.id, c]));
 
 // ── Envoi ───────────────────────────────────────────────────────────
 
 async function synchroniser(manuel = false) {
   const purge = await reglages.lire("purge", instance.purge_apres_envoi);
-  await envoyerFile({ url: instance.envoi, purge, protocole, langue: langue() }, (e: Evenement) => {
+  await envoyerFile({ url: instance.envoi, purge, protocole, langue: langue(), identification: modeIdentification }, (e: Evenement) => {
     if (e.type === "code") notice = tr("codeManquant");
+    if (e.type === "auth") notice = tr(`auth.${e.erreur}`);
     if (e.type === "reseau" && manuel) notice = tr("erreurReseau");
     if (e.type === "erreur") notice = e.erreur === "code" ? tr("erreurCode") : tr("erreurServeur", { detail: e.erreur });
   });
@@ -80,7 +82,17 @@ async function accueil() {
   const section = (titre: string, items: Signalement[], extra?: HTMLElement | null) =>
     items.length ? h("section", { class: "carte" }, h("div", { class: "carte-tete" }, h("h2", null, `${titre} (${items.length})`), extra || null), h("div", { class: "liste" }, ...items.map(carte))) : null;
 
+  const appareil = await reglages.lire<AppareilActive | null>("appareil", null);
+  const activationEnAttente = await reglages.lire<string | null>("activation_en_attente", null);
+  if (jeton !== rendu) return;
+  const carteActivation = modeIdentification === "appareils" && !appareil
+    ? h("section", { class: "carte activation", role: "status" },
+      h("h2", null, activationEnAttente ? tr("activationEnAttente") : tr("nonActive")),
+      h("p", null, tr("nonActiveAide")))
+    : null;
+
   afficher("accueil",
+    carteActivation,
     h("section", { class: "carte accueil" },
       theme.logo && theme.icone && theme.logo !== theme.icone ? h("img", { src: theme.logo, alt: instance.nom_court, class: "logo-complet" }) : null,
       h("h1", null, t(instance.nom, langue())),
@@ -95,6 +107,7 @@ async function accueil() {
     h("nav", { class: "pied" },
       bouton(tr("reglages"), () => ecranReglages(), "lien"),
       bouton(tr("aPropos"), () => aPropos(), "lien")),
+    appareil ? h("p", { class: "doux petit centre" }, `${tr("observateur")} ${appareil.observateur.code}${appareil.observateur.bureau_vote ? ` · ${appareil.observateur.bureau_vote}` : ""}`) : null,
     h("p", { class: "doux petit centre" }, texteInstance("organisation")));
 }
 
@@ -206,18 +219,33 @@ function confirmation(s: Signalement) {
 async function ecranReglages(message: string | null = null) {
   const jeton = nouveauRendu();
   const code = h("input", { type: "text", id: "code", autocomplete: "off", autocapitalize: "characters", value: await reglages.lire("code", "") });
+  const appareil = await reglages.lire<AppareilActive | null>("appareil", null);
   const choixLangue = h("select", { id: "langue" }, ...instance.langues.map((l) => h("option", { value: l, selected: l === langue() }, l.toUpperCase())));
   const purge = h("input", { type: "checkbox", id: "purge", checked: await reglages.lire("purge", instance.purge_apres_envoi) });
   if (jeton !== rendu) return;
+
+  // Mode appareils : l'identité vient du lien d'activation, pas d'un code saisi.
+  const identite = modeIdentification === "codes"
+    ? [h("label", { for: "code" }, tr("code")), code, h("p", { class: "aide-champ" }, tr("codeAide"))]
+    : appareil
+      ? [h("p", null, h("span", { class: "doux" }, `${tr("observateur")} : `), h("strong", { class: "numero" }, appareil.observateur.code)),
+        appareil.observateur.bureau_vote ? h("p", null, h("span", { class: "doux" }, `${tr("bureau")} : `), appareil.observateur.bureau_vote) : null,
+        h("p", { class: "aide-champ" }, tr("desactiverAide")),
+        boutonConfirme(tr("desactiverTelephone"), tr("confirmerDesactivation"), async () => {
+          await reglages.ecrire("appareil", null);
+          ecranReglages();
+        })]
+      : [h("p", { class: "message-erreur" }, tr("nonActive")), h("p", { class: "aide-champ" }, tr("nonActiveAide"))];
+
   afficher("reglages",
     h("section", { class: "carte formulaire" },
       h("h1", { tabindex: -1 }, tr("reglages")),
       message ? h("p", { class: "ok", role: "status" }, message) : null,
-      h("label", { for: "code" }, tr("code")), code, h("p", { class: "aide-champ" }, tr("codeAide")),
+      ...identite,
       h("label", { for: "langue" }, tr("langue")), choixLangue,
       h("label", { class: "case" }, purge, h("span", null, tr("purge"))), h("p", { class: "aide-champ" }, tr("purgeAide")),
       bouton(tr("enregistrer"), async () => {
-        await reglages.ecrire("code", code.value.trim().toUpperCase());
+        if (modeIdentification === "codes") await reglages.ecrire("code", code.value.trim().toUpperCase());
         await reglages.ecrire("langue", choixLangue.value);
         await reglages.ecrire("purge", purge.checked);
         setLangue(choixLangue.value);
@@ -226,6 +254,47 @@ async function ecranReglages(message: string | null = null) {
         synchroniser();
       }, "btn grand")),
     h("nav", { class: "navigation" }, bouton(tr("accueil"), () => accueil(), "btn fantome")));
+}
+
+// ── Activation du téléphone ─────────────────────────────────────────
+
+/**
+ * Le lien de la coordination ouvre l'app avec #activer=<jeton>. Le jeton est dans le fragment :
+ * il n'est jamais envoyé au serveur web (ni dans ses journaux, ni dans le Referer).
+ * Il est échangé une seule fois contre la clé de ce téléphone ; sans réseau, l'échange attend.
+ */
+function lireJetonActivation(): string | null {
+  const m = location.hash.match(/^#activer=([A-Za-z0-9_-]{43})$/);
+  if (!m) return null;
+  history.replaceState(null, "", location.pathname + location.search);
+  return m[1];
+}
+
+async function activer(): Promise<void> {
+  const jetonActivation = await reglages.lire<string | null>("activation_en_attente", null);
+  if (!jetonActivation || !navigator.onLine) return;
+  let rep: Response;
+  try {
+    rep = await fetch(`${instance.envoi}/activation`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ jeton: jetonActivation }) });
+  } catch {
+    return; // réseau coupé : nouvel essai au retour du réseau
+  }
+  const corps = await rep.json().catch(() => ({})) as Record<string, unknown>;
+  await reglages.ecrire("activation_en_attente", null);
+  if (rep.status === 201 && corps.ok) {
+    const appareil: AppareilActive = {
+      id: String(corps.appareil_id),
+      secret: String(corps.secret),
+      observateur: corps.observateur as AppareilActive["observateur"],
+      active_le: new Date().toISOString(),
+    };
+    await reglages.ecrire("appareil", appareil);
+    notice = `${tr("active")} — ${tr("activeAide", { code: appareil.observateur.code })}`;
+    synchroniser();
+  } else {
+    notice = rep.status === 410 ? tr("lienInvalide") : tr("activationRefusee");
+  }
+  if (ecranCourant === "accueil") accueil();
 }
 
 function aPropos() {
@@ -246,7 +315,12 @@ function aPropos() {
 
 async function demarrerApp() {
   setLangue(await reglages.lire("langue", instance.langue_defaut));
-  window.addEventListener("online", () => { if (ecranCourant === "accueil") accueil(); synchroniser(); });
+  const jetonLien = lireJetonActivation();
+  if (jetonLien && modeIdentification === "appareils") {
+    // Un nouveau lien remplace l'éventuelle clé précédente (téléphone réattribué).
+    await reglages.ecrire("activation_en_attente", jetonLien);
+  }
+  window.addEventListener("online", () => { if (ecranCourant === "accueil") accueil(); activer().then(() => synchroniser()); });
   window.addEventListener("offline", () => { if (ecranCourant === "accueil") accueil(); });
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") synchroniser(); });
   if (import.meta.env.PROD && "serviceWorker" in navigator) {
@@ -267,6 +341,7 @@ async function demarrerApp() {
     navigator.serviceWorker.addEventListener("controllerchange", () => { if (avaitControleur) location.reload(); });
   }
   await accueil();
+  await activer();
   synchroniser();
 }
 

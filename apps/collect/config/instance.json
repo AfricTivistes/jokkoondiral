@@ -12,6 +12,7 @@
   "protocole": "incident-electoral",
   "extensions": [],
   "envoi": "/webhooks/api/collect",
+  "identification": "appareils",
   "gps": "facultatif",
   "purge_apres_envoi": true,
   "textes": {

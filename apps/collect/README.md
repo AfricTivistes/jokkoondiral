@@ -18,7 +18,8 @@ Réécriture en TypeScript de [dofbi/collecte-guidee](https://github.com/dofbi/c
 | Numéro de suivi | `JK-XXXXXXXX`, affiché avant et après l'envoi |
 | Photos | Facultatives, réduites (~200 Ko) et **sans métadonnées EXIF** (position, modèle du téléphone) |
 | Position GPS | Facultative, **jamais automatique**, désactivable pour toute l'instance |
-| Sécurité | Code collecteur au lieu du nom ; purge du téléphone après envoi (par défaut) ; aucun jeton côté navigateur |
+| Identification | Téléphone activé par un lien ou QR à usage unique remis par la coordination ; pseudonyme `OBS-XXXXXX`, jamais de nom ; désactivable à distance ([nocodb-registre.md](../../docs/nocodb-registre.md)) |
+| Sécurité | Clé propre au téléphone (le serveur n'en garde que l'empreinte) ; purge après envoi (par défaut) ; aucun jeton de base dans le navigateur |
 | Langues | Interface FR/EN ; questions traduites dans le protocole ; repli homogène |
 | Poids | ~15 Ko gzip de JavaScript, polices système, aucune ressource externe |
 
@@ -30,7 +31,7 @@ pnpm --filter collect build && pnpm --filter collect preview
 pnpm --filter collect test
 ```
 
-Pour tester l'envoi en local : `COLLECT_CODES=EQ01` dans `.env`, lancer `pnpm dev:webhooks`, puis saisir `EQ01` dans **Réglages** de l'app.
+Pour tester l'envoi en local : lancer `pnpm dev:webhooks`, créer un observateur avec `pnpm observateurs ajouter --bureau "Bureau 1"` et ouvrir le lien affiché (il active le navigateur comme un téléphone). Pour un test rapide sans registre : `IDENTIFICATION=codes` côté serveur, `"identification": "codes"` dans `config/instance.json`, et un code de `COLLECT_CODES` dans **Réglages**.
 
 ## Personnaliser (sans toucher au code)
 
@@ -49,6 +50,7 @@ Pour tester l'envoi en local : `COLLECT_CODES=EQ01` dans `.env`, lancer `pnpm de
 | `langues`, `langue_defaut` | Langues proposées dans les réglages |
 | `protocole`, `extensions` | Protocole de base et extensions actives (le serveur lit la même configuration) |
 | `envoi` | Adresse de réception (`/webhooks/api/collect` derrière Nginx) |
+| `identification` | `appareils` (activation par lien) ou `codes` (code saisi) ; même valeur que `IDENTIFICATION` côté serveur |
 | `gps` | `facultatif` ou `desactive` |
 | `purge_apres_envoi` | Effacer du téléphone un signalement dès qu'il est reçu (recommandé) |
 | `textes` | Accueil, consigne de sécurité, mention de l'organisation, par langue |

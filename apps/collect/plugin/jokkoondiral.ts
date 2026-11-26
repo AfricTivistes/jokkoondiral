@@ -37,6 +37,7 @@ export interface Instance {
   protocole: string;
   extensions: string[];
   envoi: string;
+  identification?: "appareils" | "codes";
   gps: "facultatif" | "desactive";
   purge_apres_envoi: boolean;
   textes: Record<string, Record<string, string> | string>;

@@ -29,6 +29,14 @@ export interface Piece {
   envoyee?: boolean;
 }
 
+/** Clé du téléphone, reçue à l'activation. Le secret ne quitte le téléphone que dans l'en-tête des envois. */
+export interface AppareilActive {
+  id: string;
+  secret: string;
+  observateur: { code: string; bureau_vote: string | null };
+  active_le: string;
+}
+
 type NomStore = "signalements" | "pieces" | "reglages";
 const BASE = "jk-collect";
 const VERSION = 1;
