@@ -142,5 +142,7 @@ export async function recevoirPiece(p: PieceRecue, auteur: Auteur, d: Dependance
     observateur_code: auteur.observateur_code,
     recue_le: new Date(d.maintenant?.() ?? Date.now()).toISOString(),
   }, null, 2));
+  // Trace vérifiable sans accès à la base : identifiant court, taille, début d'empreinte (aucune donnée personnelle).
+  (d.journal ?? console.log)(`🖼️ Collecte : photo reçue pour ${p.instanceID.slice(5, 13)} (${Math.round(p.contenu.length / 1024)} Ko, sha256 ${empreinte.slice(0, 12)}…, ${auteur.observateur_code})`);
   return { status: 201, corps: { ok: true, sha256: empreinte } };
 }

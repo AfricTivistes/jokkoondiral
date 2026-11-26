@@ -23,7 +23,7 @@ La collecte doit marcher pour tous les observateurs : smartphone récent ou tél
 - **Données :** hors-ligne critique 30, secondaire 12 ; formulaire web voulu par 14 ; témoignage structuré 27 ; Android milieu/haut 32, iPhone 13.
 - **Briques open source :** Astro ou Vite, Workbox (service worker), IndexedDB, compression d'image côté navigateur.
 - **Où :** `apps/collect` (PWA), moteur `packages/protocole`, réception `apps/webhooks` (`POST /api/collect`).
-- **État :** première version livrée (issue #2) : parcours question par question, hors ligne, relecture, numéro de suivi, photos réduites sans EXIF, GPS facultatif, thèmes personnalisables, extensions de protocole, copie Kobo facultative. Voir [apps/collect](../../apps/collect/README.md), [protocoles.md](../protocoles.md), [ADR-0010](../decisions/0010-moteur-de-protocole.md).
+- **État :** première version livrée (issue #2) : parcours question par question, hors ligne, relecture, numéro de suivi, photos réduites sans EXIF, GPS facultatif, thèmes personnalisables, extensions de protocole, copie Kobo facultative. Voir [apps/collect](../../apps/collect/README.md), [protocoles.md](../protocoles.md), [ADR-0010](../decisions/0010-moteur-de-protocole.md). **Testé en ligne** en novembre 2026 (PWA sur Netlify, serveur et PostgreSQL sur Render) : [TESTER_EN_LIGNE.md](../TESTER_EN_LIGNE.md). Reste : liste des bureaux de vote (S6), PNG d'installation, catégories à valider (METHODOLOGY.md).
 
 **Premières tâches**
 

@@ -145,9 +145,13 @@ Sauvegardez ce fichier **hors du serveur** : sans lui, les téléphones activés
 - Jetons et mots de passe dans des **fichiers secrets** (`NOCODB_API_TOKEN_FILE`, `PGPASSWORD_FILE`, `KOBO_TOKEN_FILE`), jamais dans le dépôt.
 - Rotation : un jeton compromis se révoque dans l'outil concerné (NocoDB, Kobo, PostgreSQL), puis on remplace le fichier et on redémarre `webhooks`.
 
+**Base gérée** (PostgreSQL hors docker-compose : hébergeur, VPS existant) : les scripts `infra/postgres/*.sql` ne s'exécutent pas tout seuls. Mettre `MIGRER_AU_DEMARRAGE=1` (le serveur applique chaque script une seule fois, au démarrage) ou lancer `pnpm --filter webhooks migrer` avec `DATABASE_URL`.
+
 **Vérifier** : `curl https://votre-domaine.org/webhooks/api/collect/sante` donne l'état de chaque base, sans aucun secret.
 
-**Enrôler les observateurs** : voir [nocodb-registre.md](./nocodb-registre.md).
+**Enrôler les observateurs** : voir [nocodb-registre.md](./nocodb-registre.md). Sans NocoDB, utiliser le webhook protégé `{"ajouter": …}` (même guide) ou `pnpm observateurs`.
+
+**Tester avant de déployer** : un environnement de test complet (Netlify + Render) est décrit dans [TESTER_EN_LIGNE.md](./TESTER_EN_LIGNE.md).
 
 ## Maintenance
 

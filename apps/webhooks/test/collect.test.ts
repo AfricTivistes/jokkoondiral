@@ -122,8 +122,10 @@ test('une photo est stockée avec son empreinte SHA-256, une seule fois', async 
   await recevoirSignalement(e, auteur, d);
   const pieceId = crypto.randomUUID();
   const base = { instanceID: e.instanceID, pieceId, type: 'image/jpeg', contenu: Buffer.from('faux jpeg') };
-  const r = await recevoirPiece(base, auteur, d);
+  const traces: string[] = [];
+  const r = await recevoirPiece(base, auteur, { ...d, journal: (m) => traces.push(m) });
   assert.equal(r.status, 201);
+  assert.ok(traces.some((t) => t.startsWith('🖼️ Collecte : photo reçue') && t.includes(String(r.corps.sha256).slice(0, 12))), 'photo journalisée');
   const fichier = join(dossier, e.instanceID.replace('uuid:', ''), `${pieceId}.jpg`);
   assert.ok(existsSync(fichier));
   const meta = JSON.parse(readFileSync(`${fichier}.json`, 'utf8'));

@@ -33,6 +33,11 @@ pnpm --filter collect test
 
 Pour tester l'envoi en local : lancer `pnpm dev:webhooks`, créer un observateur avec `pnpm observateurs ajouter --bureau "Bureau 1"` et ouvrir le lien affiché (il active le navigateur comme un téléphone). Pour un test rapide sans registre : `IDENTIFICATION=codes` côté serveur, `"identification": "codes"` dans `config/instance.json`, et un code de `COLLECT_CODES` dans **Réglages**.
 
+## Déployer
+
+- **Netlify** : le fichier [`netlify.toml`](../../netlify.toml) à la racine ne construit que cette app et relaie `/webhooks/*` vers le serveur de réception. Guide pas à pas avec Render : [TESTER_EN_LIGNE.md](../../docs/TESTER_EN_LIGNE.md).
+- **Nginx / Docker** : image `docker/Dockerfile.collect`, servie sous `/collect/` ([DEPLOYMENT.md](../../docs/DEPLOYMENT.md)).
+
 ## Personnaliser (sans toucher au code)
 
 | Quoi | Où | Guide |

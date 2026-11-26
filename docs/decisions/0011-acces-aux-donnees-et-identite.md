@@ -37,4 +37,7 @@ La v0.1 de la collecte (ADR-0010) écrivait en dur dans NocoDB et identifiait le
 - Avec Kobo en principal, les photos restent sur le serveur et le registre doit vivre dans NocoDB ou PostgreSQL.
 - Le registre NocoDB n'offre pas de mise à jour conditionnelle atomique. Un même lien ouvert deux fois à la même seconde pourrait activer deux téléphones ; avec PostgreSQL, la consommation est atomique.
 - Une révocation prend effet en 60 s au plus (cache d'authentification).
+- Base gérée (hébergeur, VPS existant) : le schéma s'applique par `MIGRER_AU_DEMARRAGE=1` ou `pnpm --filter webhooks migrer`, chaque script une seule fois.
+- Sans NocoDB, le webhook protégé crée aussi un observateur (`{"ajouter": …}`) : un registre PostgreSQL seul reste gérable sans accès direct à la base.
+- Validé en ligne en novembre 2026 (Netlify + Render, PostgreSQL) : [TESTER_EN_LIGNE.md](../TESTER_EN_LIGNE.md). NocoDB et Kobo restent à tester en ligne.
 - Le secret maître `JK_SECRET` doit être sauvegardé hors du serveur : le perdre rend les clés d'appareil et les numéros chiffrés inutilisables. Les observateurs devront alors être réactivés.

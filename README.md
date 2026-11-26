@@ -103,6 +103,8 @@ pnpm dev                   # toutes les apps
 | Dashboard | http://localhost:5173 |
 | Webhooks | http://localhost:3000 |
 
+**Essayer en ligne** : un environnement de test (PWA sur Netlify, serveur et base sur Render) se monte en une heure : [docs/TESTER_EN_LIGNE.md](./docs/TESTER_EN_LIGNE.md). Il ne doit jamais recevoir de vraies données d'observateurs.
+
 Autres commandes : `pnpm test`, `pnpm typecheck`, `pnpm build`, `pnpm dev:public|dev:dashboard|dev:webhooks`. Production : [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
 
 ---
@@ -136,6 +138,7 @@ Agents IA (Cursor, OpenCode…) → [AGENTS.md](./AGENTS.md).
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [TECHNICAL_REFERENCE.md](./docs/TECHNICAL_REFERENCE.md) · [SCHEMA.md](./docs/SCHEMA.md) | Développeurs | Architecture, choix techniques, base de données |
 | [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) | DevOps | Mise en production, bases distantes sécurisées |
 | [docs/nocodb-registre.md](./docs/nocodb-registre.md) | Coordination | Enrôler, activer, désactiver les observateurs |
+| [docs/TESTER_EN_LIGNE.md](./docs/TESTER_EN_LIGNE.md) | Contributeurs, pilotage | Environnement de test Netlify + Render, scénarios à vérifier |
 | [docs/PROJECT_OVERVIEW.md](./docs/PROJECT_OVERVIEW.md) | Partenaires, bailleurs | Vision, valeurs, impact |
 
 ---

@@ -51,7 +51,9 @@ Le protocole est lu au démarrage depuis la même configuration que la PWA (`app
 | `STOCKAGE_COPIES` | ex. `kobo` | Copies, reprises automatiquement si elles échouent |
 | `REGISTRE_OBSERVATEURS` | `nocodb` · `postgres` | Où vit le registre (Kobo ne peut pas l'héberger) |
 
-Routes complémentaires : `POST /api/collect/activation` (jeton du lien → clé du téléphone), `POST /api/collect/observateurs/lien` (webhook NocoDB, en-tête `X-Jk-Webhook`), `GET /api/collect/sante` (état des bases, sans secret). Les envois portent `Authorization: Appareil <id>.<secret>`.
+Routes complémentaires : `POST /api/collect/activation` (jeton du lien → clé du téléphone), `POST /api/collect/observateurs/lien` (en-tête `X-Jk-Webhook` : webhook NocoDB, ou `{"ajouter": {…}}` pour créer un observateur et obtenir son lien sans NocoDB), `GET /api/collect/sante` (état des bases, sans secret).
+
+Schéma PostgreSQL d'une base gérée : `MIGRER_AU_DEMARRAGE=1` (au démarrage) ou `pnpm --filter webhooks migrer` ; scripts lus dans `MIGRATIONS_DIR` (défaut : `infra/postgres`), chacun appliqué une seule fois (table `migrations_appliquees`). Les envois portent `Authorization: Appareil <id>.<secret>`.
 
 Code : `src/stockage/` (adaptateurs NocoDB, PostgreSQL, Kobo ; contrôle HTTPS/TLS ; secrets `*_FILE` ; file de reprise), `src/identite/` (enrôlement, activation, révocation, chiffrement). Gestion en ligne de commande : `pnpm observateurs ajouter|lien|desactiver|importer`. Guides : [nocodb-registre.md](../../docs/nocodb-registre.md), [DEPLOYMENT.md](../../docs/DEPLOYMENT.md), [ADR-0011](../../docs/decisions/0011-acces-aux-donnees-et-identite.md).
 
