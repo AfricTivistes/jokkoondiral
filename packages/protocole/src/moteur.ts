@@ -2,9 +2,9 @@
 // Fonctions pures (aucun accès au DOM ni au stockage) : les mêmes règles s'appliquent
 // dans la PWA (pendant la saisie) et sur le serveur (à la réception).
 
-import { evaluer, vrai, type ValeurExpr } from "./expr";
-import { champs, estObligatoire, t } from "./protocole";
-import type { Champ, Envoi, PieceJointe, Protocole, Reponses, Valeur, ValeurLieu } from "./types";
+import { evaluer, vrai, type ValeurExpr } from "./expr.ts";
+import { champs, estObligatoire, t } from "./protocole.ts";
+import type { Champ, Envoi, PieceJointe, Protocole, Reponses, Valeur, ValeurLieu } from "./types.ts";
 
 /** Marge tolérée pour une heure déclarée dans le futur (horloge du téléphone imprécise). */
 const MARGE_FUTUR_MS = 5 * 60 * 1000;

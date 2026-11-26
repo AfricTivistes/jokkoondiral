@@ -1,7 +1,7 @@
 // Lecture, validation et extension d'un protocole.
 
-import { analyser, renommer, variables } from "./expr";
-import { TYPES_CHAMP, type Champ, type Extension, type Option, type Protocole, type Section, type Texte } from "./types";
+import { analyser, renommer, variables } from "./expr.ts";
+import { TYPES_CHAMP, type Champ, type Extension, type Option, type Protocole, type Section, type Texte } from "./types.ts";
 
 export const ID = /^[a-z][a-z0-9_]*$/;
 const TYPES_A_OPTIONS = new Set(["choix", "choix_multiple"]);

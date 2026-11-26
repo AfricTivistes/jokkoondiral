@@ -7,7 +7,7 @@
 
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { appliquerExtensions, versCsv, xlsform, type Extension, type Protocole } from "../src";
+import { appliquerExtensions, versCsv, xlsform, type Extension, type Protocole } from "../src/index.ts";
 
 const args = process.argv.slice(2).filter((a) => a !== "--");
 const iSortie = args.indexOf("--sortie");

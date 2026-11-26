@@ -2,8 +2,8 @@
 // Porté de dofbi/collecte-guidee (AGPL-3.0). La racine porte un identifiant provisoire :
 // le serveur le remplace par le formulaire Kobo réel (KOBO_FORM_ID), connu de lui seul.
 
-import { structure, type ElementFormulaire } from "./xlsform";
-import type { Envoi, Protocole } from "./types";
+import { structure, type ElementFormulaire } from "./xlsform.ts";
+import type { Envoi, Protocole } from "./types.ts";
 
 export const RACINE_PROVISOIRE = "__FORM_ID__";
 

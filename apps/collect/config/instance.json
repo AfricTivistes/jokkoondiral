@@ -1,0 +1,29 @@
+{
+  "nom": { "fr": "Jokkoondiral — Signaler un incident", "en": "Jokkoondiral — Report an incident" },
+  "nom_court": "Jokkoondiral",
+  "description": {
+    "fr": "Signaler un incident électoral, même sans réseau : l'envoi part dès que la connexion revient.",
+    "en": "Report an election incident, even offline: it is sent as soon as the connection returns."
+  },
+  "theme": "jokkoondiral",
+  "theme_surcharges": null,
+  "langues": ["fr", "en"],
+  "langue_defaut": "fr",
+  "protocole": "incident-electoral",
+  "extensions": [],
+  "envoi": "/webhooks/api/collect",
+  "gps": "facultatif",
+  "purge_apres_envoi": true,
+  "textes": {
+    "accueil": {
+      "fr": "Une question à la fois. Tout se remplit hors ligne ; vous relisez avant d'envoyer.",
+      "en": "One question at a time. Everything works offline; you review before sending."
+    },
+    "securite": {
+      "fr": "Votre sécurité passe avant le signalement. Ne prenez ni photo ni position si cela vous expose.",
+      "en": "Your safety comes before the report. Do not take a photo or share your location if it puts you at risk."
+    },
+    "organisation": { "fr": "Un outil AfricTivistes · Africa ElectionLab", "en": "An AfricTivistes tool · Africa ElectionLab" }
+  },
+  "depot": "https://github.com/AfricTivistes/jokkoondiral"
+}

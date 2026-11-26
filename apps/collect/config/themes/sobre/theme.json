@@ -1,0 +1,27 @@
+{
+  "id": "sobre",
+  "nom": "Sobre",
+  "couleurs": {
+    "primaire": "#1F3A5F",
+    "texte_sur_primaire": "#FFFFFF",
+    "secondaire": "#3B5B85",
+    "accent": "#F2B705",
+    "texte_sur_accent": "#1A1A1A",
+    "fond": "#F4F5F7",
+    "surface": "#FFFFFF",
+    "texte": "#1A1A1A",
+    "texte_doux": "#555B66",
+    "bordure": "#D5D9E0",
+    "gravite_faible": "#2F6F4E",
+    "gravite_moyenne": "#A15C00",
+    "gravite_critique": "#B3261E",
+    "succes": "#2F6F4E",
+    "alerte": "#8A5A00",
+    "erreur": "#B3261E"
+  },
+  "rayon": 6,
+  "taille_base": 17,
+  "logo": "logo.svg",
+  "icone": "logo.svg",
+  "mode_sombre": "auto"
+}

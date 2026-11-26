@@ -1,9 +1,9 @@
 // Structure du formulaire Kobo dérivée du protocole (extensions comprises).
 // Source unique pour le XLSForm et pour le XML OpenRosa : les deux ne peuvent pas diverger.
 
-import { renommer, versXPath } from "./expr";
-import { estObligatoire, t } from "./protocole";
-import type { Champ, Envoi, Option, PieceJointe, Protocole, Texte, ValeurLieu } from "./types";
+import { renommer, versXPath } from "./expr.ts";
+import { estObligatoire, t } from "./protocole.ts";
+import type { Champ, Envoi, Option, PieceJointe, Protocole, Texte, ValeurLieu } from "./types.ts";
 
 const LANGUES: Record<string, string> = { fr: "Français (fr)", en: "English (en)", wo: "Wolof (wo)", ff: "Pulaar (ff)", bm: "Bambara (bm)", ar: "العربية (ar)" };
 export const nomLangue = (l: string) => LANGUES[l] || `${l} (${l})`;

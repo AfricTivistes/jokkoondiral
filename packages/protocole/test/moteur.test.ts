@@ -7,7 +7,7 @@ import {
   demarrer, repondre, precedent, champsVisibles, verifierEnvoi, verifierReponses, progression,
   xlsform, versXml, finaliserXml, nouveauxIdentifiants,
   type Envoi, type Extension, type Protocole,
-} from "../src";
+} from "../src/index.ts";
 
 const lire = <T>(p: string): T => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));
 const base = lire<Protocole>("../protocoles/incident-electoral.json");
