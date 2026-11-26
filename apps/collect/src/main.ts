@@ -77,7 +77,7 @@ async function accueil() {
     h("span", { class: "titre-signalement" }, resumeSignalement(s)),
     h("span", { class: "doux petit" }, `${s.numero_suivi} · ${formaterDate(s.debut, langue())}`),
     pastille(tr(`statut.${s.statut}`), s.statut === "erreur" ? "erreur" : s.statut === "envoye" ? "ok" : "neutre"),
-    s.erreur ? h("span", { class: "doux petit" }, s.erreur) : null);
+    s.erreur ? h("span", { class: "doux petit" }, messageSignalement(s.erreur)) : null);
 
   const section = (titre: string, items: Signalement[], extra?: HTMLElement | null) =>
     items.length ? h("section", { class: "carte" }, h("div", { class: "carte-tete" }, h("h2", null, `${titre} (${items.length})`), extra || null), h("div", { class: "liste" }, ...items.map(carte))) : null;
@@ -200,6 +200,17 @@ function relecture(s: Signalement) {
       boutonConfirme(tr("supprimer"), tr("confirmerSuppression"), async () => { await signalements.supprimer(s.id); accueil(); })));
 }
 
+/** Message lisible pour l'erreur d'un signalement (jamais un code technique brut). */
+const ERREURS_AUTH = new Set(["non_active", "revoque", "inactif", "expire"]);
+function messageSignalement(erreur: string | null | undefined): string | null {
+  if (!erreur) return null;
+  if (ERREURS_AUTH.has(erreur)) return tr(`auth.${erreur}`);
+  if (erreur === "code") return tr("erreurCode");
+  return tr("erreurServeur", { detail: erreur });
+}
+/** Le signalement est bloqué tant que la coordination n'a pas réactivé le téléphone (le réseau n'y change rien). */
+const bloqueParAcces = (erreur: string | null | undefined) => Boolean(erreur && (ERREURS_AUTH.has(erreur) || erreur === "code"));
+
 function confirmation(s: Signalement) {
   nouveauRendu();
   const recu = s.statut === "envoye" || Boolean(s.recu);
@@ -209,8 +220,8 @@ function confirmation(s: Signalement) {
       h("p", { class: "doux" }, tr("numeroSuivi")),
       h("p", { class: "numero grand-numero" }, s.numero_suivi),
       h("p", null, tr("numeroSuiviAide")),
-      !recu ? h("p", { class: "doux" }, tr("enFile")) : null,
-      s.erreur ? messageErreur(s.erreur) : null,
+      !recu ? h("p", { class: "doux" }, bloqueParAcces(s.erreur) ? tr("bloque") : tr("enFile")) : null,
+      messageErreur(messageSignalement(s.erreur)),
       bouton(tr("retourAccueil"), () => accueil(), "btn grand")));
 }
 
