@@ -143,8 +143,14 @@ export class Identite {
     const c = (corps || {}) as {
       code?: string;
       ajouter?: { bureau_vote?: string; expire_le?: string; telephone?: string };
+      desactiver?: string;
       data?: { rows?: Record<string, unknown>[] } & Record<string, unknown>;
     };
+    // Désactivation directe : { "desactiver": "OBS-XXXXXX" } → tous ses téléphones refusés.
+    if (typeof c.desactiver === 'string') {
+      const ok = await this.desactiver(c.desactiver.trim().toUpperCase());
+      return ok ? { status: 200, corps: { ok: true, desactive: c.desactiver.trim().toUpperCase() } } : { status: 404, corps: { ok: false, erreur: 'observateur_inconnu' } };
+    }
     // Enrôlement direct (registre PostgreSQL sans NocoDB, scripts d'administration) :
     // { "ajouter": { "bureau_vote": "…", "expire_le": "2027-01-26T23:59:59Z" } } → pseudonyme + lien.
     if (c.ajouter && typeof c.ajouter === 'object') {

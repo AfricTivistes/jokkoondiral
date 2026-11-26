@@ -110,6 +110,9 @@ test('webhook NocoDB « générer le lien » : secret obligatoire, lignes coché
   assert.match(String(ajout.corps.code), /^OBS-/);
   assert.match(String(ajout.corps.lien), /#activer=/);
   assert.equal((await id.webhookLien({ ajouter: { expire_le: 'pas-une-date' } })).status, 400);
+  assert.equal((await id.webhookLien({ desactiver: String(ajout.corps.code).toLowerCase() })).status, 200);
+  assert.equal((await registre.observateurParCode(String(ajout.corps.code)))?.actif, false);
+  assert.equal((await id.webhookLien({ desactiver: 'OBS-INCONNU' })).status, 404);
   const ligne = s.tables.observateurs.find((l) => l.code === observateur.code)!;
   assert.match(String(ligne.lien_activation), /#activer=/);
   assert.equal(ligne.generer_lien, false, 'la case est décochée après génération');

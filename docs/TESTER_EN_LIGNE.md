@@ -91,7 +91,7 @@ Sans l'en-tête, la réponse est `401`. Remettre le lien à l'observateur, sous 
 | Envoi | « Signalement reçu », numéro `JK-…` | Téléphone ; journaux : `📥 Collecte : JK-… enregistré dans postgres (pending, OBS-…)` |
 | Photo | Envoyée après le signalement | Journaux : `🖼️ Collecte : photo reçue pour … (… Ko, sha256 …)` |
 | Hors ligne | Mode avion → « En attente d'envoi » → part au retour du réseau | Téléphone, puis journaux |
-| Désactivation | « Votre accès a été désactivé par la coordination » (en moins de 60 s) | Téléphone |
+| Désactivation | Webhook `{"desactiver": "OBS-XXXXXX"}`, puis nouvel envoi refusé : « Votre accès a été désactivé par la coordination » (en moins de 60 s) | Téléphone |
 
 Validé en novembre 2026 : activation d'un observateur de test, puis un signalement enregistré en `pending` dans PostgreSQL.
 

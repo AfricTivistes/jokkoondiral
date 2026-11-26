@@ -78,7 +78,15 @@ curl -X POST https://votre-domaine.org/webhooks/api/collect/observateurs/lien \
 # → {"ok":true,"code":"OBS-7K2Q9M","lien":"https://…/collect/#activer=…","expire_le":"…"}
 ```
 
-Gardez ce secret hors des messageries : il permet de créer des observateurs.
+Pour couper l'accès d'un observateur (tous ses téléphones, effet en 60 s au plus) :
+
+```bash
+curl -X POST https://votre-domaine.org/webhooks/api/collect/observateurs/lien \
+  -H "Content-Type: application/json" -H "X-Jk-Webhook: $JK_WEBHOOK_SECRET" \
+  -d '{"desactiver": "OBS-7K2Q9M"}'
+```
+
+Gardez ce secret hors des messageries : il permet de créer et de désactiver des observateurs.
 
 ## 4. Au quotidien
 
