@@ -12,10 +12,12 @@ Jokkoondiral est un **bien commun** : chaque OSC installe sa propre instance, su
 | Canaux activés (WhatsApp, SMS, Telegram…) | Variables du canal dans `.env` + enregistrement du webhook chez le fournisseur. Aujourd'hui toutes les routes de `apps/webhooks` sont actives ; un interrupteur par canal reste à créer | R1–R4 |
 | Services optionnels (vocal, USSD…) | Profils Docker Compose : `docker compose --profile voice up -d` | C5, C6 |
 | Statuts, canaux, libellés | `packages/shared/src/constants.ts` (en attendant les fichiers de traduction) | M3, S4 |
-| Nomenclature d'incidents (catégories, gravités) | À définir dans `docs/METHODOLOGY.md`, puis table de référence | M3 |
+| Questions du formulaire de signalement (champs, catégories locales, sections) | Extension de protocole, activée dans `apps/collect/config/instance.json` — [protocoles.md](./protocoles.md) | C1 |
+| Nomenclature d'incidents commune (catégories, gravités) | Noyau du protocole, après validation dans `docs/METHODOLOGY.md` | M3 |
 | Découpage administratif, bureaux de vote | `infra/seed/<pays>/` (format à définir) | S6 |
 | Langues de l'interface | `packages/shared/src/i18n/` (prévu) | S4 |
-| Identité visuelle du site public | `apps/public` (couleurs, logo, textes) | D1 |
+| Couleurs, logo, polices, mode sombre de la PWA de collecte | `apps/collect/config/themes/<nom>/theme.json` — [personnaliser-le-design.md](./personnaliser-le-design.md) | C1 |
+| Identité visuelle du site public | `apps/public` (à brancher sur les mêmes jetons de thème) | D1 |
 | Durée de conservation des données | Paramètre d'instance (prévu, [ADR-0008](./decisions/0008-conservation-donnees.md)) | A4 |
 
 Les lignes « prévu » correspondent à des outils pas encore construits : c'est une bonne contribution à faire **dans le dépôt principal** pour que toutes les OSC en profitent.

@@ -1,38 +1,36 @@
 # =============================================================
-# Dockerfile – Serveur Webhooks Node.js
-# Build multi-stage pour une image de production légère
+# Dockerfile – Serveur Webhooks Node.js (réception multi-canal + collecte C1)
+# Le serveur est compilé en un seul fichier (esbuild) : l'image finale ne contient
+# ni node_modules ni sources TypeScript.
 # =============================================================
 
-# Étape 1 : Construction TypeScript → JavaScript
 FROM node:20-alpine AS builder
-
 WORKDIR /app
+RUN corepack enable
 
-RUN npm install -g pnpm
-
-COPY package.json pnpm-workspace.yaml ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/shared ./packages/shared
+COPY packages/protocole ./packages/protocole
 COPY apps/webhooks ./apps/webhooks
 
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --filter webhooks...
 RUN pnpm --filter webhooks build
 
-# Étape 2 : Image de production (sans les devDependencies)
 FROM node:20-alpine AS runner
-
 WORKDIR /app
+ENV NODE_ENV=production \
+    PORT=3000 \
+    COLLECT_INSTANCE=/app/config/instance.json \
+    PROTOCOLES_DIR=/app/protocoles \
+    PIECES_DIR=/data/pieces
 
-RUN npm install -g pnpm
+COPY --from=builder /app/apps/webhooks/dist/index.js ./index.js
+COPY --from=builder /app/packages/protocole/protocoles ./protocoles
+# Même configuration que la PWA : le serveur valide exactement le formulaire servi aux observateurs.
+COPY apps/collect/config ./config
 
-# Copier uniquement les fichiers nécessaires à l'exécution
-COPY --from=builder /app/apps/webhooks/dist ./dist
-COPY --from=builder /app/apps/webhooks/package.json ./
-
-RUN pnpm install --prod --frozen-lockfile
-
-ENV NODE_ENV=production
-ENV PORT=3000
-
+RUN mkdir -p /data/pieces && chown -R node:node /data
+USER node
+VOLUME ["/data/pieces"]
 EXPOSE 3000
-
-CMD ["node", "dist/index.js"]
+CMD ["node", "index.js"]

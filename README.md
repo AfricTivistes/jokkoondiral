@@ -29,7 +29,7 @@ Besoin exprimé par les OSC  →  Outil (code)  →  Dossier du monorepo  →  I
 
 ➡️ **[Catalogue complet des 34 outils](./docs/outils/README.md)** · [Besoins et matrice besoins × outils](./docs/BESOINS.md) · [Feuille de route](./docs/ROADMAP.md) · [Décisions ouvertes](./docs/decisions/README.md)
 
-**État :** 10 outils amorcés, 24 à créer. Le MVP (17 outils) vise un premier scrutin pilote début 2027.
+**État :** 12 outils amorcés, 22 à créer (dont la PWA de collecte C1). Le MVP (17 outils) vise un premier scrutin pilote début 2027.
 
 ---
 
@@ -64,10 +64,12 @@ Détails : [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/TECHNICAL_REF
 apps/
   public/       → Site public Astro ............ D1 (carte), D4, D5, C1 possible
   dashboard/    → Modération privée Refine .... M1, D2, S1, C4, A1, M5, M6
-  webhooks/     → Réception multi-canal Node ... R1, R2, R3, C3, R4, C5, D3
-  (collect/ api/ voice/ … créées avec leur premier code — voir docs/AJOUTER_UN_OUTIL.md)
+  webhooks/     → Réception multi-canal Node ... R1, R2, R3, C3, R4, C5, D3 + réception de C1
+  collect/      → PWA de collecte hors ligne ... C1
+  (api/ voice/ … créées avec leur premier code — voir docs/AJOUTER_UN_OUTIL.md)
 packages/
-  shared/       → Types et constantes communs (@jokkoondiral/shared) — M3, S1, S4
+  shared/       → Types, constantes, jetons de thème (@jokkoondiral/shared) — M3, S1, S4
+  protocole/    → Moteur de formulaire : protocole JSON + extensions, XLSForm (@jokkoondiral/protocole) — C1, M3
 infra/postgres/ → Schéma SQL ........................ M3, M4, R5, S2, S6
 docker/         → Dockerfiles, Nginx ................ S3, S5
 scripts/        → setup, seed, scripts GitHub ....... S5, S6
@@ -97,10 +99,11 @@ pnpm dev                   # toutes les apps
 |---|---|
 | NocoDB (administration des données) | http://localhost:8080 |
 | Site public | http://localhost:4321 |
+| PWA de collecte (`pnpm dev:collect`) | http://localhost:5174 |
 | Dashboard | http://localhost:5173 |
 | Webhooks | http://localhost:3000 |
 
-Autres commandes : `pnpm typecheck`, `pnpm build`, `pnpm dev:public|dev:dashboard|dev:webhooks`. Production : [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
+Autres commandes : `pnpm test`, `pnpm typecheck`, `pnpm build`, `pnpm dev:public|dev:dashboard|dev:webhooks`. Production : [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
 
 ---
 
@@ -113,7 +116,7 @@ L'observation électorale n'est pas qu'une affaire de code : **journalistes, jur
 3. **Prends une issue** dont le titre commence par le code (`[R1] …`), ou ouvre-la avec le modèle « Tâche sur un outil ». Les issues MVP sont dans le jalon **MVP**.
 4. **Ouvre une pull request** en citant le code de l'outil — processus dans [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-Une OSC veut l'installer et l'adapter à son pays ? → [docs/PERSONNALISER.md](./docs/PERSONNALISER.md).
+Une OSC veut l'installer et l'adapter à son pays ? → [docs/PERSONNALISER.md](./docs/PERSONNALISER.md), [ajouter des questions](./docs/protocoles.md), [changer couleurs et logo](./docs/personnaliser-le-design.md).
 Agents IA (Cursor, OpenCode…) → [AGENTS.md](./AGENTS.md).
 
 ---

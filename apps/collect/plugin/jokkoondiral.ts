@@ -12,8 +12,10 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, extname, join, resolve } from "node:path";
 import type { Plugin } from "vite";
-import { appliquerExtensions, t, type Extension, type Protocole } from "@jokkoondiral/protocole";
-import { surcharger, themeVersCss, verifierTheme, type Theme } from "@jokkoondiral/shared";
+// Chemins relatifs (et non @jokkoondiral/…) : Vite intègre alors ces sources dans la config
+// qu'il compile, ce qui permet de builder avec Node 20 (qui ne lit pas le TypeScript).
+import { appliquerExtensions, t, type Extension, type Protocole } from "../../../packages/protocole/src/index.ts";
+import { surcharger, themeVersCss, verifierTheme, type Theme } from "../../../packages/shared/src/theme.ts";
 
 const ID_VIRTUEL = "virtual:jokkoondiral";
 const lireJson = <T>(chemin: string): T => {

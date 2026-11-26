@@ -94,7 +94,7 @@ Légende état : 🟡 **Amorcé** = du code, un schéma ou une configuration exi
 
 | Code | Outil | Phase | État | Où dans le monorepo |
 |---|---|---|---|---|
-| [C1](./collecte.md#c1) | Formulaire web hors ligne (PWA) | MVP | ⚪ À créer | nouvelle app `apps/collect` ou route dédiée de `apps/public` |
+| [C1](./collecte.md#c1) | Formulaire web hors ligne (PWA) | MVP | 🟡 Amorcé | `apps/collect`, `packages/protocole` |
 | [C2](./collecte.md#c2) | Application Android hors ligne | V1 | ⚪ À créer | `apps/android` (si native) ; sinon configuration ODK documentée dans docs/ |
 | [C3](./collecte.md#c3) | Parcours SMS codé | MVP | ⚪ À créer | `apps/webhooks/src/parsers/sms.ts`, codes dans `packages/shared/src/constants.ts` |
 | [C4](./collecte.md#c4) | Saisie des appels par un opérateur | V1 | ⚪ À créer | `apps/dashboard`, ressource « nouveau signalement » |
@@ -107,7 +107,7 @@ Légende état : 🟡 **Amorcé** = du code, un schéma ou une configuration exi
 | [R4](./reception.md#r4) | Email entrant | V2 | ⚪ À créer | `apps/webhooks/src/handlers/email.ts` |
 | [R5](./reception.md#r5) | Registre des observateurs | MVP | 🟡 Amorcé | `infra/postgres` (table observers, suggérée dans `docs/SCHEMA.md`), écrans dans `apps/dashboard` |
 | [M1](./verification.md#m1) | File de modération | MVP | 🟡 Amorcé | `apps/dashboard` |
-| [M2](./verification.md#m2) | Coffre des preuves | MVP | ⚪ À créer | module partagé appelé par `apps/webhooks` ; table evidences dans `infra/postgres` |
+| [M2](./verification.md#m2) | Coffre des preuves | MVP | 🟡 Amorcé | module partagé appelé par `apps/webhooks` ; table evidences dans `infra/postgres` |
 | [M3](./verification.md#m3) | Qualification de l'incident | MVP | 🟡 Amorcé | `infra/postgres` (table election_incidents, suggérée dans `docs/SCHEMA.md`), types dans `packages/shared/src/types.ts` |
 | [M4](./verification.md#m4) | Journal d'audit | MVP | ⚪ À créer | `infra/postgres` |
 | [M5](./verification.md#m5) | Recoupement et doublons | V1 | ⚪ À créer | vue SQL + panneau dans `apps/dashboard` |
@@ -129,7 +129,7 @@ Légende état : 🟡 **Amorcé** = du code, un schéma ou une configuration exi
 | [S6](./socles.md#s6) | Référentiels | MVP | ⚪ À créer | `infra/postgres`, `scripts/seed` |
 | [S7](./socles.md#s7) | Documentation et guides | MVP, continu | 🟡 Amorcé | docs/ (existe : ARCHITECTURE, SCHEMA, DEPLOYMENT…) |
 
-**Bilan :** 10 outils amorcés, 24 à créer. Le socle d'infrastructure (Docker, PostgreSQL, NocoDB, Nginx, monorepo pnpm, types partagés) est en place et ne doit pas être refait.
+**Bilan :** 12 outils amorcés, 22 à créer. Le socle d'infrastructure (Docker, PostgreSQL, NocoDB, Nginx, monorepo pnpm, types partagés) est en place et ne doit pas être refait.
 
 ## Contenu d'une fiche
 

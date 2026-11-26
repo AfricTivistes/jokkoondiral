@@ -1,18 +1,36 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "lib": ["ES2020"],
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": [
+      "ES2022"
+    ],
     "outDir": "./dist",
-    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "paths": {
-      "@jokkoondiral/shared": ["../../packages/shared/src/index.ts"]
-    }
+      "@jokkoondiral/shared": [
+        "../../packages/shared/src/index.ts"
+      ],
+      "@jokkoondiral/protocole": [
+        "../../packages/protocole/src/index.ts"
+      ]
+    },
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src",
+    "test"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

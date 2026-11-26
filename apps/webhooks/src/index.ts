@@ -2,9 +2,19 @@ import express from 'express';
 import { handleTelegramWebhook } from './handlers/telegram';
 import { handleSmsWebhook } from './handlers/sms';
 import { verifyWhatsAppWebhook, handleWhatsAppWebhook } from './handlers/whatsapp';
+import { routeurCollecte } from './handlers/collect';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// ── Collecte PWA (outil C1) ──────────────────────────────────
+// Déclarée avant les parseurs globaux : elle fixe ses propres limites (JSON 64 Ko, photo 3 Mo).
+// Si le protocole est invalide, la collecte est désactivée mais les autres canaux restent actifs.
+try {
+  app.use('/api/collect', routeurCollecte());
+} catch (e) {
+  console.error(`❌ Collecte désactivée : ${(e as Error).message}`);
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Nécessaire pour Africa's Talking (form-urlencoded)
@@ -39,4 +49,5 @@ app.listen(PORT, () => {
   console.log(`   → Telegram   : POST /api/telegram`);
   console.log(`   → SMS        : POST /api/sms`);
   console.log(`   → WhatsApp   : GET/POST /api/whatsapp`);
+  console.log(`   → Collecte   : POST /api/collect`);
 });

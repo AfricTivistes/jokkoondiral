@@ -62,7 +62,7 @@ export async function handleTelegramWebhook(req: Request, res: Response): Promis
         'xc-token': NOCODB_API_TOKEN,
       },
       body: JSON.stringify({
-        title: message.text.substring(0, 100), // Prendre les 100 premiers caractères
+        title: (message.text ?? '').substring(0, 100), // Prendre les 100 premiers caractères
         description: message.text,
         source: 'telegram',
         status: 'pending',

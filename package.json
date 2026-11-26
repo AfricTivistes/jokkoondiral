@@ -10,13 +10,15 @@
     "dev:public": "pnpm --filter public dev",
     "dev:dashboard": "pnpm --filter dashboard dev",
     "dev:webhooks": "pnpm --filter webhooks dev",
+    "dev:collect": "pnpm --filter collect dev",
     "dev": "pnpm --parallel --filter \"./apps/**\" dev",
     "build": "pnpm -r --if-present build",
     "seed": "node scripts/seed.js",
     "typecheck": "pnpm -r --if-present typecheck",
     "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
     "github:labels": "bash scripts/github/labels.sh",
-    "github:issues-mvp": "node scripts/github/issues-mvp.mjs"
+    "github:issues-mvp": "node scripts/github/issues-mvp.mjs",
+    "test": "pnpm -r --if-present test"
   },
   "engines": {
     "node": ">=20.0.0",
