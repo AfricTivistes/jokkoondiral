@@ -1,0 +1,19 @@
+{
+  "name": "@jokkoondiral/protocole",
+  "version": "0.1.0",
+  "private": true,
+  "license": "AGPL-3.0-only",
+  "description": "Moteur de formulaire guidé : protocole JSON + extensions, validation, XLSForm, OpenRosa",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "xlsform": "tsx scripts/xlsform.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.0.0"
+  }
+}

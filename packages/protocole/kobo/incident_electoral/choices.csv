@@ -1,0 +1,20 @@
+list_name,name,label::Français (fr),label::English (en)
+l_moment,maintenant,En ce moment,Right now
+l_moment,plus_tot,Plus tôt,Earlier
+l_categorie,ouverture,Bureau fermé ou ouverture tardive,Station closed or late opening
+l_categorie,materiel,Matériel électoral manquant,Missing election material
+l_categorie,violence,Intimidation ou violence,Intimidation or violence
+l_categorie,achat_voix,Achat de voix,Vote buying
+l_categorie,fraude,Fraude ou bourrage d'urne,Fraud or ballot stuffing
+l_categorie,observateurs,Observateurs ou délégués refusés,Observers or agents refused
+l_categorie,depouillement,Irrégularité au dépouillement,Irregularity during counting
+l_categorie,autre,Autre,Other
+l_gravite,faible,Faible,Low
+l_gravite,moyenne,Moyenne,Medium
+l_gravite,critique,Critique,Critical
+l_source_information,vu,Je l'ai vu moi-même,I saw it myself
+l_source_information,rapporte,Quelqu'un me l'a rapporté,Someone told me
+l_source_information,document,Un document ou une image,A document or picture
+l_confiance,sur,Sûr,Sure
+l_confiance,assez_sur,Assez sûr,Fairly sure
+l_confiance,peu_sur,Peu sûr,Not sure
