@@ -33,6 +33,14 @@ Besoin exprimé par les OSC  →  Outil (code)  →  Dossier du monorepo  →  I
 
 ---
 
+## 📱 En images
+
+![Signaler un incident avec Jokkoondiral](./docs/images/collecte/parcours-observateur.png)
+
+Plus de captures et messages clés : [docs/APERCU_COLLECTE.md](./docs/APERCU_COLLECTE.md).
+
+---
+
 ## 🏗️ Architecture
 
 ```mermaid
@@ -139,6 +147,7 @@ Agents IA (Cursor, OpenCode…) → [AGENTS.md](./AGENTS.md).
 | [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) | DevOps | Mise en production, bases distantes sécurisées |
 | [docs/nocodb-registre.md](./docs/nocodb-registre.md) | Coordination | Enrôler, activer, désactiver les observateurs |
 | [docs/TESTER_EN_LIGNE.md](./docs/TESTER_EN_LIGNE.md) | Contributeurs, pilotage | Environnement de test Netlify + Render, scénarios à vérifier |
+| [docs/APERCU_COLLECTE.md](./docs/APERCU_COLLECTE.md) | Communication, partenaires, formations | L'application de signalement en images, messages clés |
 | [docs/PROJECT_OVERVIEW.md](./docs/PROJECT_OVERVIEW.md) | Partenaires, bailleurs | Vision, valeurs, impact |
 
 ---

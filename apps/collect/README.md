@@ -8,6 +8,16 @@ Réécriture en TypeScript de [dofbi/collecte-guidee](https://github.com/dofbi/c
 
 ---
 
+## Aperçu
+
+![Parcours de l'observateur](../../docs/images/collecte/parcours-observateur.png)
+
+| Accueil (non activé) | Question | Relecture | Hors ligne | Accès coupé |
+|---|---|---|---|---|
+| ![](../../docs/images/collecte/01-accueil-non-active.png) | ![](../../docs/images/collecte/06-question-gravite.png) | ![](../../docs/images/collecte/09-relecture.png) | ![](../../docs/images/collecte/12-hors-ligne-en-attente.png) | ![](../../docs/images/collecte/15-acces-desactive.png) |
+
+Présentation non technique (communication, formations) : [docs/APERCU_COLLECTE.md](../../docs/APERCU_COLLECTE.md).
+
 ## Ce que fait l'app
 
 | Fonction | Détail |
