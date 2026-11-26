@@ -1,0 +1,74 @@
+name: 🐛 Bug
+description: Signaler un comportement inattendu ou une erreur
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+body:
+  - type: dropdown
+    id: outil
+    attributes:
+      label: Outil concerné (si connu)
+      options:
+        - "Je ne sais pas"
+        - "C1 · Formulaire web hors ligne (PWA)"
+        - "C2 · Application Android hors ligne"
+        - "C3 · Parcours SMS codé"
+        - "C4 · Saisie des appels par un opérateur"
+        - "C5 · USSD"
+        - "C6 · Signalement vocal en langues nationales"
+        - "C7 · Import KoBo / ODK"
+        - "R1 · Passerelle WhatsApp"
+        - "R2 · Passerelle SMS"
+        - "R3 · Bot Telegram"
+        - "R4 · Email entrant"
+        - "R5 · Registre des observateurs"
+        - "M1 · File de modération"
+        - "M2 · Coffre des preuves"
+        - "M3 · Qualification de l'incident"
+        - "M4 · Journal d'audit"
+        - "M5 · Recoupement et doublons"
+        - "M6 · Veille désinformation et fact-checking"
+        - "D1 · Carte publique"
+        - "D2 · Carte interne temps réel"
+        - "D3 · Alertes sortantes"
+        - "D4 · Rapports publics"
+        - "D5 · Données ouvertes"
+        - "A1 · Tableau de bord statistiques"
+        - "A2 · Export"
+        - "A3 · Carte de densité et clusters"
+        - "A4 · Archivage et conservation"
+        - "S1 · Identité, rôles et double authentification"
+        - "S2 · Multi-organisations"
+        - "S3 · Sécurité et protection des observateurs"
+        - "S4 · Langues"
+        - "S5 · Déploiement et hébergement"
+        - "S6 · Référentiels"
+        - "S7 · Documentation et guides"
+  - type: textarea
+    id: description
+    attributes:
+      label: Ce qui ne fonctionne pas
+    validations:
+      required: true
+  - type: textarea
+    id: attendu
+    attributes:
+      label: Comportement attendu
+  - type: textarea
+    id: etapes
+    attributes:
+      label: Étapes pour reproduire
+      value: |
+        1.
+        2.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs ou capture d'écran
+      render: shell
+  - type: input
+    id: env
+    attributes:
+      label: Environnement
+      placeholder: "Ubuntu 22.04, Node 20, Chrome 120, Android 11…"

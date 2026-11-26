@@ -1,0 +1,50 @@
+name: 💡 Idée ou nouvel outil
+description: Proposer une amélioration, ou un outil qui n'est pas encore dans le catalogue
+title: "[IDÉE] "
+labels: ["feature", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Vérifie d'abord le [catalogue des 34 outils](https://github.com/AfricTivistes/situation-room/blob/main/docs/outils/README.md) : ton idée y est peut-être déjà. Pour intégrer un projet existant, lis [AJOUTER_UN_OUTIL.md](https://github.com/AfricTivistes/situation-room/blob/main/docs/AJOUTER_UN_OUTIL.md).
+  - type: textarea
+    id: besoin
+    attributes:
+      label: Besoin terrain
+      description: Quel problème d'observation électorale cela résout-il ? Qui l'a exprimé ?
+    validations:
+      required: true
+  - type: dropdown
+    id: famille
+    attributes:
+      label: Famille
+      options:
+        - "📥 Collecte terrain (C)"
+        - "📡 Réception multi-canal (R)"
+        - "🔎 Vérification et modération (M)"
+        - "📢 Diffusion et alertes (D)"
+        - "📊 Analyse et archives (A)"
+        - "🧱 Socles transverses (S)"
+        - "Je ne sais pas"
+    validations:
+      required: true
+  - type: input
+    id: outil
+    attributes:
+      label: Outil existant concerné (code) ou « nouvel outil »
+      placeholder: "R1 ou nouvel outil"
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution proposée et briques open source envisagées
+  - type: checkboxes
+    id: contraintes
+    attributes:
+      label: Contraintes du projet
+      options:
+        - label: Fonctionne sur un VPS de 2 Go, sans cloud propriétaire obligatoire
+          required: true
+        - label: Ne publie aucune donnée d'observateur
+          required: true
+        - label: Compatible avec la licence AGPL-3.0
+          required: true
