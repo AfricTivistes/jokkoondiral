@@ -6,27 +6,14 @@ import { join } from 'node:path';
 import { nouveauxIdentifiants, type Envoi } from '@jokkoondiral/protocole';
 import { chargerProtocole } from '../src/collecte/configuration';
 import { recevoirPiece, recevoirSignalement, versLigne, type Dependances } from '../src/collecte/reception';
+import { FileCopies } from '../src/stockage/file-copies';
+import { DepotNocoDB, clientNocoDB } from '../src/stockage/nocodb';
+import { DepotKobo } from '../src/stockage/kobo';
+import { fauxServeurs } from './aides';
 
 const proto = chargerProtocole({});
-
-/** Faux NocoDB (+ faux Kobo) en mémoire, qui note les appels. */
-function fauxServeurs(options: { koboStatut?: number; nocodbStatut?: number } = {}) {
-  const lignes: Record<string, unknown>[] = [];
-  const appels: string[] = [];
-  const f = (async (url: string | URL, init?: RequestInit) => {
-    const u = String(url);
-    appels.push(`${init?.method || 'GET'} ${u}`);
-    if (u.startsWith('https://kobo.test')) return new Response('', { status: options.koboStatut ?? 201 });
-    if (init?.method === 'POST') {
-      if (options.nocodbStatut) return new Response('{}', { status: options.nocodbStatut });
-      lignes.push(JSON.parse(String(init.body)));
-      return new Response('{}', { status: 200 });
-    }
-    const id = decodeURIComponent(u).match(/\(instance_id,eq,([^)]+)\)/)?.[1];
-    return Response.json({ list: lignes.filter((l) => l.instance_id === id) });
-  }) as typeof fetch;
-  return { f, lignes, appels };
-}
+const auteur = { observateur_code: 'OBS-7K2Q9M', appareil_id: '0b6c1c8e-1f4e-4c62-9a3e-1d2b3c4d5e6f' };
+const KOBO = { KOBO_SUBMISSION_URL: 'https://kobo.test/submission', KOBO_FORM_ID: 'aB3cD4', KOBO_TOKEN: 'secret' };
 
 function envoi(): Envoi {
   return {
@@ -47,77 +34,82 @@ function envoi(): Envoi {
   };
 }
 
-const deps = (f: typeof fetch, env: NodeJS.ProcessEnv = {}): Dependances => ({ proto, fetch: f, journal: () => {}, env: { COLLECT_CODES: 'EQ01, eq02', ...env } });
+function deps(s: ReturnType<typeof fauxServeurs>, env: NodeJS.ProcessEnv = {}, avecKobo = false): Dependances {
+  const e = { NOCODB_API_URL: 'http://nocodb:8080/api/v1/db/data/v1/jk', NOCODB_API_TOKEN: 't', ...KOBO, ...env };
+  return {
+    proto, env: e, journal: () => {},
+    principal: new DepotNocoDB(clientNocoDB(e, s.f)),
+    copies: avecKobo ? [new DepotKobo(e, s.f)] : [],
+    file: new FileCopies(mkdtempSync(join(tmpdir(), 'jk-file-'))),
+  };
+}
 
-test('un signalement valide est enregistré en « pending » avec ses colonnes', async () => {
+test('un signalement valide est enregistré en « pending » avec le pseudonyme et l\'appareil', async () => {
   const s = fauxServeurs();
   const e = envoi();
-  const r = await recevoirSignalement({ code: 'eq01', envoi: e }, deps(s.f));
+  const r = await recevoirSignalement(e, auteur, deps(s));
   assert.equal(r.status, 201);
   assert.equal(r.corps.numero_suivi, e.numero_suivi);
-  const l = s.lignes[0];
+  const l = s.tables.base_reports[0];
   assert.equal(l.status, 'pending');
-  assert.equal(l.source, 'web');
   assert.equal(l.categorie, 'materiel');
   assert.equal(l.lieu_texte, 'Bureau 7, Thiès');
   assert.equal(l.latitude, 14.79);
-  assert.equal(l.code_collecteur, 'EQ01');
+  assert.equal(l.code_collecteur, 'OBS-7K2Q9M');
+  assert.equal(l.appareil_id, auteur.appareil_id);
   assert.equal(l.heure_declaree, e.fin, '« en ce moment » = heure de fin de saisie');
   assert.match(String(l.title), /Matériel électoral manquant — Bureau 7/);
-});
-
-test('code collecteur absent ou inconnu : 401 ; configuration vide : 500', async () => {
-  const s = fauxServeurs();
-  assert.equal((await recevoirSignalement({ code: 'XX', envoi: envoi() }, deps(s.f))).status, 401);
-  assert.equal((await recevoirSignalement({ envoi: envoi() }, deps(s.f))).status, 401);
-  assert.equal((await recevoirSignalement({ code: 'EQ01', envoi: envoi() }, { ...deps(s.f), env: {} })).status, 500);
-  assert.equal(s.lignes.length, 0);
 });
 
 test('un envoi trafiqué est refusé (400) sans rien écrire', async () => {
   const s = fauxServeurs();
   const e = envoi();
   e.reponses.categorie = 'inventee';
-  const r = await recevoirSignalement({ code: 'EQ01', envoi: e }, deps(s.f));
+  const r = await recevoirSignalement(e, auteur, deps(s));
   assert.equal(r.status, 400);
   assert.match(String(r.corps.detail), /categorie : option/);
-  assert.equal(s.lignes.length, 0);
+  assert.equal(s.tables.base_reports.length, 0);
 });
 
 test('un renvoi du même signalement est reconnu sans doublon', async () => {
   const s = fauxServeurs();
   const e = envoi();
-  await recevoirSignalement({ code: 'EQ01', envoi: e }, deps(s.f));
-  const r = await recevoirSignalement({ code: 'EQ01', envoi: e }, deps(s.f));
+  await recevoirSignalement(e, auteur, deps(s));
+  const r = await recevoirSignalement(e, auteur, deps(s));
   assert.equal(r.status, 200);
   assert.equal(r.corps.deja_recu, true);
-  assert.equal(s.lignes.length, 1);
+  assert.equal(s.tables.base_reports.length, 1);
 });
 
-test('base injoignable : 503, la PWA garde le signalement en file', async () => {
-  const f = (async () => { throw new Error('ECONNREFUSED'); }) as typeof fetch;
-  assert.equal((await recevoirSignalement({ code: 'EQ01', envoi: envoi() }, deps(f))).status, 503);
-  const s = fauxServeurs({ nocodbStatut: 500 });
-  assert.equal((await recevoirSignalement({ code: 'EQ01', envoi: envoi() }, deps(s.f))).status, 502);
+test('dépôt principal injoignable ou en erreur : 503, la PWA garde le signalement en file', async () => {
+  const panne = (async () => { throw new Error('ECONNREFUSED'); }) as typeof fetch;
+  assert.equal((await recevoirSignalement(envoi(), auteur, deps({ ...fauxServeurs(), f: panne }))).status, 503);
+  assert.equal((await recevoirSignalement(envoi(), auteur, deps(fauxServeurs({ nocodbStatut: 500 })))).status, 503);
 });
 
-test('copie Kobo : envoyée si configurée, son échec ne bloque pas la réception', async () => {
-  const kobo = { KOBO_SUBMISSION_URL: 'https://kobo.test/submission', KOBO_FORM_ID: 'aB3cD4', KOBO_TOKEN: 'secret' };
+test('copie Kobo : envoyée si configurée ; en cas d\'échec, mise en file puis reprise', async () => {
   const ok = fauxServeurs();
-  assert.equal((await recevoirSignalement({ code: 'EQ01', envoi: envoi() }, deps(ok.f, kobo))).status, 201);
-  assert.ok(ok.appels.some((a) => a === 'POST https://kobo.test/submission'));
+  assert.equal((await recevoirSignalement(envoi(), auteur, deps(ok, {}, true))).status, 201);
+  assert.ok(ok.appels.includes('POST https://kobo.test/submission'));
+
   const ko = fauxServeurs({ koboStatut: 500 });
-  assert.equal((await recevoirSignalement({ code: 'EQ01', envoi: envoi() }, deps(ko.f, kobo))).status, 201);
-  const sansKobo = fauxServeurs();
-  await recevoirSignalement({ code: 'EQ01', envoi: envoi() }, deps(sansKobo.f));
-  assert.ok(!sansKobo.appels.some((a) => a.includes('kobo')));
+  let horloge = Date.now();
+  const d = deps(ko, {}, true);
+  d.file = new FileCopies(mkdtempSync(join(tmpdir(), 'jk-file-')), () => horloge);
+  assert.equal((await recevoirSignalement(envoi(), auteur, d)).status, 201, 'la réception ne dépend pas de la copie');
+  assert.equal(await d.file.taille(), 1);
+  assert.equal(await d.file.traiter(d.copies, proto), 0, 'pas encore l\'heure de réessayer');
+  horloge += 61_000;
+  const reparee = deps(fauxServeurs(), {}, true);
+  assert.equal(await d.file.traiter(reparee.copies, proto), 1);
+  assert.equal(await d.file.taille(), 0);
 });
 
 test('les champs d\'extension vont dans `extra`', () => {
   const e = envoi();
   const avecExtension = { ...proto, sections: proto.sections.map((s) => s.id === 'lieu' ? { ...s, champs: [...s.champs, { id: 'x_sn_region', type: 'choix' as const, question: 'Région', options: [{ v: 'dakar', label: 'Dakar' }], extension: 'sn' }] } : s) };
   e.reponses.x_sn_region = 'dakar';
-  const l = versLigne(avecExtension, e, 'EQ01');
+  const l = versLigne(avecExtension, e, auteur);
   assert.deepEqual(l.extra, { x_sn_region: 'dakar' });
   assert.ok(!('x_sn_region' in l));
 });
@@ -125,21 +117,20 @@ test('les champs d\'extension vont dans `extra`', () => {
 test('une photo est stockée avec son empreinte SHA-256, une seule fois', async () => {
   const s = fauxServeurs();
   const e = envoi();
-  await recevoirSignalement({ code: 'EQ01', envoi: e }, deps(s.f));
   const dossier = mkdtempSync(join(tmpdir(), 'jk-pieces-'));
-  const d = deps(s.f, { PIECES_DIR: dossier });
+  const d = deps(s, { PIECES_DIR: dossier });
+  await recevoirSignalement(e, auteur, d);
   const pieceId = crypto.randomUUID();
-  const contenu = Buffer.from('faux jpeg');
-  const base = { instanceID: e.instanceID, code: 'EQ01', pieceId, type: 'image/jpeg', contenu };
-  const r = await recevoirPiece(base, d);
+  const base = { instanceID: e.instanceID, pieceId, type: 'image/jpeg', contenu: Buffer.from('faux jpeg') };
+  const r = await recevoirPiece(base, auteur, d);
   assert.equal(r.status, 201);
   const fichier = join(dossier, e.instanceID.replace('uuid:', ''), `${pieceId}.jpg`);
   assert.ok(existsSync(fichier));
   const meta = JSON.parse(readFileSync(`${fichier}.json`, 'utf8'));
   assert.equal(meta.sha256, r.corps.sha256);
-  assert.equal((await recevoirPiece(base, d)).corps.deja_recue, true);
-  assert.equal((await recevoirPiece({ ...base, type: 'application/pdf' }, d)).status, 415);
-  assert.equal((await recevoirPiece({ ...base, code: 'XX' }, d)).status, 401);
-  assert.equal((await recevoirPiece({ ...base, pieceId: '../../etc' }, d)).status, 400);
-  assert.equal((await recevoirPiece({ ...base, instanceID: `uuid:${crypto.randomUUID()}` }, d)).status, 404);
+  assert.equal(meta.observateur_code, 'OBS-7K2Q9M');
+  assert.equal((await recevoirPiece(base, auteur, d)).corps.deja_recue, true);
+  assert.equal((await recevoirPiece({ ...base, type: 'application/pdf' }, auteur, d)).status, 415);
+  assert.equal((await recevoirPiece({ ...base, pieceId: '../../etc' }, auteur, d)).status, 400);
+  assert.equal((await recevoirPiece({ ...base, instanceID: `uuid:${crypto.randomUUID()}` }, auteur, d)).status, 404);
 });

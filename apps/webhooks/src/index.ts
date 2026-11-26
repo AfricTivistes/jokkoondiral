@@ -10,11 +10,13 @@ const PORT = process.env.PORT || 3000;
 // ── Collecte PWA (outil C1) ──────────────────────────────────
 // Déclarée avant les parseurs globaux : elle fixe ses propres limites (JSON 64 Ko, photo 3 Mo).
 // Si le protocole est invalide, la collecte est désactivée mais les autres canaux restent actifs.
-try {
-  app.use('/api/collect', routeurCollecte());
-} catch (e) {
-  console.error(`❌ Collecte désactivée : ${(e as Error).message}`);
-}
+// Le routeur est monté tout de suite (pour garder l'ordre des middlewares) et rempli
+// une fois le stockage configuré.
+const collecte = express.Router();
+app.use('/api/collect', collecte);
+routeurCollecte()
+  .then(({ routeur }) => { collecte.use(routeur); })
+  .catch((e) => console.error(`❌ Collecte désactivée : ${(e as Error).message}`));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Nécessaire pour Africa's Talking (form-urlencoded)
