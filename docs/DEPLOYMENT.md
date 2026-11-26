@@ -120,6 +120,39 @@ docker-compose logs -f
 
 ---
 
+## Étape 7 – Collecte : secrets, identification et base de données
+
+**Secret maître** (empreintes des clés de téléphone, chiffrement des numéros) :
+
+```bash
+mkdir -p secrets && openssl rand -base64 48 > secrets/jk_secret && chmod 600 secrets/jk_secret
+```
+
+Sauvegardez ce fichier **hors du serveur** : sans lui, les téléphones activés et les numéros chiffrés deviennent inutilisables. Le dossier `secrets/` est ignoré par git.
+
+**Choisir où vont les données** (`.env`, détails dans [ADR-0011](./decisions/0011-acces-aux-donnees-et-identite.md)) :
+
+| Votre situation | Réglage |
+|---|---|
+| Installation complète du dépôt (PostgreSQL + NocoDB) | `STOCKAGE_SIGNALEMENTS=nocodb` (défaut) |
+| Base PostgreSQL existante, sans NocoDB | `STOCKAGE_SIGNALEMENTS=postgres`, `DATABASE_URL`, rôle `infra/postgres/roles/jk_collecte.sql` |
+| OSC déjà sur KoboToolbox | `STOCKAGE_SIGNALEMENTS=kobo` + registre `nocodb` ou `postgres` ; ou Kobo en copie : `STOCKAGE_COPIES=kobo` |
+
+**Base distante : accès sécurisé obligatoire.** Le service refuse de démarrer sinon.
+
+- NocoDB ou Kobo distants : **HTTPS** uniquement, avec un compte dédié à droits minimaux (éditeur d'une seule base ; « ajouter des soumissions » pour Kobo).
+- PostgreSQL distant : **TLS avec certificat vérifié** (`PG_CA_CERT_FILE` si l'autorité n'est pas publique), rôle `jk_collecte` sans droit de modification ni de suppression, ligne `hostssl` dans `pg_hba.conf`, port 5432 ouvert **uniquement** à l'adresse du serveur Jokkoondiral (pare-feu). Mieux encore : un réseau privé entre les deux machines (WireGuard) ou un tunnel SSH.
+- Jetons et mots de passe dans des **fichiers secrets** (`NOCODB_API_TOKEN_FILE`, `PGPASSWORD_FILE`, `KOBO_TOKEN_FILE`), jamais dans le dépôt.
+- Rotation : un jeton compromis se révoque dans l'outil concerné (NocoDB, Kobo, PostgreSQL), puis on remplace le fichier et on redémarre `webhooks`.
+
+**Base gérée** (PostgreSQL hors docker-compose : hébergeur, VPS existant) : les scripts `infra/postgres/*.sql` ne s'exécutent pas tout seuls. Mettre `MIGRER_AU_DEMARRAGE=1` (le serveur applique chaque script une seule fois, au démarrage) ou lancer `pnpm --filter webhooks migrer` avec `DATABASE_URL`.
+
+**Vérifier** : `curl https://votre-domaine.org/webhooks/api/collect/sante` donne l'état de chaque base, sans aucun secret.
+
+**Enrôler les observateurs** : voir [nocodb-registre.md](./nocodb-registre.md). Sans NocoDB, utiliser le webhook protégé `{"ajouter": …}` (même guide) ou `pnpm observateurs`.
+
+**Tester avant de déployer** : un environnement de test complet (Netlify + Render) est décrit dans [TESTER_EN_LIGNE.md](./TESTER_EN_LIGNE.md).
+
 ## Maintenance
 
 ### Mises à jour

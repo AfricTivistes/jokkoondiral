@@ -65,6 +65,8 @@ img { max-width: 100%; }
   padding: 18px; display: grid; gap: 14px; min-width: 0;
 }
 .carte.accueil { border-top: 6px solid var(--jk-primaire); }
+.carte.activation { border: 2px solid var(--jk-alerte); }
+.carte.activation h2 { color: var(--jk-texte); text-transform: none; letter-spacing: 0; font-size: 1.05em; }
 .carte-tete { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .liste { display: grid; gap: 8px; }
 .securite { border-left: 4px solid var(--jk-accent); padding: 4px 0 4px 12px; color: var(--jk-texte-doux); font-size: 0.92em; }

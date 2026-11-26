@@ -82,10 +82,14 @@ Suivi : [issues `[M3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Où :** `infra/postgres`.
 - **État :** rien.
 
+**Remarques des tests en ligne (novembre 2026)** : le journal doit couvrir la gestion des comptes d'observateurs, pas seulement les signalements : en cas de contestation, il faut savoir qui a coupé ou rétabli un accès.
+
 **Premières tâches**
 
 - [ ] Table `audit_log` et déclencheurs
 - [ ] Affichage de l'historique dans la fiche M1
+- [ ] Journaliser aussi les actions sur le registre (R5) : création d'observateur, lien émis, activation d'un téléphone, désactivation, réactivation, révocation — qui, quand, sur quel pseudonyme
+
 
 Suivi : [issues `[M4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BM4%5D%22) · titre d'issue : `[M4] <tâche>`
 

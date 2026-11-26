@@ -24,3 +24,8 @@ pnpm-debug.log*
 
 # Données Docker (volumes locaux)
 pgdata/
+
+# Données reçues en local (photos d'observateurs, file de reprise) et secrets : jamais dans le dépôt
+pieces/
+donnees/
+secrets/

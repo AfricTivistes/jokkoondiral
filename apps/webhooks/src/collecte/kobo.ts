@@ -6,15 +6,17 @@
 // Le jeton Kobo ne quitte jamais le serveur.
 
 import { finaliserXml, versXml, type Envoi, type Protocole } from '@jokkoondiral/protocole';
+import { lireSecret, verifierUrlSecurisee } from '../stockage/securite';
 
 type Env = NodeJS.ProcessEnv;
 
-export const koboActif = (env: Env) => Boolean(env.KOBO_SUBMISSION_URL && env.KOBO_FORM_ID && (env.KOBO_TOKEN || env.KOBO_USERNAME));
+export const koboActif = (env: Env) => Boolean(env.KOBO_SUBMISSION_URL && env.KOBO_FORM_ID && (lireSecret(env, 'KOBO_TOKEN') || env.KOBO_USERNAME));
 
 function authentifications(env: Env): string[] {
   const out: string[] = [];
-  if (env.KOBO_TOKEN) out.push(`Token ${env.KOBO_TOKEN}`);
-  if (env.KOBO_USERNAME) out.push(`Basic ${Buffer.from(`${env.KOBO_USERNAME}:${env.KOBO_PASSWORD || ''}`).toString('base64')}`);
+  const jeton = lireSecret(env, 'KOBO_TOKEN');
+  if (jeton) out.push(`Token ${jeton}`);
+  if (env.KOBO_USERNAME) out.push(`Basic ${Buffer.from(`${env.KOBO_USERNAME}:${lireSecret(env, 'KOBO_PASSWORD') || ''}`).toString('base64')}`);
   return out;
 }
 
@@ -26,6 +28,7 @@ export interface ResultatKobo {
 
 export async function copierVersKobo(proto: Protocole, envoi: Envoi, code: string, env: Env = process.env, fetchFn: typeof fetch = fetch): Promise<ResultatKobo> {
   if (!koboActif(env)) return { envoye: false, erreur: 'inactif' };
+  verifierUrlSecurisee(env.KOBO_SUBMISSION_URL!, 'KOBO_SUBMISSION_URL', env);
   let xml: string;
   try {
     xml = finaliserXml(versXml(proto, envoi, code), env.KOBO_FORM_ID!, env.KOBO_FORM_VERSION, env.KOBO_ROOT_TAG || env.KOBO_FORM_ID);
@@ -37,7 +40,7 @@ export async function copierVersKobo(proto: Protocole, envoi: Envoi, code: strin
     const form = new FormData();
     form.append('xml_submission_file', new Blob([xml], { type: 'text/xml' }), 'submission.xml');
     try {
-      const rep = await fetchFn(env.KOBO_SUBMISSION_URL!, { method: 'POST', headers: { 'X-OpenRosa-Version': '1.0', Authorization: auth }, body: form });
+      const rep = await fetchFn(env.KOBO_SUBMISSION_URL!, { method: 'POST', headers: { 'X-OpenRosa-Version': '1.0', Authorization: auth }, body: form, signal: AbortSignal.timeout(20000) });
       statut = rep.status;
     } catch {
       return { envoye: false, erreur: 'kobo_injoignable' };

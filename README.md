@@ -29,7 +29,15 @@ Besoin exprimé par les OSC  →  Outil (code)  →  Dossier du monorepo  →  I
 
 ➡️ **[Catalogue complet des 34 outils](./docs/outils/README.md)** · [Besoins et matrice besoins × outils](./docs/BESOINS.md) · [Feuille de route](./docs/ROADMAP.md) · [Décisions ouvertes](./docs/decisions/README.md)
 
-**État :** 12 outils amorcés, 22 à créer (dont la PWA de collecte C1). Le MVP (17 outils) vise un premier scrutin pilote début 2027.
+**État :** 13 outils amorcés, 21 à créer (dont la PWA de collecte C1 et le registre des observateurs R5). Le MVP (17 outils) vise un premier scrutin pilote début 2027.
+
+---
+
+## 📱 En images
+
+![Signaler un incident avec Jokkoondiral](./docs/images/collecte/parcours-observateur.png)
+
+Plus de captures et messages clés : [docs/APERCU_COLLECTE.md](./docs/APERCU_COLLECTE.md).
 
 ---
 
@@ -103,6 +111,8 @@ pnpm dev                   # toutes les apps
 | Dashboard | http://localhost:5173 |
 | Webhooks | http://localhost:3000 |
 
+**Essayer en ligne** : un environnement de test (PWA sur Netlify, serveur et base sur Render) se monte en une heure : [docs/TESTER_EN_LIGNE.md](./docs/TESTER_EN_LIGNE.md). Il ne doit jamais recevoir de vraies données d'observateurs.
+
 Autres commandes : `pnpm test`, `pnpm typecheck`, `pnpm build`, `pnpm dev:public|dev:dashboard|dev:webhooks`. Production : [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md).
 
 ---
@@ -134,7 +144,10 @@ Agents IA (Cursor, OpenCode…) → [AGENTS.md](./AGENTS.md).
 | [docs/PERSONNALISER.md](./docs/PERSONNALISER.md) | OSC qui déploient | Forker, adapter, rester à jour |
 | [docs/METHODOLOGY.md](./docs/METHODOLOGY.md) | Fact-checkeurs, juristes | Nomenclature et circuit de vérification (à rédiger) |
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [TECHNICAL_REFERENCE.md](./docs/TECHNICAL_REFERENCE.md) · [SCHEMA.md](./docs/SCHEMA.md) | Développeurs | Architecture, choix techniques, base de données |
-| [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) | DevOps | Mise en production |
+| [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) | DevOps | Mise en production, bases distantes sécurisées |
+| [docs/nocodb-registre.md](./docs/nocodb-registre.md) | Coordination | Enrôler, activer, désactiver les observateurs |
+| [docs/TESTER_EN_LIGNE.md](./docs/TESTER_EN_LIGNE.md) | Contributeurs, pilotage | Environnement de test Netlify + Render, scénarios à vérifier |
+| [docs/APERCU_COLLECTE.md](./docs/APERCU_COLLECTE.md) | Communication, partenaires, formations | L'application de signalement en images, messages clés |
 | [docs/PROJECT_OVERVIEW.md](./docs/PROJECT_OVERVIEW.md) | Partenaires, bailleurs | Vision, valeurs, impact |
 
 ---

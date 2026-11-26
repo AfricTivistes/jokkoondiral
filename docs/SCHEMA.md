@@ -38,7 +38,7 @@ Chaque table du modèle cible est portée par un outil du [catalogue](./outils/R
 | `base_reports` | R1–R3, M1 | MVP | Signalement brut reçu | ✅ existe |
 | Colonnes de collecte sur `base_reports` (`categorie`, `gravite`, `lieu_texte`, `heure_declaree`, `source_information`, `confiance`, `instance_id`, `numero_suivi`, `code_collecteur`, `protocole`, `extra`…) | [C1](./outils/collecte.md#c1), [M3](./outils/verification.md#m3) | MVP | Qualification de l'incident, dédoublonnage, champs d'extension | ✅ `infra/postgres/02-collecte.sql` |
 | `election_incidents` (table dédiée, si la qualification s'enrichit) | [M3](./outils/verification.md#m3) | V1 | Qualification par les modérateurs | proposée ci-dessous |
-| `observers` | [R5](./outils/reception.md#r5) | MVP | Registre des observateurs ; numéros chiffrés (S3) | proposée ci-dessous |
+| `observateurs`, `appareils`, `activations` | [R5](./outils/reception.md#r5) | MVP | Registre : pseudonymes, clés de téléphone (empreintes), liens à usage unique, numéros chiffrés | ✅ `infra/postgres/03-observateurs.sql` (remplace la table `observers` proposée ci-dessous) |
 | `polling_stations` | [S6](./outils/socles.md#s6) | MVP | Bureaux de vote par pays | proposée ci-dessous |
 | `evidences` | [M2](./outils/verification.md#m2) | MVP | Preuves : fichier, type, empreinte SHA-256, horodatage serveur | à concevoir |
 | `audit_log` | [M4](./outils/verification.md#m4) | MVP | Journal en ajout seul, alimenté par déclencheurs | à concevoir |

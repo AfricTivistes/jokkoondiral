@@ -37,10 +37,25 @@ Le rattachement de chaque message à un observateur enrôlé relève de [R5](../
 
 | Route | Corps | Réponses |
 |---|---|---|
-| `POST /api/collect` | `{ code, envoi }` (JSON ≤ 64 Ko) | `201` reçu · `200` déjà reçu · `400` envoi invalide · `401` code refusé · `502/503` base indisponible |
-| `POST /api/collect/:instanceID/pieces` | une photo (`image/jpeg`, `png`, `webp`, ≤ 3 Mo), en-têtes `X-Code-Collecteur`, `X-Piece-Id` | `201` · `200` déjà reçue · `404` signalement inconnu |
+| `POST /api/collect` | `{ envoi }` (JSON ≤ 64 Ko) + en-tête `Authorization` | `201` reçu · `200` déjà reçu · `400` envoi invalide · `401` téléphone non activé, désactivé ou expiré · `503` base indisponible |
+| `POST /api/collect/:instanceID/pieces` | une photo (`image/jpeg`, `png`, `webp`, ≤ 3 Mo), en-têtes `Authorization`, `X-Piece-Id` | `201` · `200` déjà reçue · `404` signalement inconnu |
 
-Le protocole est lu au démarrage depuis la même configuration que la PWA (`apps/collect/config/instance.json`) et validé par `@jokkoondiral/protocole` : le serveur accepte exactement le formulaire servi aux observateurs. Variables : `COLLECT_CODES` (obligatoire), `PIECES_DIR`, `KOBO_*` (facultatives), voir `.env.example`. Tests : `pnpm --filter webhooks test`.
+Le protocole est lu au démarrage depuis la même configuration que la PWA (`apps/collect/config/instance.json`) et validé par `@jokkoondiral/protocole` : le serveur accepte exactement le formulaire servi aux observateurs. Variables : voir « Identification et stockage » ci-dessous et `.env.example`. Tests : `pnpm --filter webhooks test`.
+
+## 🪪 Identification et stockage
+
+| Variable | Valeurs | Rôle |
+|---|---|---|
+| `IDENTIFICATION` | `appareils` (défaut) · `codes` | Téléphone activé par lien à usage unique, ou codes partagés |
+| `STOCKAGE_SIGNALEMENTS` | `nocodb` (défaut) · `postgres` · `kobo` | Dépôt principal (source de vérité) |
+| `STOCKAGE_COPIES` | ex. `kobo` | Copies, reprises automatiquement si elles échouent |
+| `REGISTRE_OBSERVATEURS` | `nocodb` · `postgres` | Où vit le registre (Kobo ne peut pas l'héberger) |
+
+Routes complémentaires : `POST /api/collect/activation` (jeton du lien → clé du téléphone), `POST /api/collect/observateurs/lien` (en-tête `X-Jk-Webhook` : webhook NocoDB, ou `{"ajouter": {…}}` pour créer un observateur et obtenir son lien sans NocoDB), `GET /api/collect/sante` (état des bases, sans secret).
+
+Schéma PostgreSQL d'une base gérée : `MIGRER_AU_DEMARRAGE=1` (au démarrage) ou `pnpm --filter webhooks migrer` ; scripts lus dans `MIGRATIONS_DIR` (défaut : `infra/postgres`), chacun appliqué une seule fois (table `migrations_appliquees`). Les envois portent `Authorization: Appareil <id>.<secret>`.
+
+Code : `src/stockage/` (adaptateurs NocoDB, PostgreSQL, Kobo ; contrôle HTTPS/TLS ; secrets `*_FILE` ; file de reprise), `src/identite/` (enrôlement, activation, révocation, chiffrement). Gestion en ligne de commande : `pnpm observateurs ajouter|lien|desactiver|importer`. Guides : [nocodb-registre.md](../../docs/nocodb-registre.md), [DEPLOYMENT.md](../../docs/DEPLOYMENT.md), [ADR-0011](../../docs/decisions/0011-acces-aux-donnees-et-identite.md).
 
 ## 🚀 Démarrage rapide
 

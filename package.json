@@ -4,6 +4,7 @@
   "private": true,
   "author": "dofbi & AfricTivistes",
   "description": "Infrastructure Civic Tech open source - Africa ElectionLab",
+  "packageManager": "pnpm@10.26.1",
   "scripts": {
     "install:all": "pnpm install",
     "dev:infra": "docker compose -f docker-compose.dev.yml up -d",
@@ -14,6 +15,7 @@
     "dev": "pnpm --parallel --filter \"./apps/**\" dev",
     "build": "pnpm -r --if-present build",
     "seed": "node scripts/seed.js",
+    "observateurs": "pnpm --silent --filter webhooks observateurs --",
     "typecheck": "pnpm -r --if-present typecheck",
     "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
     "github:labels": "bash scripts/github/labels.sh",

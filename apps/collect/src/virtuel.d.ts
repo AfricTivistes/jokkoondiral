@@ -9,6 +9,8 @@ declare module "virtual:jokkoondiral" {
     langues: string[];
     langue_defaut: string;
     envoi: string;
+    /** « appareils » : téléphone activé par un lien ; « codes » : code collecteur partagé. */
+    identification?: "appareils" | "codes";
     gps: "facultatif" | "desactive";
     purge_apres_envoi: boolean;
     textes: Record<string, Texte>;

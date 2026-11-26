@@ -93,13 +93,22 @@ Suivi : [issues `[R4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Données :** 22 OSC déploient 1 à 10 observateurs, 9 en déploient plus de 200 ; granularité « bureau de vote » voulue par 23 ; intimidation 34 (d'où la protection de ces données).
 - **Briques open source :** table PostgreSQL + import CSV.
 - **Où :** `infra/postgres` (table `observers`, suggérée dans `docs/SCHEMA.md`), écrans dans `apps/dashboard`.
-- **État :** schéma suggéré seulement.
+- **État :** première version (PR « identité et stockage ») : registre `observateurs` / `appareils` / `activations` dans NocoDB ou PostgreSQL, pseudonymes `OBS-XXXXXX`, enrôlement par lien/QR à usage unique, révocation par téléphone ou par observateur, expiration par scrutin, numéros chiffrés. Gestion dans NocoDB ([nocodb-registre.md](../nocodb-registre.md)) ou `pnpm observateurs`. Reste : rattacher les numéros WhatsApp/SMS entrants (R1, R2), écran dans le dashboard. **Testé en ligne** en novembre 2026 avec un registre PostgreSQL (activation par lien, envoi rattaché au pseudonyme) ; registre NocoDB à tester en ligne.
+
+**Remarques des tests en ligne (novembre 2026)** : création, lien à usage unique, désactivation et expiration fonctionnent, mais la coordination n'a ni écran, ni réactivation, ni révocation par téléphone, ni vue d'ensemble. Elle passe aujourd'hui par un webhook à secret partagé (`curl`) ou par NocoDB.
 
 **Premières tâches**
 
 - [ ] Table et import CSV
 - [ ] Liste blanche des numéros (messages d'inconnus mis à part)
 - [ ] Chiffrement des numéros (S3)
+- [ ] Écran « Observateurs » dans le dashboard : liste (pseudonyme, bureau, statut, téléphones activés, dernier envoi), sans donnée nominative
+- [ ] Actions : créer + QR, nouveau lien, **réactiver** un observateur désactivé (aujourd'hui il faut en créer un nouveau), **révoquer un seul téléphone** (aujourd'hui seulement en base)
+- [ ] Route de lecture protégée de l'état du registre (aujourd'hui aucune)
+- [ ] QR imprimables en lot (fiche par bureau) ; import CSV depuis l'écran
+- [ ] Affectation de l'observateur aux **lieux de vote qu'il couvre** (un ou plusieurs, chacun regroupant plusieurs bureaux) dans le référentiel S6 plutôt qu'à un bureau unique — **à discuter** (aujourd'hui `bureau_vote` en texte libre)
+- [ ] Envoi du lien par SMS ou WhatsApp, en option (réutilise les fournisseurs de D3, R1, R2)
+
 
 Suivi : [issues `[R5]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BR5%5D%22) · titre d'issue : `[R5] <tâche>`
 
