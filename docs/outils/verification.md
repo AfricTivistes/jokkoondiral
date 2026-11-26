@@ -41,7 +41,7 @@ Suivi : [issues `[M1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Données :** preuves multimédia notées 4,02 / 5 (1re) ; photo 41, texte 36, vidéo 33, audio 27, document scanné 24 ; horodatage obligatoire et non modifiable pour 25.
 - **Briques open source :** stockage disque du VPS (ou MinIO si volume) ; sharp / ffmpeg pour compresser ; SHA-256 natif de Node.
 - **Où :** module partagé appelé par `apps/webhooks` ; table `evidences` dans `infra/postgres`.
-- **État :** rien.
+- **État :** amorcé par la collecte C1 : photos reçues stockées sur disque (`PIECES_DIR`) avec empreinte SHA-256 et horodatage serveur ; table `evidences`, quotas, purge et lecture protégée restent à faire.
 
 **Premières tâches**
 

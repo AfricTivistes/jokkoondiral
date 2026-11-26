@@ -1,0 +1,27 @@
+type,name,label::Français (fr),label::English (en),hint::Français (fr),hint::English (en),required,relevant,constraint,constraint_message::Français (fr),constraint_message::English (en),calculation,appearance
+start,start,,,,,,,,,,,
+end,end,,,,,,,,,,,
+text,code_collecteur,Code collecteur,Collector code,,,yes,,,,,,
+calculate,protocole,,,,,,,,,,'incident_electoral@0.1.0',
+calculate,extensions,,,,,,,,,,'',
+calculate,numero_suivi,,,,,,,,,,"once(concat('JK-', translate(substr(uuid(), 0, 8), 'abcdef', 'ABCDEF')))",
+begin_group,lieu,Lieu,Place,,,,,,,,,field-list
+text,lieu,Où se passe l'incident ?,Where is the incident happening?,"Nom ou numéro du bureau de vote, ou le lieu le plus précis possible (commune, quartier).","Name or number of the polling station, or the most precise place possible (town, area).",yes,,,,,,
+geopoint,lieu_position,"Position (facultative, seulement si c'est sans risque)","Location (optional, only if safe)",,,,,,,,,
+end_group,lieu,,,,,,,,,,,
+begin_group,moment,Moment,Time,,,,,,,,,field-list
+select_one l_moment,moment,Quand l'incident a-t-il eu lieu ?,When did the incident happen?,,,yes,,,,,,
+dateTime,heure,"À quelle heure, à peu près ?",At about what time?,,,yes,(${moment} = 'plus_tot'),. <= now(),,,,
+end_group,moment,,,,,,,,,,,
+begin_group,incident,Incident,Incident,,,,,,,,,field-list
+select_one l_categorie,categorie,Que se passe-t-il ?,What is happening?,,,yes,,,,,,minimal
+select_one l_gravite,gravite,Quelle est la gravité ?,How serious is it?,,,yes,,,,,,
+text,description,Décrivez ce que vous voyez,Describe what you see,"Les faits, en quelques phrases. Ne donnez aucun nom de personne.","The facts, in a few sentences. Do not give anyone's name.",yes,,,,,,multiline
+end_group,incident,,,,,,,,,,,
+begin_group,source,Source,Source,,,,,,,,,field-list
+select_one l_source_information,source_information,Comment le savez-vous ?,How do you know?,,,yes,,,,,,
+select_one l_confiance,confiance,À quel point en êtes-vous sûr ?,How sure are you?,Une question à part : on peut être sûr d'une chose rapportée.,A separate question: you can be sure of something reported.,yes,,,,,,
+end_group,source,,,,,,,,,,,
+begin_group,preuves,Preuves,Evidence,,,,,,,,,field-list
+image,photos,Ajouter une photo ? (facultatif),Add a photo? (optional),Seulement si c'est sans risque pour vous. Vous pouvez envoyer sans photo.,Only if it is safe for you. You can send without a photo.,,,,,,,
+end_group,preuves,,,,,,,,,,,

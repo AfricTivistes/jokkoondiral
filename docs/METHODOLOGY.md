@@ -6,11 +6,22 @@
 
 À définir avec des observateurs expérimentés et rendre adaptable par pays ([PERSONNALISER.md](./PERSONNALISER.md)).
 
-| Catégorie | Code SMS (C3) | Exemples | Gravité par défaut |
-|---|---|---|---|
-| _à compléter_ | | | |
+Liste **provisoire** utilisée par la PWA de collecte (C1), dans `packages/protocole/protocoles/incident-electoral.json`. À valider ou corriger ici.
 
-Niveaux de gravité proposés : _à définir_ (au moins un niveau « critique » qui déclenche les alertes D3).
+| Catégorie (`v`) | Code SMS (C3) | Libellé | Gravité par défaut |
+|---|---|---|---|
+| `ouverture` | OUV | Bureau fermé ou ouverture tardive | _à définir_ |
+| `materiel` | MAT | Matériel électoral manquant | _à définir_ |
+| `violence` | VIO | Intimidation ou violence | _à définir_ |
+| `achat_voix` | ACH | Achat de voix | _à définir_ |
+| `fraude` | FRA | Fraude ou bourrage d'urne | _à définir_ |
+| `observateurs` | OBS | Observateurs ou délégués refusés | _à définir_ |
+| `depouillement` | DEP | Irrégularité au dépouillement | _à définir_ |
+| `autre` | AUT | Autre | _à définir_ |
+
+Une OSC peut ajouter des catégories locales par extension ([protocoles.md](./protocoles.md)) ; une catégorie utile à toutes doit entrer ici.
+
+Niveaux de gravité provisoires : **faible** (le vote continue normalement), **moyenne** (le vote est perturbé), **critique** (danger pour des personnes ou vote arrêté ; déclenchera les alertes D3). À valider.
 
 ## 2. Circuit de vérification (M1)
 

@@ -1,0 +1,31 @@
+{
+  "id": "jokkoondiral",
+  "nom": "Jokkoondiral",
+  "couleurs": {
+    "primaire": "#1B5E40",
+    "texte_sur_primaire": "#FFFFFF",
+    "secondaire": "#2E7D52",
+    "accent": "#3DAA77",
+    "texte_sur_accent": "#0D2218",
+    "fond": "#E8F5EE",
+    "surface": "#FFFFFF",
+    "texte": "#0D2218",
+    "texte_doux": "#47594F",
+    "bordure": "#C9DED1",
+    "gravite_faible": "#2E7D52",
+    "gravite_moyenne": "#A3650C",
+    "gravite_critique": "#B42318",
+    "succes": "#2E7D52",
+    "alerte": "#8F5B07",
+    "erreur": "#B42318"
+  },
+  "polices": {
+    "texte": "\"Helvetica Neue\", Helvetica, Arial, system-ui, sans-serif",
+    "titres": "\"Helvetica Neue\", Helvetica, Arial, system-ui, sans-serif"
+  },
+  "rayon": 14,
+  "taille_base": 17,
+  "logo": "logo.svg",
+  "icone": "icone.svg",
+  "mode_sombre": "auto"
+}

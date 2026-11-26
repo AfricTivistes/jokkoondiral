@@ -1,0 +1,50 @@
+{
+  "id": "senegal",
+  "version": "1.0.0",
+  "pour": "incident_electoral",
+  "titre": { "fr": "Exemple d'extension : scrutin au Sénégal", "en": "Example extension: election in Senegal" },
+  "ajouts": [
+    {
+      "type": "champs",
+      "section": "lieu",
+      "apres": "lieu",
+      "champs": [
+        {
+          "id": "region",
+          "type": "choix",
+          "obligatoire": false,
+          "question": { "fr": "Région", "en": "Region" },
+          "options": [
+            { "v": "dakar", "label": "Dakar" },
+            { "v": "thies", "label": "Thiès" },
+            { "v": "saint_louis", "label": "Saint-Louis" },
+            { "v": "ziguinchor", "label": "Ziguinchor" },
+            { "v": "autre_region", "label": { "fr": "Autre région", "en": "Other region" } }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "options",
+      "champ": "categorie",
+      "options": [
+        { "v": "carte_electeur", "code": "CAR", "label": { "fr": "Carte d'électeur refusée ou non distribuée", "en": "Voter card refused or not distributed" } }
+      ]
+    },
+    {
+      "type": "champs",
+      "section": "incident",
+      "apres": "gravite",
+      "champs": [
+        {
+          "id": "personnes_touchees",
+          "type": "compteur",
+          "obligatoire": false,
+          "max": 5000,
+          "si": "gravite == 'critique'",
+          "question": { "fr": "Combien de personnes sont touchées, à peu près ?", "en": "About how many people are affected?" }
+        }
+      ]
+    }
+  ]
+}

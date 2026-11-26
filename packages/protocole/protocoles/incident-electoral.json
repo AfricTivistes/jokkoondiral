@@ -1,0 +1,152 @@
+{
+  "id": "incident_electoral",
+  "version": "0.1.0",
+  "statut": "provisoire",
+  "titre": { "fr": "Signalement d'incident électoral", "en": "Election incident report" },
+  "description": {
+    "fr": "Protocole de base de Jokkoondiral (outil C1). Nomenclature provisoire, à valider dans docs/METHODOLOGY.md.",
+    "en": "Jokkoondiral base protocol (tool C1). Provisional categories, to be validated in docs/METHODOLOGY.md."
+  },
+  "langues": ["fr", "en"],
+  "sections": [
+    {
+      "id": "lieu",
+      "titre": { "fr": "Lieu", "en": "Place" },
+      "champs": [
+        {
+          "id": "lieu",
+          "type": "lieu",
+          "verrouille": true,
+          "colonne": "lieu_texte",
+          "max_longueur": 200,
+          "question": { "fr": "Où se passe l'incident ?", "en": "Where is the incident happening?" },
+          "aide": {
+            "fr": "Nom ou numéro du bureau de vote, ou le lieu le plus précis possible (commune, quartier).",
+            "en": "Name or number of the polling station, or the most precise place possible (town, area)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "moment",
+      "titre": { "fr": "Moment", "en": "Time" },
+      "champs": [
+        {
+          "id": "moment",
+          "type": "choix",
+          "verrouille": true,
+          "question": { "fr": "Quand l'incident a-t-il eu lieu ?", "en": "When did the incident happen?" },
+          "options": [
+            { "v": "maintenant", "label": { "fr": "En ce moment", "en": "Right now" }, "aide": { "fr": "Il y a moins de 15 minutes", "en": "Less than 15 minutes ago" } },
+            { "v": "plus_tot", "label": { "fr": "Plus tôt", "en": "Earlier" }, "aide": { "fr": "Je précise l'heure", "en": "I will give the time" } }
+          ]
+        },
+        {
+          "id": "heure",
+          "type": "date_heure",
+          "verrouille": true,
+          "colonne": "heure_declaree",
+          "si": "moment == 'plus_tot'",
+          "question": { "fr": "À quelle heure, à peu près ?", "en": "At about what time?" }
+        }
+      ]
+    },
+    {
+      "id": "incident",
+      "titre": { "fr": "Incident", "en": "Incident" },
+      "champs": [
+        {
+          "id": "categorie",
+          "type": "choix",
+          "verrouille": true,
+          "ouverte": true,
+          "colonne": "categorie",
+          "question": { "fr": "Que se passe-t-il ?", "en": "What is happening?" },
+          "options": [
+            { "v": "ouverture", "code": "OUV", "label": { "fr": "Bureau fermé ou ouverture tardive", "en": "Station closed or late opening" } },
+            { "v": "materiel", "code": "MAT", "label": { "fr": "Matériel électoral manquant", "en": "Missing election material" }, "aide": { "fr": "Bulletins, urnes, listes, encre…", "en": "Ballots, boxes, lists, ink…" } },
+            { "v": "violence", "code": "VIO", "label": { "fr": "Intimidation ou violence", "en": "Intimidation or violence" } },
+            { "v": "achat_voix", "code": "ACH", "label": { "fr": "Achat de voix", "en": "Vote buying" } },
+            { "v": "fraude", "code": "FRA", "label": { "fr": "Fraude ou bourrage d'urne", "en": "Fraud or ballot stuffing" } },
+            { "v": "observateurs", "code": "OBS", "label": { "fr": "Observateurs ou délégués refusés", "en": "Observers or agents refused" } },
+            { "v": "depouillement", "code": "DEP", "label": { "fr": "Irrégularité au dépouillement", "en": "Irregularity during counting" } },
+            { "v": "autre", "code": "AUT", "label": { "fr": "Autre", "en": "Other" } }
+          ]
+        },
+        {
+          "id": "gravite",
+          "type": "choix",
+          "verrouille": true,
+          "colonne": "gravite",
+          "question": { "fr": "Quelle est la gravité ?", "en": "How serious is it?" },
+          "options": [
+            { "v": "faible", "label": { "fr": "Faible", "en": "Low" }, "aide": { "fr": "Le vote continue normalement", "en": "Voting continues normally" } },
+            { "v": "moyenne", "label": { "fr": "Moyenne", "en": "Medium" }, "aide": { "fr": "Le vote est perturbé", "en": "Voting is disrupted" } },
+            { "v": "critique", "label": { "fr": "Critique", "en": "Critical" }, "aide": { "fr": "Danger pour des personnes ou vote arrêté", "en": "People in danger or voting stopped" } }
+          ]
+        },
+        {
+          "id": "description",
+          "type": "texte_long",
+          "verrouille": true,
+          "colonne": "description",
+          "max_longueur": 1000,
+          "question": { "fr": "Décrivez ce que vous voyez", "en": "Describe what you see" },
+          "aide": {
+            "fr": "Les faits, en quelques phrases. Ne donnez aucun nom de personne.",
+            "en": "The facts, in a few sentences. Do not give anyone's name."
+          }
+        }
+      ]
+    },
+    {
+      "id": "source",
+      "titre": { "fr": "Source", "en": "Source" },
+      "champs": [
+        {
+          "id": "source_information",
+          "type": "choix",
+          "verrouille": true,
+          "colonne": "source_information",
+          "question": { "fr": "Comment le savez-vous ?", "en": "How do you know?" },
+          "options": [
+            { "v": "vu", "label": { "fr": "Je l'ai vu moi-même", "en": "I saw it myself" } },
+            { "v": "rapporte", "label": { "fr": "Quelqu'un me l'a rapporté", "en": "Someone told me" } },
+            { "v": "document", "label": { "fr": "Un document ou une image", "en": "A document or picture" } }
+          ]
+        },
+        {
+          "id": "confiance",
+          "type": "choix",
+          "verrouille": true,
+          "colonne": "confiance",
+          "question": { "fr": "À quel point en êtes-vous sûr ?", "en": "How sure are you?" },
+          "aide": { "fr": "Une question à part : on peut être sûr d'une chose rapportée.", "en": "A separate question: you can be sure of something reported." },
+          "options": [
+            { "v": "sur", "label": { "fr": "Sûr", "en": "Sure" } },
+            { "v": "assez_sur", "label": { "fr": "Assez sûr", "en": "Fairly sure" } },
+            { "v": "peu_sur", "label": { "fr": "Peu sûr", "en": "Not sure" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "preuves",
+      "titre": { "fr": "Preuves", "en": "Evidence" },
+      "champs": [
+        {
+          "id": "photos",
+          "type": "photo",
+          "verrouille": true,
+          "obligatoire": false,
+          "max": 3,
+          "question": { "fr": "Ajouter une photo ? (facultatif)", "en": "Add a photo? (optional)" },
+          "aide": {
+            "fr": "Seulement si c'est sans risque pour vous. Vous pouvez envoyer sans photo.",
+            "en": "Only if it is safe for you. You can send without a photo."
+          }
+        }
+      ]
+    }
+  ]
+}

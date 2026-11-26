@@ -6,6 +6,7 @@ Chaque choix structurant est consigné dans un court fichier : contexte, options
 |---|---|---|---|
 | [0001](./0001-structure-monorepo.md) | Structure du monorepo et convention de croissance | ✅ acceptée | tous |
 | [0009](./0009-nom-du-projet.md) | Nom du projet : Jokkoondiral (texte et identifiants techniques) | ✅ acceptée | tous |
+| [0010](./0010-moteur-de-protocole.md) | Moteur de protocole, extensions et thèmes pour la collecte (C1) | ✅ acceptée | C1, M3, C3, C7 |
 | [0002](./0002-couche-acces-donnees.md) | Couche d'accès aux données (API métier devant NocoDB ?) | 🟠 proposée — **prioritaire** | S1, S3, M2, M4, M1 |
 | [0003](./0003-couverture-linguistique.md) | Couverture linguistique (FR/EN dès le MVP ?) | 🟠 proposée | S4 |
 | [0004](./0004-mode-hebergement.md) | Mode d'hébergement (auto + tiers de confiance ?) | 🟠 proposée | S5, S2, A2 |

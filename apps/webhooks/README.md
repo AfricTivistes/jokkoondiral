@@ -9,6 +9,7 @@
 |---|---|---|---|
 | [R1](../../docs/outils/reception.md#r1) | Passerelle WhatsApp | MVP | texte seul, médias ignorés, pas de vérification de signature |
 | [R2](../../docs/outils/reception.md#r2) | Passerelle SMS | MVP | texte brut, aucune réponse |
+| [C1](../../docs/outils/collecte.md#c1) | Réception de la PWA de collecte (`src/handlers/collect.ts`, `src/collecte/`) | MVP | livrée : `POST /api/collect`, photos, copie Kobo facultative |
 | [C3](../../docs/outils/collecte.md#c3) | Parcours SMS codé (`src/parsers/sms.ts`) | MVP | à créer |
 | [R3](../../docs/outils/reception.md#r3) | Bot Telegram | maintenu | texte + position |
 | [D3](../../docs/outils/diffusion.md#d3) | Alertes sortantes (`src/notify/`) | V1 | à créer |
@@ -31,6 +32,15 @@ Le rattachement de chaque message à un observateur enrôlé relève de [R5](../
 ```
 
 ---
+
+## 📥 Collecte (outil C1)
+
+| Route | Corps | Réponses |
+|---|---|---|
+| `POST /api/collect` | `{ code, envoi }` (JSON ≤ 64 Ko) | `201` reçu · `200` déjà reçu · `400` envoi invalide · `401` code refusé · `502/503` base indisponible |
+| `POST /api/collect/:instanceID/pieces` | une photo (`image/jpeg`, `png`, `webp`, ≤ 3 Mo), en-têtes `X-Code-Collecteur`, `X-Piece-Id` | `201` · `200` déjà reçue · `404` signalement inconnu |
+
+Le protocole est lu au démarrage depuis la même configuration que la PWA (`apps/collect/config/instance.json`) et validé par `@jokkoondiral/protocole` : le serveur accepte exactement le formulaire servi aux observateurs. Variables : `COLLECT_CODES` (obligatoire), `PIECES_DIR`, `KOBO_*` (facultatives), voir `.env.example`. Tests : `pnpm --filter webhooks test`.
 
 ## 🚀 Démarrage rapide
 
