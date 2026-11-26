@@ -106,7 +106,7 @@ Suivi : [issues `[R4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - [ ] Actions : créer + QR, nouveau lien, **réactiver** un observateur désactivé (aujourd'hui il faut en créer un nouveau), **révoquer un seul téléphone** (aujourd'hui seulement en base)
 - [ ] Route de lecture protégée de l'état du registre (aujourd'hui aucune)
 - [ ] QR imprimables en lot (fiche par bureau) ; import CSV depuis l'écran
-- [ ] Affectation à un bureau **du référentiel S6** (aujourd'hui `bureau_vote` en texte libre)
+- [ ] Affectation de l'observateur aux **lieux de vote qu'il couvre** (un ou plusieurs, chacun regroupant plusieurs bureaux) dans le référentiel S6 plutôt qu'à un bureau unique — **à discuter** (aujourd'hui `bureau_vote` en texte libre)
 - [ ] Envoi du lien par SMS ou WhatsApp, en option (réutilise les fournisseurs de D3, R1, R2)
 
 

@@ -33,7 +33,7 @@ La collecte doit marcher pour tous les observateurs : smartphone récent ou tél
 - [ ] File d'envoi locale
 - [ ] Envoi des photos compressées
 - [ ] Test en 2G simulée
-- [ ] Type de champ **`bureau`** dans le protocole : bureau d'affectation pré-rempli, recherche par nom ou par numéro de la carte d'électeur, saisie libre en dernier recours (dépend de S6)
+- [ ] Type de champ **`bureau`** dans le protocole : choix d'abord parmi les **lieux de vote couverts** par l'observateur puis du bureau dans ce lieu, recherche par nom ou par numéro de la carte d'électeur, saisie libre en dernier recours (dépend de S6 ; modalités à discuter)
 - [ ] Message d'erreur et état d'un signalement bloqué par l'accès : fait (le signalement repart seul après réactivation)
 
 
