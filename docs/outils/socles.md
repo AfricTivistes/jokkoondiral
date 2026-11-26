@@ -25,11 +25,17 @@ Les socles ne sont pas des outils visibles par l'observateur, mais tous les autr
 - **Où :** `apps/dashboard/src/providers/authProvider.ts`, rôles dans `packages/shared/src/types.ts` (`UserRole` existe).
 - **État :** authProvider du dashboard toujours ébauché ; côté terrain, chaque téléphone d'observateur est identifié par une clé propre et révocable ([ADR-0011](../decisions/0011-acces-aux-donnees-et-identite.md)). Reste : comptes de l'équipe, rôles, 2FA, retrait du jeton NocoDB du navigateur.
 
+**Remarques des tests en ligne (novembre 2026)** : l'enrôlement et la désactivation reposent sur un seul secret partagé : quiconque le possède peut créer ou couper des observateurs, sans trace de qui l'a fait.
+
 **Premières tâches**
 
 - [ ] Supprimer le jeton côté navigateur
 - [ ] Brancher la connexion
 - [ ] Contrôle d'accès par rôle
+- [ ] Rôle « coordinateur » autorisé à gérer les observateurs (R5), distinct de « modérateur »
+- [ ] Remplacer le secret partagé `JK_WEBHOOK_SECRET` (qui donne tous les droits sur le registre) par des comptes nominatifs de la coordination ; le garder seulement pour le webhook NocoDB, sur le réseau interne
+- [ ] 2FA obligatoire pour les comptes qui gèrent les observateurs
+
 
 Suivi : [issues `[S1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS1%5D%22) · titre d'issue : `[S1] <tâche>`
 
@@ -119,10 +125,19 @@ Suivi : [issues `[S5]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Où :** `infra/postgres`, `scripts/seed`.
 - **État :** `scripts/seed.js` crée 28 incidents de démonstration ; aucun référentiel réel.
 
+**Remarques des tests en ligne (novembre 2026)** : les lieux et bureaux de vote sont connus à l'avance (liste officielle, carte d'électeur) ; la saisie libre actuelle du lieu donne des données difficiles à regrouper par bureau.
+
 **Premières tâches**
 
 - [ ] Format d'import des bureaux de vote
 - [ ] Premier jeu Sénégal
+- [ ] Deux niveaux : **lieux de vote** (centre, commune, coordonnées GPS) et **bureaux** (numéro dans le lieu, inscrits), rattachés à un **scrutin** (A4)
+- [ ] Import depuis la liste officielle publiée avant le scrutin (CSV de la commission électorale) ; vérifier la licence de réutilisation dans chaque pays
+- [ ] Recherche par le **numéro de lieu ou de bureau imprimé sur la carte d'électeur** ; ne jamais stocker le numéro de carte de l'observateur
+- [ ] Distribution **hors ligne** à la PWA, découpée par région (ordre de grandeur : quelques centaines de Ko pour un pays)
+- [ ] Position du signalement tirée du référentiel plutôt que du GPS du téléphone (plus sûr pour l'observateur, plus précis)
+- [ ] Même liste dans le XLSForm Kobo (`select_one_from_file`, choix en cascade région → commune → lieu → bureau), voir C7
+
 
 Suivi : [issues `[S6]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BS6%5D%22) · titre d'issue : `[S6] <tâche>`
 

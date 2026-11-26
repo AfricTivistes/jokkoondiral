@@ -75,11 +75,16 @@ Suivi : [issues `[A3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Où :** scripts/ et infra/.
 - **État :** rien.
 
+**Remarques des tests en ligne (novembre 2026)** : aujourd'hui chaque observateur a sa propre date d'expiration ; il faut pouvoir clôturer un scrutin entier.
+
 **Premières tâches**
 
 - [ ] Notion de « scrutin » dans le modèle
 - [ ] Script de pseudonymisation
 - [ ] Sauvegarde chiffrée quotidienne
+- [ ] Avancer la **table `scrutins`** au MVP (le reste d'A4 reste en V1) : S6 (référentiel par scrutin) et R5 (expiration des accès) en ont besoin
+- [ ] Clôturer un scrutin = expirer d'un coup tous les accès des observateurs qui y sont rattachés
+
 
 Suivi : [issues `[A4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BA4%5D%22) · titre d'issue : `[A4] <tâche>`
 

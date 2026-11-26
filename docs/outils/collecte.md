@@ -25,12 +25,17 @@ La collecte doit marcher pour tous les observateurs : smartphone récent ou tél
 - **Où :** `apps/collect` (PWA), moteur `packages/protocole`, réception `apps/webhooks` (`POST /api/collect`).
 - **État :** première version livrée (issue #2) : parcours question par question, hors ligne, relecture, numéro de suivi, photos réduites sans EXIF, GPS facultatif, thèmes personnalisables, extensions de protocole, copie Kobo facultative. Voir [apps/collect](../../apps/collect/README.md), [protocoles.md](../protocoles.md), [ADR-0010](../decisions/0010-moteur-de-protocole.md). **Testé en ligne** en novembre 2026 (PWA sur Netlify, serveur et PostgreSQL sur Render) : [TESTER_EN_LIGNE.md](../TESTER_EN_LIGNE.md). Reste : liste des bureaux de vote (S6), PNG d'installation, catégories à valider (METHODOLOGY.md).
 
+**Remarques des tests en ligne (novembre 2026)** : le champ « lieu » en texte libre doit céder la place à un choix dans le référentiel des bureaux (S6), avec repli en saisie libre.
+
 **Premières tâches**
 
 - [ ] Schéma du formulaire partagé dans `packages/shared`
 - [ ] File d'envoi locale
 - [ ] Envoi des photos compressées
 - [ ] Test en 2G simulée
+- [ ] Type de champ **`bureau`** dans le protocole : bureau d'affectation pré-rempli, recherche par nom ou par numéro de la carte d'électeur, saisie libre en dernier recours (dépend de S6)
+- [ ] Message d'erreur et état d'un signalement bloqué par l'accès : fait (le signalement repart seul après réactivation)
+
 
 Suivi : [issues `[C1]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC1%5D%22) · titre d'issue : `[C1] <tâche>`
 
@@ -136,10 +141,14 @@ Suivi : [issues `[C6]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Où :** `scripts/import-kobo` puis connecteur dans `apps/webhooks`.
 - **État :** rien.
 
+**Remarques des tests en ligne (novembre 2026)** : si une OSC collecte aussi avec KoboCollect, la liste des bureaux doit être identique à celle de la PWA.
+
 **Premières tâches**
 
 - [ ] Correspondance des champs XLSForm vers le modèle d'incident (M3)
 - [ ] Import ponctuel en script
+- [ ] Exporter le référentiel S6 en fichier de choix Kobo (`select_one_from_file`) pour garder la même liste de bureaux que la PWA
+
 
 Suivi : [issues `[C7]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BC7%5D%22) · titre d'issue : `[C7] <tâche>`
 

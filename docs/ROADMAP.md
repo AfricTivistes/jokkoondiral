@@ -22,6 +22,8 @@ timeline
 | **V2** (second semestre 2027) | C5, C6, R4, M6, D4, D5, A3, S4 (langues nationales) | 7 + extension de S4 |
 | **Maintenu** sans nouvel investissement | R3 | 1 |
 
+**Ajustement (tests de novembre 2026)** : la **table `scrutins`** d'A4 est avancée au MVP, car S6 (référentiel des bureaux par scrutin) et R5 (expiration des accès des observateurs) en dépendent. Le reste d'A4 (archivage, pseudonymisation) reste en V1. La remise du lien d'activation par SMS ou WhatsApp n'a pas d'outil dédié : elle est rattachée à D3 (V1), et le QR suffit au MVP.
+
 Les issues GitHub portent le label `phase:mvp`, `phase:v1`, `phase:v2` ou `phase:maintenu`, et les issues MVP sont rattachées au jalon **MVP**.
 
 ## Le MVP en une phrase

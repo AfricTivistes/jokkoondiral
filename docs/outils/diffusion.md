@@ -60,10 +60,14 @@ Suivi : [issues `[D2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Où :** `apps/webhooks/src/notify/` (service d'envoi), règles configurables dans `apps/dashboard`.
 - **État :** rien.
 
+**Remarques des tests en ligne (novembre 2026)** : aucun outil n'est dédié à la remise des liens d'activation : D3 est le plus proche (messages sortants).
+
 **Premières tâches**
 
 - [ ] Règle « gravité critique → WhatsApp aux coordinateurs »
 - [ ] Limitation du nombre d'envois
+- [ ] Prévoir l'envoi du **lien d'activation** d'un observateur (R5) par SMS ou WhatsApp avec les mêmes fournisseurs
+
 
 Suivi : [issues `[D3]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=is%3Aissue+%22%5BD3%5D%22) · titre d'issue : `[D3] <tâche>`
 
