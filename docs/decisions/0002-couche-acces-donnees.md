@@ -1,6 +1,6 @@
 # ADR-0002 — Couche d'accès aux données
 
-- **Statut :** proposée (à trancher par le pilotage)
+- **Statut :** tranchée pour l'écriture des signalements par [ADR-0011](./0011-acces-aux-donnees-et-identite.md) ; ouverte pour la lecture (dashboard)
 - **Outils concernés :** S1, S3, M2, M4, M1
 - **Source :** document « Orientation des besoins », section « Décisions à trancher »
 

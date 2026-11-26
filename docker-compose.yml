@@ -55,13 +55,26 @@ services:
       PORT: 3000
       NOCODB_API_URL: http://nocodb:8080/api/v1/db/data/v1/${DB_NAME}
       NOCODB_API_TOKEN: ${NOCODB_API_TOKEN}
-      # Collecte PWA (C1) : codes collecteurs autorisés, copie Kobo facultative
-      COLLECT_CODES: ${COLLECT_CODES}
+      # Collecte PWA (C1) : identification des observateurs et stockage (voir .env.example)
+      IDENTIFICATION: ${IDENTIFICATION:-appareils}
+      JK_SECRET_FILE: /run/secrets/jk_secret
+      JK_WEBHOOK_SECRET: ${JK_WEBHOOK_SECRET:-}
+      COLLECT_URL: https://${DOMAIN}/collect/
+      COLLECT_CODES: ${COLLECT_CODES:-}
+      STOCKAGE_SIGNALEMENTS: ${STOCKAGE_SIGNALEMENTS:-nocodb}
+      STOCKAGE_COPIES: ${STOCKAGE_COPIES:-}
+      REGISTRE_OBSERVATEURS: ${REGISTRE_OBSERVATEURS:-}
+      DATABASE_URL: ${DATABASE_URL:-}
+      PG_CA_CERT_FILE: ${PG_CA_CERT_FILE:-}
       KOBO_SUBMISSION_URL: ${KOBO_SUBMISSION_URL:-}
       KOBO_FORM_ID: ${KOBO_FORM_ID:-}
       KOBO_TOKEN: ${KOBO_TOKEN:-}
+      DATA_DIR: /data
+      PIECES_DIR: /data/pieces
+    secrets:
+      - jk_secret
     volumes:
-      - pieces:/data/pieces
+      - donnees:/data
     restart: unless-stopped
     networks:
       - internal
@@ -140,9 +153,15 @@ services:
 volumes:
   pgdata:
   nocodb_data:
-  pieces:        # photos reçues par la collecte (amorce du coffre des preuves M2)
+  donnees:       # photos reçues (amorce du coffre des preuves M2) et file de reprise des copies
   certbot_certs:
   certbot_www:
+
+# Secrets montés en fichier dans /run/secrets (jamais dans l'environnement ni dans `docker inspect`).
+# Créer le fichier : openssl rand -base64 48 > secrets/jk_secret && chmod 600 secrets/jk_secret
+secrets:
+  jk_secret:
+    file: ./secrets/jk_secret
 
 networks:
   internal:

@@ -29,7 +29,7 @@ Besoin exprimé par les OSC  →  Outil (code)  →  Dossier du monorepo  →  I
 
 ➡️ **[Catalogue complet des 34 outils](./docs/outils/README.md)** · [Besoins et matrice besoins × outils](./docs/BESOINS.md) · [Feuille de route](./docs/ROADMAP.md) · [Décisions ouvertes](./docs/decisions/README.md)
 
-**État :** 12 outils amorcés, 22 à créer (dont la PWA de collecte C1). Le MVP (17 outils) vise un premier scrutin pilote début 2027.
+**État :** 13 outils amorcés, 21 à créer (dont la PWA de collecte C1 et le registre des observateurs R5). Le MVP (17 outils) vise un premier scrutin pilote début 2027.
 
 ---
 
@@ -134,7 +134,8 @@ Agents IA (Cursor, OpenCode…) → [AGENTS.md](./AGENTS.md).
 | [docs/PERSONNALISER.md](./docs/PERSONNALISER.md) | OSC qui déploient | Forker, adapter, rester à jour |
 | [docs/METHODOLOGY.md](./docs/METHODOLOGY.md) | Fact-checkeurs, juristes | Nomenclature et circuit de vérification (à rédiger) |
 | [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [TECHNICAL_REFERENCE.md](./docs/TECHNICAL_REFERENCE.md) · [SCHEMA.md](./docs/SCHEMA.md) | Développeurs | Architecture, choix techniques, base de données |
-| [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) | DevOps | Mise en production |
+| [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) | DevOps | Mise en production, bases distantes sécurisées |
+| [docs/nocodb-registre.md](./docs/nocodb-registre.md) | Coordination | Enrôler, activer, désactiver les observateurs |
 | [docs/PROJECT_OVERVIEW.md](./docs/PROJECT_OVERVIEW.md) | Partenaires, bailleurs | Vision, valeurs, impact |
 
 ---

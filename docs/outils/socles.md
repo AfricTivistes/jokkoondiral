@@ -23,7 +23,7 @@ Les socles ne sont pas des outils visibles par l'observateur, mais tous les autr
 - **Données :** piratage cité par 22 ; alertes « tentative d'intrusion » voulues par 27 ; « accès sécurisé pour les observateurs en zone à risques » (plusieurs pays).
 - **Briques open source :** authentification NocoDB ou couche dédiée (voir Décisions) ; TOTP pour la 2FA.
 - **Où :** `apps/dashboard/src/providers/authProvider.ts`, rôles dans `packages/shared/src/types.ts` (`UserRole` existe).
-- **État :** authProvider ébauché mais non branché ; le dashboard envoie un jeton d'API NocoDB complet au navigateur.
+- **État :** authProvider du dashboard toujours ébauché ; côté terrain, chaque téléphone d'observateur est identifié par une clé propre et révocable ([ADR-0011](../decisions/0011-acces-aux-donnees-et-identite.md)). Reste : comptes de l'équipe, rôles, 2FA, retrait du jeton NocoDB du navigateur.
 
 **Premières tâches**
 
@@ -59,7 +59,7 @@ Suivi : [issues `[S2]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Données :** sécurité et chiffrement noté 3,95 (2e), non négociable pour 8 ; menaces : intimidation 34, désinformation 34, surveillance 25, piratage 22 ; besoins exprimés : chiffrement des communications, protection contre la surveillance.
 - **Briques open source :** chiffrement de colonnes pgcrypto, TLS par Nginx + Let's Encrypt, fail2ban ; Signal recommandé pour les échanges d'équipe.
 - **Où :** infra/, `docker/nginx/`, revue transverse de toutes les apps.
-- **État :** Nginx configuré ; ports internes non exposés ; rien d'autre.
+- **État :** amorcé : HTTPS / TLS vérifié obligatoire vers les bases distantes, secrets en fichier (`*_FILE`), rôle PostgreSQL à droits minimaux, empreintes HMAC des clés, numéros chiffrés AES-256-GCM, photos sans EXIF, aucune donnée nominative. Reste : modèle de menace écrit, journal des connexions et alerte D3.
 
 **Premières tâches**
 

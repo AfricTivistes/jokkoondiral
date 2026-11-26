@@ -8,7 +8,8 @@
     "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --format=cjs --outfile=dist/index.js --log-level=warning",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test test/*.test.ts"
+    "test": "tsx --test test/*.test.ts",
+    "observateurs": "tsx scripts/observateurs.ts"
   },
   "dependencies": {
     "@jokkoondiral/protocole": "workspace:*",

@@ -93,7 +93,7 @@ Suivi : [issues `[R4]`](https://github.com/AfricTivistes/jokkoondiral/issues?q=i
 - **Données :** 22 OSC déploient 1 à 10 observateurs, 9 en déploient plus de 200 ; granularité « bureau de vote » voulue par 23 ; intimidation 34 (d'où la protection de ces données).
 - **Briques open source :** table PostgreSQL + import CSV.
 - **Où :** `infra/postgres` (table `observers`, suggérée dans `docs/SCHEMA.md`), écrans dans `apps/dashboard`.
-- **État :** schéma suggéré seulement.
+- **État :** première version (PR « identité et stockage ») : registre `observateurs` / `appareils` / `activations` dans NocoDB ou PostgreSQL, pseudonymes `OBS-XXXXXX`, enrôlement par lien/QR à usage unique, révocation par téléphone ou par observateur, expiration par scrutin, numéros chiffrés. Gestion dans NocoDB ([nocodb-registre.md](../nocodb-registre.md)) ou `pnpm observateurs`. Reste : rattacher les numéros WhatsApp/SMS entrants (R1, R2), écran dans le dashboard.
 
 **Premières tâches**
 

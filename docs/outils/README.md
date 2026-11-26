@@ -123,13 +123,13 @@ Légende état : 🟡 **Amorcé** = du code, un schéma ou une configuration exi
 | [A4](./analyse.md#a4) | Archivage et conservation | V1 | ⚪ À créer | scripts/ et infra/ |
 | [S1](./socles.md#s1) | Identité, rôles et double authentification | MVP | 🟡 Amorcé | `apps/dashboard/src/providers/authProvider.ts`, rôles dans `packages/shared/src/types.ts` (UserRole existe) |
 | [S2](./socles.md#s2) | Multi-organisations | V1 | ⚪ À créer | `infra/postgres`, filtres dans toutes les apps |
-| [S3](./socles.md#s3) | Sécurité et protection des observateurs | MVP, continu | ⚪ À créer | infra/, `docker/nginx/`, revue transverse de toutes les apps |
+| [S3](./socles.md#s3) | Sécurité et protection des observateurs | MVP, continu | 🟡 Amorcé | infra/, `docker/nginx/`, revue transverse de toutes les apps |
 | [S4](./socles.md#s4) | Langues | MVP (FR/EN), V2 (langues nationales) | ⚪ À créer | `packages/shared/src/i18n/` |
 | [S5](./socles.md#s5) | Déploiement et hébergement | MVP (auto-hébergé), V1 (mode hébergé) | 🟡 Amorcé | docker/, docker-compose.yml, `scripts/setup.sh`, `docs/DEPLOYMENT.md` |
 | [S6](./socles.md#s6) | Référentiels | MVP | ⚪ À créer | `infra/postgres`, `scripts/seed` |
 | [S7](./socles.md#s7) | Documentation et guides | MVP, continu | 🟡 Amorcé | docs/ (existe : ARCHITECTURE, SCHEMA, DEPLOYMENT…) |
 
-**Bilan :** 12 outils amorcés, 22 à créer. Le socle d'infrastructure (Docker, PostgreSQL, NocoDB, Nginx, monorepo pnpm, types partagés) est en place et ne doit pas être refait.
+**Bilan :** 13 outils amorcés, 21 à créer. Le socle d'infrastructure (Docker, PostgreSQL, NocoDB, Nginx, monorepo pnpm, types partagés) est en place et ne doit pas être refait.
 
 ## Contenu d'une fiche
 

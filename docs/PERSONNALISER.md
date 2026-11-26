@@ -8,7 +8,9 @@ Jokkoondiral est un **bien commun** : chaque OSC installe sa propre instance, su
 
 | Quoi | Où aujourd'hui | Outil |
 |---|---|---|
-| Domaine, mots de passe, secrets | `.env` (copie de `.env.example`) | S5 |
+| Domaine, mots de passe, secrets | `.env` (copie de `.env.example`), secrets en fichier (`*_FILE`) | S5 |
+| Où stocker les signalements (NocoDB, PostgreSQL, Kobo) et le registre des observateurs | `STOCKAGE_SIGNALEMENTS`, `STOCKAGE_COPIES`, `REGISTRE_OBSERVATEURS` — [DEPLOYMENT.md](./DEPLOYMENT.md#étape-7--collecte--secrets-identification-et-base-de-données) | R5, S3 |
+| Identification des observateurs (téléphone activé par lien, ou codes partagés) | `IDENTIFICATION` + `identification` dans `apps/collect/config/instance.json` — [nocodb-registre.md](./nocodb-registre.md) | R5 |
 | Canaux activés (WhatsApp, SMS, Telegram…) | Variables du canal dans `.env` + enregistrement du webhook chez le fournisseur. Aujourd'hui toutes les routes de `apps/webhooks` sont actives ; un interrupteur par canal reste à créer | R1–R4 |
 | Services optionnels (vocal, USSD…) | Profils Docker Compose : `docker compose --profile voice up -d` | C5, C6 |
 | Statuts, canaux, libellés | `packages/shared/src/constants.ts` (en attendant les fichiers de traduction) | M3, S4 |

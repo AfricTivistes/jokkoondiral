@@ -14,6 +14,7 @@
     "dev": "pnpm --parallel --filter \"./apps/**\" dev",
     "build": "pnpm -r --if-present build",
     "seed": "node scripts/seed.js",
+    "observateurs": "pnpm --silent --filter webhooks observateurs --",
     "typecheck": "pnpm -r --if-present typecheck",
     "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
     "github:labels": "bash scripts/github/labels.sh",
